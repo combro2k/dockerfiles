@@ -87,6 +87,29 @@ frontend http-in
   description proxy
 
   bind *:80
+
+  compression offload
+  compression algo gzip
+  compression type text/css text/html text/javascript application/javascript text/plain text/xml application/json 
+
+
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
+{{ if $value.Env.SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
+  acl backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
+{{ end }}{{ end }}
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
+{{ if $value.Env.SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
+  acl ssl_backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
+{{ end }}{{ end }}
+
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
+  use_backend {{ $value.Name }} if backend_{{ $value.Name }} # {{ $host }}
+{{ end }}{{ end }}
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
+  use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }}
+{{ end }}{{ end }}
+
+frontend https-in
   bind *:443 ssl crt-list /data/ssl/crt-list.txt
 
   compression offload
@@ -105,3 +128,4 @@ frontend http-in
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
   use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }}
 {{ end }}{{ end }}
+

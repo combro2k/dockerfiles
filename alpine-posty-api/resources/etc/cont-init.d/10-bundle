@@ -1,0 +1,58 @@
+#!/usr/bin/with-contenv bash
+
+test -z "${MYSQL_PORT_3306_TCP_ADDR}" && echo "Can not run without MySQL link!" && exit 1
+test -z "${MYSQL_PORT_3306_TCP_PORT}" && echo "Can not run without MySQL link!" && exit 1
+
+if [ -z ${POSTY_DATABASE} ]; then
+    POSTY_DATABASE='posty_api'
+fi
+
+if [ -z ${POSTY_USER} ]; then
+    POSTY_USER='posty_api'
+fi
+
+if [ -z ${POSTY_PASSWORD} ]; then
+    POSTY_PASSWORD='P0stY_ApI'
+fi
+
+cat <<EOF > /data/api/config/database.yml
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  database: '${POSTY_DATABASE}'
+  pool: 5
+  username: '${POSTY_USER}'
+  password: '${POSTY_PASSWORD}'
+  host: '${MYSQL_PORT_3306_TCP_ADDR}'
+  port: '${MYSQL_PORT_3306_TCP_PORT}'
+#  socket: mysql socket path (/var/mysql/mysql.sock)
+EOF
+
+cat <<EOF > ${HOME}/.posty_client.yml
+development:
+  # this is the posty Url put here your url where the posty-api is stored
+  api_url: http://localhost:9292/api/
+  # this is the version from the posty api
+  api_version: v1
+  access_token: ask your admin
+
+production:
+  api_url: http://localhost:9292/api/
+  api_version: v1
+  access_token: ask your admin
+EOF
+
+bundle exec rake db:migrate --trace
+
+API_KEY=$(mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
+
+if [ -z ${API_KEY} ]; then
+    echo -e "\e[31mGenerating API key...\e[0m"
+    rake api_key:generate > /dev/null 2>&1
+    API_KEY=$(mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
+fi
+
+echo -e "\e[31mUsing API key: ${API_KEY} \e[0m"
+
+exit 0

@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv sh
+
+if [ -f /data/config/lighttpd.user ]; then
+	exit 0
+fi
+
+if [ ! -z $AUTH_USER ]; then
+	test -z $AUTH_PASSWD && AUTH_PASSWD=`pwgen 12 -y -s -B -1`
+
+	echo "$AUTH_PASSWD" | htpasswd -i -c /data/config/lighttpd.user "$AUTH_USER"
+
+	echo "Added $AUTH_USER with password $AUTH_PASSWD"
+fi
+
+exit 0

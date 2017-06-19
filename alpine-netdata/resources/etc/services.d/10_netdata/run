@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+exec /usr/sbin/netdata -D -u root -s /host -p 19999 

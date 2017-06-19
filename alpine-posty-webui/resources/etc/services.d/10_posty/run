@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+cd /data/webui
+
+test -f /data/config/lighttpd.user && exec lighttpd -f /etc/lighttpd/lighttpd-htpasswd.conf -D
+
+exec lighttpd -f /etc/lighttpd/lighttpd.conf -D

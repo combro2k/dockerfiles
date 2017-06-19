@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+cd /data/api
+
+exec bundle exec rackup

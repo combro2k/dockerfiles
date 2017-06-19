@@ -1,0 +1,28 @@
+#!/usr/bin/with-contenv sh
+
+if [ -f /data/web/data/do-install.txt ] && [ -f /freshrss/config.php ]; then
+	echo "[FreshRSS INIT] Using existing config.."
+
+	rm -f /data/web/data/config.php
+	ln -s /freshrss/config.php /data/web/data/config.php
+	rm -f /data/web/data/do-install.txt
+fi
+
+if [ ! -L /data/web/data/users ]; then
+	echo "[FreshRSS INIT] Link user directory"
+
+	if [ ! -d /freshrss/users ]; then
+		mv /data/web/data/users /freshrss/users
+
+		ln -s /freshrss/users /data/web/data/users
+	else
+		rm -fr /data/web/data/users
+
+		ln -s /freshrss/users /data/web/data/users
+	fi
+	
+fi
+
+chown -R www-data:www-data /data/web /freshrss
+
+exit 0

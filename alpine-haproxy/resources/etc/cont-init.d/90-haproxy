@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/haproxy.d ]; then
+	mkdir -p /data/haproxy.d
+fi
+
+exit 0

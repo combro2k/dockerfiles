@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+chown root:root /usr/share/netdata/web/ -R
+
+exit 0

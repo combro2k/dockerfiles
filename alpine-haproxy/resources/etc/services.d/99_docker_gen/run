@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv sh
+exec /app/docker-gen -config /app/docker-gen.cfg -endpoint unix:///tmp/docker.sock

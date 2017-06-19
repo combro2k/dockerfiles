@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv sh
+
+chown -R www-data:www-data /data/web /wordpress
+
+if [ -f /wordpress/wp-config.php ]; then
+	echo "Symlinking wp-config.php to /data/web/wp-config.php" 
+
+	rm -fr /data/web/wp-config.php
+	ln -s /wordpress/wp-config.php /data/web/wp-config.php
+fi
+
+if [ -d /wordpress/wp-content ]; then
+	echo "Symlinking wp-content to /data/web/wp-content"
+	
+	rm -fr /data/web/wp-content
+	ln -s /wordpress/wp-content /data/web/wp-content
+fi
+
+exit 0

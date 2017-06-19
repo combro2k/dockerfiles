@@ -1,0 +1,3 @@
+#!/usr/bin/execlineb -P
+
+/app/ts3server_minimal_runscript.sh

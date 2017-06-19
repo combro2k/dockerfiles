@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv sh
+
+if [ -f /data/web/wp-config.php ] && [ ! -L /data/web/wp-config.php ]; then
+	echo "Move wp-config.php to mounted volume"
+	mv /data/web/wp-config.php /wordpress/wp-config.php
+fi
+
+if [ -d /data/web/wp-content ] && [ ! -L /data/web/wp-content ]; then
+	echo "Copying wp-content to mounted volume"
+	mv /data/web/wp-content /wordpress/wp-content
+fi
+
+exit 0

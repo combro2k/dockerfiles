@@ -11,7 +11,7 @@ RUN set -xe && apk update && apk upgrade && \
 		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && \
 	apk add --no-cache -t build-deps \
 		ruby-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar xvzf - -C /
+	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
 
 RUN mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | \
 	    tar zx -C /data/api --strip-components=1 && \

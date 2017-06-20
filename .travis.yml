@@ -6,7 +6,19 @@ services:
   - docker
 
 script:
-  - docker build -t combro2k/alpine-haproxy:latest alpine-haproxy/
+  - docker build -t alpine-haproxy alpine-haproxy
+  - docker build -t alpine-netdata alpine-netdata
+  - docker build -t alpine-nginx-freshrss alpine-nginx-freshrss
+  - docker build -t alpine-nginx-php5 alpine-nginx-php5
+  - docker build -t alpine-nginx-php7 alpine-nginx-php7
+  - docker build -t alpine-nginx-proxy alpine-nginx-proxy
+  - docker build -t alpine-nginx-rainloop alpine-nginx-rainloop
+  - docker build -t alpine-nginx-rainloop-php7 alpine-nginx-rainloop-php7
+  - docker build -t alpine-nginx-wordpress alpine-nginx-wordpress
+  - docker build -t alpine-nginx-wordpress-php7 alpine-nginx-wordpress-php7
+  - docker build -t alpine-posty-api alpine-posty-api
+  - docker build -t alpine-posty-webui alpine-posty-webui
+  - docker build -t alpine-teamspeak3 alpine-teamspeak3
 
 notifications:
   email: false

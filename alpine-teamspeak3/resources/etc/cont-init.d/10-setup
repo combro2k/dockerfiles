@@ -1,3 +1,11 @@
 #!/usr/bin/with-contenv sh
 
+if [ ! -f /teamspeak3/ts3server.ini ]; then
+	touch /teamspeak3/ts3server.ini
+fi
+
+if [ ! -f /teamspeak3/ts3server.sqlitedb ]; then
+	touch /teamspeak3/ts3server.sqlitedb
+fi
+
 exit 0

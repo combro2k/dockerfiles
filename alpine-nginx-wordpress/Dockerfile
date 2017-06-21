@@ -1,12 +1,12 @@
 FROM combro2k/alpine-nginx-php5:latest
 
 RUN \
-	apk --no-cache add php5-fpm php5-json php5-zlib php5-xml php5-pdo php5-phar php5-openssl php5-pdo_mysql php5-mysqli php5-gd php5-iconv php5-mcrypt && \
+	apk --quiet --no-cache add php5-fpm php5-json php5-zlib php5-xml php5-pdo php5-phar php5-openssl php5-pdo_mysql php5-mysqli php5-gd php5-iconv php5-mcrypt && \
 	rm /data/web -fr && mkdir /data/web /wordpress && \
-	curl --location https://wordpress.org/latest.tar.gz | tar zx -C /data/web --strip-components=1 
+	curl --location https://wordpress.org/latest.tar.gz | tar zx -C /data/web --strip-components=1
 
 VOLUME /wordpress
 
 COPY resources/etc /etc/
 
-RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*

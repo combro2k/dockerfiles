@@ -8,7 +8,7 @@ RUN set -xe && apk --no-cache upgrade && \
 COPY resources/etc /etc/
 COPY resources/data /data/
 
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 VOLUME /data/config
 

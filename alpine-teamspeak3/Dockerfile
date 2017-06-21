@@ -10,7 +10,7 @@ COPY resources/etc /etc/
 
 VOLUME ['/teamspeak3']
 
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/* 
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/* 
 
 EXPOSE 9987/udp 10011/tcp 30033/tcp
 

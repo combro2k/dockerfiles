@@ -13,6 +13,6 @@ VOLUME ['/tmp/docker.sock']
 
 EXPOSE 80/tcp 443/tcp 9000/tcp
 
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/* && chmod +x /app/reload-haproxy.sh
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/* && chmod +x /app/reload-haproxy.sh
 
 ENTRYPOINT ["/init"]

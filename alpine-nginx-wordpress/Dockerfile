@@ -8,3 +8,5 @@ RUN \
 VOLUME /wordpress
 
 COPY resources/etc /etc/
+
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*

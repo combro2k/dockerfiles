@@ -13,6 +13,6 @@ VOLUME ['/data/web']
 
 EXPOSE 80/tcp
 
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/init"]

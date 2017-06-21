@@ -8,4 +8,4 @@ COPY resources/etc /etc/
 
 VOLUME /freshrss
 
-RUN set -xe && apk del --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --nocache --progress --purge && rm -rf /var/cache/apk/*

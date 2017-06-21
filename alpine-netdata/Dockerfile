@@ -15,6 +15,6 @@ COPY resources/etc /etc/
 
 EXPOSE 19999/tcp
 
-RUN set -xe && apk --progress --purge del && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/init"]

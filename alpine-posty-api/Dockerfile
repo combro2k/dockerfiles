@@ -17,7 +17,7 @@ RUN set -xe && apk --no-cache upgrade && apk add --no-cache --virtual=run-deps \
 COPY resources/etc /etc/
 COPY resources/data /data/
 
-RUN set -xe && apk del --progress --purge -t build-deps  && apk del --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk del --no-cache --progress --purge -t build-deps && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 WORKDIR /data/api
 EXPOSE 9292/tcp

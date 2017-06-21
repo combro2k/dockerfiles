@@ -9,7 +9,7 @@ COPY resources/etc /etc/
 COPY resources/app /app/
 COPY resources/data /data/
 
-VOLUME ['/tmp/docker.sock']
+VOLUME /tmp/docker.sock
 
 EXPOSE 80/tcp 443/tcp 9000/tcp
 

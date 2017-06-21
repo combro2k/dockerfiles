@@ -8,7 +8,7 @@ RUN set -xe && apk --no-cache --quiet upgrade && apk --no-cache --quiet add curl
 
 COPY resources/etc /etc/
 
-VOLUME ['/teamspeak3']
+VOLUME /teamspeak3
 
 RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/* 
 

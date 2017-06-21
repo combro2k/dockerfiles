@@ -13,7 +13,7 @@ RUN \
 
 COPY resources/etc /etc/
 
-EXPOSE 19999
+EXPOSE 19999/tcp
 
 RUN set -xe && apk --progress --purge del && rm -rf /var/cache/apk/*
 

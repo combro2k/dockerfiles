@@ -38,17 +38,17 @@ docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php7:latest alpine-nginx-php7
 
 # Dependend PHP5 containers
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress:latest alpine-nginx-wordpress
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress:latest alpine-nginx-wordpress
 docker rmi combro2k/alpine-nginx-wordpress:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-freshrss:latest alpine-nginx-freshrss
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-freshrss:latest alpine-nginx-freshrss
 docker rmi combro2k/alpine-nginx-freshrss:latest
 
 # Dependend PHP7 containers
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress-php7:latest alpine-nginx-wordpress-php7
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress-php7:latest alpine-nginx-wordpress-php7
 docker rmi combro2k/alpine-nginx-wordpress-php7:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-nextcloud:latest alpine-nginx-nextcloud
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-nextcloud:latest alpine-nginx-nextcloud
 docker rmi combro2k/alpine-nginx-nextcloud:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-rainloop:latest alpine-nginx-rainloop
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-rainloop:latest alpine-nginx-rainloop
 docker rmi combro2k/alpine-nginx-rainloop:latest
 
 # Destroy dependenable containers

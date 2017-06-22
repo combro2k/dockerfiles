@@ -9,7 +9,7 @@ RUN set -xe && apk --quiet --no-cache upgrade && apk add --no-cache --virtual=ru
 COPY resources/etc /etc/
 COPY resources/data /data/
 
-VOLUME /data/web
+#VOLUME /data/web
 
 EXPOSE 80/tcp
 

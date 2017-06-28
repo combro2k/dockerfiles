@@ -4,4 +4,4 @@ if [ ! -d /etc/dropbear ]; then
 	mkdir /etc/dropbear
 fi
 
-exec dropbear -F -R -E -B
+exec /usr/sbin/sshd -D

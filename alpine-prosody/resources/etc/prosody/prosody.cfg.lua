@@ -45,8 +45,8 @@ modules_enabled = {
 		"vcard"; -- Allow users to set vCards
 	
 	-- These are commented by default as they have a performance impact
-		--"privacy"; -- Support privacy lists
-		"compression"; -- Stream compression
+		"privacy"; -- Support privacy lists
+		--"compression"; -- Stream compression
 
 	-- Nice to have
 		"version"; -- Replies to server version requests
@@ -61,7 +61,7 @@ modules_enabled = {
 		--"admin_telnet"; -- Opens telnet console interface on localhost port 5582
 	
 	-- HTTP modules
-		--"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+		"bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
 		--"http_files"; -- Serve static files from a directory over HTTP
 
 	-- Other specific functionality
@@ -71,7 +71,7 @@ modules_enabled = {
 		--"welcome"; -- Welcome users who register accounts
 		--"watchregistrations"; -- Alert admins of registrations
 		--"motd"; -- Send a message to users when they log in
-		--"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
+		"legacyauth"; -- Legacy authentication. Only used by some old clients and bots.
 };
 
 -- These modules are auto-loaded, but should you want
@@ -104,13 +104,13 @@ c2s_require_encryption = false
 -- NOTE: Your version of LuaSec must support certificate verification!
 -- For more information see http://prosody.im/doc/s2s#security
 
-s2s_secure_auth = false
+s2s_secure_auth = true
 
 -- Many servers don't support encryption or have invalid or self-signed
 -- certificates. You can list domains here that will not be required to
 -- authenticate using certificates. They will be authenticated using DNS.
 
---s2s_insecure_domains = { "gmail.com" }
+s2s_insecure_domains = { "gmail.com" }
 
 -- Even if you leave s2s_secure_auth disabled, you can still require valid
 -- certificates for some domains by specifying a list here.

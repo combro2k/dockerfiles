@@ -9,6 +9,6 @@ RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cach
 
 VOLUME /var/lib/prosody /prosody
 
-EXPOSE 5222/tcp 5269/tcp
+EXPOSE 5222/tcp 5269/tcp 5280/tcp 5281/tcp
 
 ENTRYPOINT ["/init"]

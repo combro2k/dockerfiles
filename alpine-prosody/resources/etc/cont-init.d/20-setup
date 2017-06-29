@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+chown prosody:prosody /var/lib/prosody -R
+
+exit 0

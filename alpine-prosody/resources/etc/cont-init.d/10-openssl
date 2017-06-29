@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/ssl ]; then
+	mkdir -p /data/ssl
+fi
+if [ ! -f /data/ssl/default.pem ]; then
+	openssl req -nodes -newkey rsa:4096 -keyout /data/ssl/default.key -out /data/ssl/default.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
+	openssl x509 -req -days 365 -in /data/ssl/default.csr -signkey /data/ssl/default.key -out /data/ssl/default.crt
+	cat /data/ssl/default.crt /data/ssl/default.key > /data/ssl/default.pem
+	rm /data/ssl/default.crt /data/ssl/default.key /data/ssl/default.csr
+fi
+
+if [ ! -f /data/ssl/crt-list.txt ]; then
+	touch /data/ssl/crt-list.txt
+fi
+
+if ! grep -iq '^/data/ssl/default.pem' /data/ssl/crt-list.txt; then
+	echo '/data/ssl/default.pem *' > /data/ssl/crt-list.txt
+fi
+
+exit 0

@@ -89,8 +89,8 @@ allow_registration = false;
 -- These are the SSL/TLS-related settings. If you don't want
 -- to use SSL/TLS, you may comment or remove this
 ssl = {
-	key = "/etc/prosody/certs/localhost.key";
-	certificate = "/etc/prosody/certs/localhost.crt";
+	key = "/prosody/ssl/default.key";
+	certificate = "/prosody/ssl/default.crt";
 }
 
 -- Force clients to use encrypted connections? This option will
@@ -153,18 +153,6 @@ log = {
 
 VirtualHost "localhost"
 
-VirtualHost "example.com"
-	enabled = false -- Remove this line to enable this host
-
-	-- Assign this host a certificate for TLS, otherwise it would use the one
-	-- set in the global section (if any).
-	-- Note that old-style SSL on port 5223 only supports one certificate, and will always
-	-- use the global one.
-	ssl = {
-		key = "/etc/prosody/certs/example.com.key";
-		certificate = "/etc/prosody/certs/example.com.crt";
-	}
-
 ------ Components ------
 -- You can specify components to add hosts that provide special services,
 -- like multi-user conferences, and transports.
@@ -184,3 +172,6 @@ VirtualHost "example.com"
 --
 --Component "gateway.example.com"
 --	component_secret = "password"
+--
+
+Include "/prosody/conf.d/*.cfg.lua"

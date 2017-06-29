@@ -2,4 +2,8 @@
 
 chown prosody:prosody /var/lib/prosody -R
 
+if [ ! -d /prosody/conf.d ]; then
+	mkdir /prosody/conf.d
+fi
+
 exit 0

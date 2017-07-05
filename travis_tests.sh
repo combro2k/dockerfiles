@@ -34,6 +34,8 @@ docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-teamsp
 docker rmi combro2k/alpine-teamspeak3:latest
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-prosody:latest alpine-prosody
 docker rmi combro2k/alpine-prosody:latest
+docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-openfire:latest alpine-openfire
+docker rmi combro2k/alpine-openfire:latest
 
 # Build dependendable containers
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5

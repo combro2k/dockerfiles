@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM gliderlabs/alpine:edge
 
 RUN apk --no-cache --progress add curl openjdk8-jre-base && \
 	mkdir -p /app && \

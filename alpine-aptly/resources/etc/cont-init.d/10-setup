@@ -32,7 +32,7 @@ if [ ! -L /root/.gnupg ]; then
 fi
 
 if [ -d /aptly/data/public ] && [ ! -f /aptly/data/public/${HOSTNAME}.gpg ]; then
-	gpg --armor --export /aptly/data/public/${HOSTNAME}.gpg
+	gpg --armor --export --output /aptly/data/public/${HOSTNAME}.gpg
 fi
 
 cat << EOF > /etc/nginx/conf.d/default.conf

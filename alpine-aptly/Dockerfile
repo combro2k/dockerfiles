@@ -6,7 +6,7 @@ ENV FULL_NAME="aptly" \
 	GPG_TTY="/dev/console" \
 	GNUPGHOME="/aptly/.gnupg"
 
-RUN apk --no-cache --progress add curl xz bzip2 gnupg debian-archive-keyring nginx && \
+RUN apk --no-cache --progress add curl xz bzip2 gnupg1 debian-archive-keyring nginx && \
 	mkdir -p /app/aptly && \
 	curl -L https://bintray.com/artifact/download/smira/aptly/aptly_1.0.1_linux_amd64.tar.gz | tar zx -C /app/aptly --strip-components=1 && \
 	ln -s /app/aptly/aptly /usr/bin/aptly && \

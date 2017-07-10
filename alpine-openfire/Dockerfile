@@ -23,7 +23,6 @@ EXPOSE 	5222/tcp \
 	9090/tcp \
 	9091/tcp
 
-VOLUME 	/openfire/embedded-db \
-	/openfire/conf
+VOLUME 	/openfire
 
 ENTRYPOINT ["/init"]

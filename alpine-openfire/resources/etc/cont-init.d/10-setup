@@ -1,19 +1,17 @@
 #!/usr/bin/with-contenv sh
 
-if [ ! -d /openfire/conf ]; then
-	cp -rp /app/openfire/conf /openfire/conf
-	rm -fr /app/openfire/conf
-	ln -s /openfire/conf /app/openfire/conf
-elif [ ! -L /app/openfire/conf]; then
-	 /app/openfire/conf
-	ln -s /openfire/conf /app/openfire/conf
+if [ -d /openfire/conf ]; then
+	if [ ! -L /app/openfire/conf ]; then
+		rm -fr /app/openfire/conf
+		ln -s /openfire/conf /app/openfire/conf
+	fi
 fi
 
-if [ -d /openfire/conf ]; then
-	fi
-
 if [ -d /openfire/embedded-db ]; then
-	ln -s /openfire/embedded-db /app/openfire/embedded-db
+	if [ ! -L /app/openfire/embedded-db ]; then
+		rm -fr /app/openfire/embedded-db
+		ln -s /openfire/embedded-db /app/openfire/embedded-db
+	fi
 fi
 
 exit 0

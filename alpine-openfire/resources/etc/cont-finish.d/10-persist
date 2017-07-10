@@ -1,3 +1,13 @@
 #!/usr/bin/with-contenv sh
 
+if [ ! -d /openfire/conf ]; then
+	mv /app/openfire/conf /openfire/conf
+	ln -s /openfire/conf /app/openfire/conf
+fi
+
+if [ -d /app/openfire/embedded-db ] && [ ! -d /openfire/embedded-db ]; then
+	mv /app/openfire/embedded-db /openfire/embedded-db
+	ln -s /openfire/embedded-db /app/openfire/embedded-db
+fi
+
 exit 0

@@ -12,4 +12,13 @@ COPY resources/etc /etc/
 
 RUN set -xe && apk del --quiet --no-cache --progress -t build-deps && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
+EXPOSE 41421/udp \
+	443/tcp \
+	992/tcp \
+	1194/tcp \
+	1194/udp \
+	5555/tcp \
+	27088/udp \
+	52651/udp
+
 ENTRYPOINT ["/init"]

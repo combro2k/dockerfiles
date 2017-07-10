@@ -1,0 +1,45 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /aptly/.gnupg ]; then
+	cat << EOF > /aptly/gpg_batch
+%echo Generating a GPG key, might take a while
+Key-Type: RSA
+Key-Length: 2048
+Subkey-Type: ELG-E
+Subkey-Length: 1024
+Name-Real: ${FULL_NAME}
+Name-Comment: Aptly Repo Signing
+Name-Email: ${EMAIL_ADDRESS}
+Expire-Date: 0
+Passphrase: ${GPG_PASSWORD}
+%commit
+%echo done
+EOF
+		gpg --batch --gen-key /aptly/gpg_batch
+
+	# Import Debian keyrings
+	gpg --list-keys
+	gpg --no-default-keyring \
+	    --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
+	    --export | \
+	gpg --no-default-keyring \
+	    --keyring trustedkeys.gpg \
+	    --import
+fi
+
+if [ ! -L /root/.gnupg ]; then
+	ln -s /aptly/.gnupg /root/.gnupg
+fi
+
+cat << EOF > /etc/nginx/conf.d/default.conf
+server {
+  root /aptly/data/public;
+  server_name ${HOSTNAME};
+
+  location / {
+    autoindex on;
+  }
+}
+EOF
+
+exit 0

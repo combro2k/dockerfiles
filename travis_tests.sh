@@ -38,6 +38,8 @@ docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-openfi
 docker rmi combro2k/alpine-openfire:latest
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:latest alpine-softether
 docker rmi combro2k/alpine-softether:latest
+docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-aptly:latest alpine-aptly
+docker rmi combro2k/alpine-aptly:latest
 
 # Build dependendable containers
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5

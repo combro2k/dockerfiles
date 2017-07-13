@@ -10,4 +10,10 @@ if [ -d /app/openfire/embedded-db ] && [ ! -d /openfire/embedded-db ]; then
 	ln -s /openfire/embedded-db /app/openfire/embedded-db
 fi
 
+if [ ! -d /openfire/resources/security ]; then
+	mkdir -p /openfire/resources
+	mv /app/openfire/resources/security /openfire/resources/security
+	ln -s /openfire/resources/security /app/openfire/resources/security
+fi
+
 exit 0

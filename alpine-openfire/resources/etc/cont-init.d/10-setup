@@ -14,4 +14,11 @@ if [ -d /openfire/embedded-db ]; then
 	fi
 fi
 
+if [ -d /openfire/resources/security ]; then
+	if [ ! -L /app/openfire/resources/security ]; then
+		rm -fr /app/openfire/resources/security
+		ln -s /openfire/resources/security /app/openfire/resources/security
+	fi
+fi
+
 exit 0

@@ -21,4 +21,11 @@ if [ -d /openfire/resources/security ]; then
 	fi
 fi
 
+if [ -d /openfire/plugins ]; then
+	if [ ! -L /app/openfire/plugins ]; then
+		rm -fr /app/openfire/plugins
+		ln -s /openfire/plugins /app/openfire/plugins
+	fi
+fi
+
 exit 0

@@ -21,4 +21,6 @@ elif [ -f /data/ssl/ssl.key ] && [ -f /data/ssl/ssl.crt ]; then
     cat >> /etc/dovecot/conf.d/10-ssl.conf <<< 'ssl_key = </data/ssl/ssl.crt'
 fi
 
+chown vmail:vmail /etc/dovecot/sieve -R
+
 exit 0

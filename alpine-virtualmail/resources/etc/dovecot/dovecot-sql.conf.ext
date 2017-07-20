@@ -1,0 +1,25 @@
+# Database driver: mysql, pgsql, sqlite
+driver = mysql
+
+connect = host=__REPLACE_DATABASE_HOST__ dbname=__REPLACE_DATABASE_NAME__ user=__REPLACE_DATABASE_USER__ password=__REPLACE_DATABASE_PASSWORD__
+
+# default_pass_scheme = MD5-CRYPT
+default_pass_scheme = SHA512-CRYPT
+
+password_query = \
+  SELECT email AS user, \
+    password, \
+    'maildir:/var/vmail/%Ld/%Ln' AS userdb_home, \
+    'maildir:/var/vmail/%Ld/%Ln' AS userdb_mail, \
+    1000 AS userdb_uid, \
+    1000 AS userdb_gid \
+  FROM users_view WHERE email='%Lu';
+
+user_query = \
+  SELECT '/var/vmail/%Ld/%Ln' AS home, \
+    'maildir:/var/vmail/%Ld/%Ln' AS mail, \
+    1000 AS uid, \
+    1000 AS gid \
+  FROM users_view WHERE email = '%Lu';
+
+iterate_query = SELECT email AS user FROM users_view

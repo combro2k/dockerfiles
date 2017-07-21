@@ -45,6 +45,7 @@ RUN set -xe && \
 		perl-mime-types \
 		perl-mail-clamav \
 		perl-net-smtp-ssl \
+		perl-io-socket-inet6 \
 		perl-file-readbackwards \
 		perl-archive-zip \
 		perl-io-gzip \

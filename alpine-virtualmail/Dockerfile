@@ -50,7 +50,10 @@ RUN set -xe && \
 		perl-ldap && \
 	    mkdir -p /usr/share/assp && \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
-	    cpanm -n Regexp::Optimizer \
+	    cpanm -n \
+		Mail::SPF::Query \
+		Mail::SRS \
+		Regexp::Optimizer \
 		Thread::State \
 		Sys::MemInfo \
 		Text::Unidecode \

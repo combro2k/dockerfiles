@@ -11,7 +11,7 @@ RUN set -xe && \
 	    addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
 	    apk --quiet --no-cache upgrade && \
 	    apk add --quiet --no-cache --virtual=.build-deps \
-		make alpine-sdk gcc perl-dev openssl-dev && \
+		make alpine-sdk gcc perl-dev openssl-dev snowball-dev && \
 	    apk add --quiet --no-cache --virtual=run-deps \
 		bash \
 		perl-dev \
@@ -55,6 +55,9 @@ RUN set -xe && \
 	    mkdir -p /usr/share/assp /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
 	    cpanm -n \
+	    	Archive::Extract \
+		Lingua::Stem::Snowball \
+		Lingua::Identify \
 		Crypt::OpenSSL::AES \
 		Crypt::GOST \
 		Mail::SPF::Query \

@@ -41,6 +41,13 @@ elif [ ! -L /usr/share/assp/files ]; then
         ln -s /data/assp/files /usr/share/assp/files
 fi
 
+if [ ! -d /data/assp/quarantine ]; then
+        mv /usr/share/assp/quarantine /data/assp/quarantine
+        ln -s /data/assp/quarantine /usr/share/assp/quarantine
+elif [ ! -L /usr/share/assp/quarantine ]; then
+        rm -fr /usr/share/assp/quarantine
+        ln -s /data/assp/quarantine /usr/share/assp/quarantine
+fi
 
 chown vmail:vmail /etc/dovecot/sieve -R
 

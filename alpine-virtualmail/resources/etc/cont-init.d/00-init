@@ -9,7 +9,7 @@ postconf "myhostname = ${HOSTNAME}"
 
 echo ${HOSTNAME} > /etc/mailname
 
-for file in /etc/postfix/virtual/*.cf /etc/dovecot/dovecot-sql.conf.ext
+for file in /etc/postfix/virtual/*.cf /etc/dovecot/dovecot-sql.conf.ext /usr/share/assp/assp.cfg.defaults
 do
 	sed -i "s/__REPLACE_DATABASE_HOST__/${MYSQL_PORT_3306_TCP_ADDR}/g" ${file}
 	sed -i "s/__REPLACE_DATABASE_PORT__/${MYSQL_PORT_3306_TCP_PORT}/g" ${file}

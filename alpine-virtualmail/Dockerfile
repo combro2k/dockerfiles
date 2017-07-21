@@ -51,7 +51,7 @@ RUN set -xe && \
 		perl-compress-raw-bzip2 \
 		perl-lwp-protocol-https \
 		perl-ldap && \
-	    mkdir -p /usr/share/assp && \
+	    mkdir -p /usr/share/assp /run/clamav/ && chown clamav:clamav /run/clamav/ -R \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
 	    cpanm -n \
 		Crypt::OpenSSL::AES \

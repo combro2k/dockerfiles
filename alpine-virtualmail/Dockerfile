@@ -31,6 +31,7 @@ RUN set -xe && \
 		openssl \
 		perl-net-cidr-lite \
 		perl-crypt-cbc \
+		perl-dbd-mysql \
 		perl-email-simple \
 		perl-net-ssleay \
 		perl-io-socket-ssl \
@@ -52,6 +53,7 @@ RUN set -xe && \
 	    mkdir -p /usr/share/assp && \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
 	    cpanm -n \
+		Crypt::OpenSSL::AES \
 		Mail::SPF::Query \
 		Mail::SRS \
 		Regexp::Optimizer \

@@ -1,25 +1,46 @@
 #!/usr/bin/with-contenv sh
 
-# SSL setup !
-if [ -f /data/ssl/ssl.pem ]; then
-    postconf 'smtpd_tls_key_file=/data/ssl/ssl.pem'
-    postconf 'smtpd_tls_cert_file=/data/ssl/ssl.pem'
-
-    sed -i '/^ssl_cert =.*/d' /etc/dovecot/conf.d/10-ssl.conf
-    sed -i '/^ssl_key =.*/d' /etc/dovecot/conf.d/10-ssl.conf
-
-    cat >> /etc/dovecot/conf.d/10-ssl.conf <<< 'ssl_cert = </data/ssl/ssl.pem'
-    cat >> /etc/dovecot/conf.d/10-ssl.conf <<< 'ssl_key = </data/ssl/ssl.pem'
-elif [ -f /data/ssl/ssl.key ] && [ -f /data/ssl/ssl.crt ]; then
-    postconf 'smtpd_tls_key_file=/data/ssl/ssl.key'
-    postconf 'smtpd_tls_cert_file=/data/ssl/ssl.crt'
-
-    sed -i '/^ssl_cert =.*/d' /etc/dovecot/conf.d/10-ssl.conf
-    sed -i '/^ssl_key =.*/d' /etc/dovecot/conf.d/10-ssl.conf
-
-    cat >> /etc/dovecot/conf.d/10-ssl.conf <<< 'ssl_cert = </data/ssl/ssl.key'
-    cat >> /etc/dovecot/conf.d/10-ssl.conf <<< 'ssl_key = </data/ssl/ssl.crt'
+if [ ! -d /data/assp ]; then
+	mkdir -p /data/assp
 fi
+
+if [ ! -d /data/assp/database ]; then
+	mv /usr/share/assp/database /data/assp/database
+	ln -s /data/assp/database /usr/share/assp/database
+elif [ ! -L /usr/share/assp/database ]; then
+	rm -fr /usr/share/assp/database
+	ln -s /data/assp/database /usr/share/assp/database
+fi
+
+if [ ! -d /data/assp/dkim ]; then
+        mv /usr/share/assp/dkim /data/assp/dkim
+        ln -s /data/assp/dkim /usr/share/assp/dkim
+elif [ ! -L /usr/share/assp/dkim ]; then
+        rm -fr /usr/share/assp/dkim
+        ln -s /data/assp/dkim /usr/share/assp/dkim
+fi
+
+if [ -f /data/assp/assp.cfg ]; then
+	rm /usr/share/assp/assp.cfg
+	ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
+else
+	if [ ! -f /usr/share/assp/assp.cfg ]; then
+		cp /usr/share/assp/assp.cfg.defaults /data/assp/assp.cfg
+		ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
+	else
+		mv /usr/share/assp/assp.cfg /data/assp/assp.cfg
+		ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
+	fi
+fi
+
+if [ ! -d /data/assp/files ]; then
+        mv /usr/share/assp/files /data/assp/files
+        ln -s /data/assp/files /usr/share/assp/files
+elif [ ! -L /usr/share/assp/files ]; then
+        rm -fr /usr/share/assp/files
+        ln -s /data/assp/files /usr/share/assp/files
+fi
+
 
 chown vmail:vmail /etc/dovecot/sieve -R
 

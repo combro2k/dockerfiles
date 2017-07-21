@@ -23,6 +23,7 @@ RUN set -xe && \
 		dovecot-sqlite \
 		dovecot-pigeonhole-plugin \
 		clamav \
+		clamav-libunrar \
 		spamassassin \
 		amavisd-new \
 		mysql-client \

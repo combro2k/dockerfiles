@@ -30,6 +30,7 @@ RUN set -xe && \
 		ca-certificates \
 		openssl \
 		perl-net-cidr-lite \
+		perl-crypt-cbc \
 		perl-email-simple \
 		perl-net-ssleay \
 		perl-io-socket-ssl \

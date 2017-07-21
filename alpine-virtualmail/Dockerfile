@@ -70,7 +70,16 @@ RUN set -xe && \
 
 COPY resources/ /
 
-EXPOSE 55555/tcp 55553/tcp 25/tcp
+EXPOSE 55555/tcp \
+	55553/tcp \
+	25/tcp \
+	110/tcp \
+	143/tcp \
+	465/tcp \
+	587/tcp \
+	993/tcp \
+	995/tcp \
+	4190/tcp
 
 RUN set -xe && apk --no-cache --purge del .build-deps && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 

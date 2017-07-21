@@ -55,6 +55,7 @@ RUN set -xe && \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
 	    cpanm -n \
 		Crypt::OpenSSL::AES \
+		Crypt::GOST \
 		Mail::SPF::Query \
 		Mail::SRS \
 		Regexp::Optimizer \

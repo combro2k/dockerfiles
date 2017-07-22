@@ -54,7 +54,7 @@ RUN set -xe && \
 		perl-ldap && \
 	    mkdir -p /usr/share/assp /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
 	    curl -L -s http://xrl.us/cpanm --output /bin/cpanm && chmod +x /bin/cpanm && \
-	    cpanm -n \
+	    cpanm -v -n \
 	    	Archive::Extract \
 		Lingua::Stem::Snowball \
 		Lingua::Identify \

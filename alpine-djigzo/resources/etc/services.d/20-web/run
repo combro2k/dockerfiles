@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+export JAVA_OPTS="-Ddjigzo-web.home=/app/djigzo-web -Djava.awt.headless=true -Xmx128M"
+
+exec /app/tomcat8/bin/catalina.sh run

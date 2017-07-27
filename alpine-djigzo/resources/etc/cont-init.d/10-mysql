@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bash
+
+cat > /app/djigzo/conf/database/hibernate.mysql.connection.xml <<EOF
+<!-- connection settings for MySQL (MariaDB) database -->
+
+<property name="hibernate.connection.url">jdbc:mysql://${MYSQL_PORT_3306_TCP_ADDR}:${MYSQL_PORT_3306_TCP_PORT}/${POSTFIX_MYSQL_DATABASE}</property>
+<property name="hibernate.connection.username">${POSTFIX_MYSQL_USER}</property>
+<property name="hibernate.connection.password">${POSTFIX_MYSQL_PASSWORD}</property>
+EOF
+
+exit 0

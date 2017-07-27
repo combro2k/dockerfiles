@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+exec /app/djigzo/wrapper/wrapper-djigzo -c ../../djigzo.wrapper.conf $@

@@ -42,6 +42,8 @@ docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-aptly:
 docker rmi combro2k/alpine-aptly:latest
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:latest alpine-virtualmail
 docker rmi combro2k/alpine-virtualmail:latest
+docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-djigzo:latest alpine-djigzo
+docker rmi combro2k/alpine-djigzo:latest
 
 # Build dependendable containers
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5

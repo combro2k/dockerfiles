@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv sh
+
+# allow to run own scripts inside /data/cont-init.d/
+if [ -d /data/cont-init.d ]; then
+	chmod +x /data/cont-init.d/*
+
+	run-parts /data/cont-init.d	
+fi
+
+exit 0

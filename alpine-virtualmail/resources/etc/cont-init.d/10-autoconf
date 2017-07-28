@@ -1,0 +1,29 @@
+#!/usr/bin/with-contenv bash
+
+echo "Initializing the container..."
+
+test -z "${MYSQL_PORT_3306_TCP_ADDR}" && echo "Can not run without MySQL link!" && exit 1
+test -z "${MYSQL_PORT_3306_TCP_PORT}" && echo "Can not run without MySQL link!" && exit 1
+
+postconf "myhostname = ${HOSTNAME}"
+
+echo ${HOSTNAME} > /etc/mailname
+
+for file in /etc/postfix/virtual/*.cf /etc/dovecot/dovecot-sql.conf.ext /usr/share/assp/assp.cfg.defaults
+do
+	sed -i "s/__REPLACE_DATABASE_HOST__/${MYSQL_PORT_3306_TCP_ADDR}/g" ${file}
+	sed -i "s/__REPLACE_DATABASE_PORT__/${MYSQL_PORT_3306_TCP_PORT}/g" ${file}
+	sed -i "s/__REPLACE_DATABASE_NAME__/${POSTFIX_MYSQL_DATABASE:-postfix}/g" ${file}
+	sed -i "s/__REPLACE_DATABASE_USER__/${POSTFIX_MYSQL_USER:-postfix}/g" ${file}
+	sed -i "s/__REPLACE_DATABASE_PASSWORD__/${POSTFIX_MYSQL_PASSWORD:-postfix}/g" ${file}
+done
+
+
+# Create directories if they aren't created
+if [ ! -f /etc/aliases ]; then
+    touch /etc/aliases
+fi
+
+/usr/bin/newaliases
+
+exit 0

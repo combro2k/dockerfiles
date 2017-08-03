@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -L /data/web/data/config.php ]; then
+	echo "[FreshRSS FINISH] Saving existing config.."
+
+	cp /data/web/data/config.php /freshrss/config.php
+	rm /data/web/data/config.php
+
+	ln -s /freshrss/config.php /data/web/data/config.php
+fi
+
+exit 0

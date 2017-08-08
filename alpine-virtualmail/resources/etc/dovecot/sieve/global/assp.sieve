@@ -1,3 +1,6 @@
+# Include special functions
+require ["relational", "comparator-i;ascii-numeric", "fileinto"];
+
 # AntiSpam measure filtering
 if allof (
    not header :matches "X-Assp-Message-Score" "-*",

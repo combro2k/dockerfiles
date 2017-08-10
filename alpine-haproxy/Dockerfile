@@ -7,9 +7,7 @@ RUN set -xe && \
 	    curl -L -s https://github.com/jwilder/docker-gen/releases/download/0.7.3/docker-gen-alpine-linux-amd64-0.7.3.tar.gz | tar zx -C /app && \
 	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
 
-COPY resources/etc /etc/
-COPY resources/app /app/
-COPY resources/data /data/
+COPY resources/ /
 
 #VOLUME /tmp/docker.sock
 

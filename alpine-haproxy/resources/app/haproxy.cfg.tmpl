@@ -84,7 +84,7 @@ backend SSL_{{ $value.Name }}
 
 frontend stats
   description stats
-  bind *:9000
+  bind :::9000 v4v6
   stats enable
   stats hide-version
   stats uri /
@@ -92,7 +92,7 @@ frontend stats
 frontend http-in
   description proxy
 
-  bind *:80
+  bind :::80 v4v6
 
   compression offload
   compression algo gzip
@@ -116,7 +116,7 @@ frontend http-in
 {{ end }}{{ end }}
 
 frontend https-in
-  bind *:443 ssl crt-list /data/ssl/crt-list.txt
+  bind :::443 v4v6 ssl crt-list /data/ssl/crt-list.txt
 
   compression offload
   compression algo gzip

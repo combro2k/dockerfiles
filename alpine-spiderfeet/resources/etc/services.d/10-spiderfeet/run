@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+cd /app
+
+exec /usr/bin/python /app/sf.py 0.0.0.0:5001

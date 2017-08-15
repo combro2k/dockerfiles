@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -L /app/spiderfoot.db ] && [ ! -f /data/spiderfoot.db ]; then
+	mv /app/spiderfoot.db /data/spiderfoot.db
+	ln -s /data/spiderfoot.db /app/spiderfoot.db
+fi

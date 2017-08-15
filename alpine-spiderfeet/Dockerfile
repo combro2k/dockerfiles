@@ -15,4 +15,6 @@ RUN set -xe && apk del --quiet --no-cache --progress --purge build-deps && apk d
 
 EXPOSE 5001/tcp
 
+VOLUME /data
+
 ENTRYPOINT ["/init"]

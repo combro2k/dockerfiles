@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-if [ -f /softether/vpn_server.config ]; then
-	cp /softether/vpn_server.config /usr/vpnserver/vpn_server.config
-fi
-
-exit 0

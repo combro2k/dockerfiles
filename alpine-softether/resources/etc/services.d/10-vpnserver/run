@@ -2,4 +2,4 @@
 
 LANG=en_US.UTF-8
 
-/usr/vpnserver/vpnserver execsvc
+exec /usr/vpnserver/vpnserver execsvc

@@ -8,11 +8,11 @@ RUN apk --no-cache upgrade && apk --no-cache add openssl readline ncurses curl &
 	rm -fr /tmp/softether && \
 	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
 
-COPY resources/etc /etc/
+COPY resources/ /
 
 RUN set -xe && apk del --quiet --no-cache --progress -t build-deps && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
-EXPOSE 41421/udp \
+EXPOSE 	41421/udp \
 	443/tcp \
 	992/tcp \
 	1194/tcp \
@@ -20,5 +20,7 @@ EXPOSE 41421/udp \
 	5555/tcp \
 	27088/udp \
 	52651/udp
+
+VOLUME /data
 
 ENTRYPOINT ["/init"]

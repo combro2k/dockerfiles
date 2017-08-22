@@ -1,2 +1,4 @@
-/aptly true aptly 0660 2760
-/etc/aptly.conf true 0660 2760
+/app true aptly 0760 0750
+/aptly true aptly 0644 0755
+/etc/aptly.conf false aptly 0644 0750
+/usr/bin/aptly false aptly 0760 0750

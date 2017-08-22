@@ -74,7 +74,7 @@ RUN set -xe && \
 		File::Scan::ClamAV && \
 	    curl -L -s https://downloads.sourceforge.net/project/assp/ASSP%20V2%20multithreading/2.5.5%2017073/ASSP_2.5.5_17073_install.zip \
 		    --output /tmp/assp.zip && cd /usr/share && unzip /tmp/assp.zip && rm /tmp/assp.zip && \
-		    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+		    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 COPY resources/ /
 

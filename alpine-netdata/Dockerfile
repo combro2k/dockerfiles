@@ -9,7 +9,7 @@ RUN \
 	mkdir /usr/src && curl -L -Ss https://github.com/firehol/netdata/archive/master.tar.gz | tar zx -C /usr/src --strip-components=1 && \
 	cd /usr/src/ && ./netdata-installer.sh --dont-wait --dont-start-it && cd /root && rm -fr /usr/src && \
 	apk --quiet --no-cache --progress --purge del autoconf automake make pkgconfig alpine-sdk gcc git libmnl-dev util-linux-dev zlib-dev && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 COPY resources/etc /etc/
 

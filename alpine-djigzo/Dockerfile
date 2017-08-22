@@ -24,7 +24,7 @@ RUN set -xe && apk --quiet --no-cache upgrade && \
 	make && make install && rm -fr /tmp/tomcat-native && \
 	rm -fr /app/tomcat8/webapps/* && \
 	curl -L https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo-web_3.2.7-5.tar.gz | tar zx -C /app/djigzo-web && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 RUN set -xe && apk del --quiet --no-cache --progress openssl-dev alpine-sdk apr-dev && apk del --quiet --no-cache --progress --purge && \
 	rm -rf /var/cache/apk/* && apk --no-cache --progress --quiet fix openssl

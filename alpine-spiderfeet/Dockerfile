@@ -6,7 +6,7 @@ RUN set -xe && \
 	    apk add --quiet --no-cache --virtual=build-deps alpine-sdk openssl-dev python2-dev libxml2-dev xmlsec-dev swig && \
 	    mkdir /app -p && curl -L https://github.com/smicallef/spiderfoot/archive/v2.11.0-final.tar.gz | tar zx -C /app --strip-components=1 && \
 	    cd /app && pip install -r /app/requirements.txt && \
-	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 COPY resources/ /
 

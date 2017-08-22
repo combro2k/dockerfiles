@@ -5,7 +5,7 @@ RUN set -xe && \
 	    apk add --quiet --no-cache --virtual=run-deps ruby curl ruby-irb && \
 	    apk add --quiet --no-cache --virtual=build-deps git openssl ruby-dev alpine-sdk && \
 	    mkdir /app -p && gem install fluentd -v "~> 0.12.0" --no-ri --no-rdoc && \
-	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 COPY resources/ /
 

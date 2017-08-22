@@ -3,7 +3,7 @@ FROM gliderlabs/alpine:edge
 RUN apk --no-cache --progress add curl openjdk8-jre-base && \
 	mkdir -p /app && \
 	curl -L https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4_1_5.tar.gz | tar zx -C /app && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz | tar zx -C /
+	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
 
 COPY resources/etc/ /etc/
 

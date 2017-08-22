@@ -1,1 +1,2 @@
-/fluent true fluent 0650 2750
+/fluent true fluent 0644 2750
+/var/run/fluent true fluent 0644 2750

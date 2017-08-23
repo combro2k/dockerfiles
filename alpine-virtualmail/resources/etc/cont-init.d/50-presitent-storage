@@ -49,6 +49,4 @@ elif [ ! -L /usr/share/assp/quarantine ]; then
         ln -s /data/assp/quarantine /usr/share/assp/quarantine
 fi
 
-chown vmail:vmail /etc/dovecot/sieve -R
-
 exit 0

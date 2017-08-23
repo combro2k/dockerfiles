@@ -83,21 +83,22 @@ backend SSL_{{ $value.Name }}
 {{ end }}{{ end }}
 
 frontend stats
-  description stats
+  description statistics
+
   bind :::9000 v4v6
+
   stats enable
   stats hide-version
   stats uri /
 
 frontend http-in
-  description proxy
+  description proxy-http
 
   bind :::80 v4v6
 
   compression offload
   compression algo gzip
   compression type text/css text/html text/javascript application/javascript text/plain text/xml application/json 
-
 
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
 {{ if $value.Env.SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
@@ -116,6 +117,8 @@ frontend http-in
 {{ end }}{{ end }}
 
 frontend https-in
+  description proxy-https
+
   bind :::443 v4v6 ssl crt-list /data/ssl/crt-list.txt
 
   compression offload

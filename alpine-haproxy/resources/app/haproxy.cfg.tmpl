@@ -17,24 +17,25 @@ global
 # Default settings
 defaults
   log global
-  mode http
+
   balance first
   maxconn 5000
+
   retries 3
+
   timeout connect 3000ms
   timeout client 5m
   timeout server 5m
 
-  option httplog
   option dontlognull
   option redispatch
-  option forwardfor
-  option http-server-close
 
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
 {{ $addrLen := len $value.Addresses }}
 backend {{ $value.Name }}
   description {{ $host }}
+
+  mode http
 
   http-request set-header X-Real-IP %[src]
   http-request set-header X-Forwarded-Port %[dst_port]
@@ -62,6 +63,9 @@ backend {{ $value.Name }}
 backend SSL_{{ $value.Name }}
   description {{ $host }}
 
+  mode http
+  option httplog
+
   http-request set-header X-Real-IP %[src]
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
@@ -84,17 +88,27 @@ backend SSL_{{ $value.Name }}
 
 frontend stats
   description statistics
-
   bind :::9000 v4v6
 
+  mode http
+  option httplog
+
   stats enable
-  stats hide-version
   stats uri /
+  stats hide-version
+  stats refresh 5s
+  stats show-node
+  stats show-legends
 
 frontend http-in
   description proxy-http
-
   bind :::80 v4v6
+
+  mode http
+
+  option httplog
+  option forwardfor
+  option http-server-close
 
   compression offload
   compression algo gzip
@@ -118,8 +132,13 @@ frontend http-in
 
 frontend https-in
   description proxy-https
-
   bind :::443 v4v6 ssl crt-list /data/ssl/crt-list.txt
+
+  mode http
+
+  option httplog
+  option forwardfor
+  option http-server-close
 
   compression offload
   compression algo gzip

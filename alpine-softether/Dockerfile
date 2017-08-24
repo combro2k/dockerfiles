@@ -14,7 +14,6 @@ RUN apk --no-cache upgrade && apk --no-cache add openssl readline ncurses curl &
 
 COPY resources/ /
 
-RUN set -xe && 
 EXPOSE 	41421/udp \
 	443/tcp \
 	992/tcp \

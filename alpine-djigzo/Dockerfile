@@ -20,7 +20,7 @@ RUN set -xe && apk --quiet --no-cache upgrade && \
 	mkdir -p /app/djigzo /app/djigzo-web /app/tomcat8 /tmp/tomcat-native && \
 	curl -L https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo_3.2.7-5.tar.gz | tar zx -C /app/djigzo && \
 	cd /app/djigzo && find /app/djigzo/conf -type f -exec dos2unix {} \; && /usr/bin/ant && chmod +x /app/djigzo/start-djigzo.sh && \
-	curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v8.0.45/bin/apache-tomcat-8.0.45.tar.gz | \
+	curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v8.0.46/bin/apache-tomcat-8.0.46.tar.gz | \
 	tar zx -C /app/tomcat8 --strip-components=1 && tar zx -C /tmp/tomcat-native -f /app/tomcat8/bin/tomcat-native.tar.gz --strip-components=1 && \
 	cd /tmp/tomcat-native/native && ./configure \
 		--with-java-home=/usr/lib/jvm/default-jvm \

@@ -5,11 +5,10 @@ LABEL \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz /
-
 RUN apk --no-cache upgrade && apk --no-cache add openssl readline ncurses curl && apk --no-cache -t build-deps add readline-dev openssl-dev ncurses-dev build-base && \
 	mkdir /tmp/softether && curl -L https://github.com/SoftEtherVPN/SoftEtherVPN/archive/master.tar.gz | tar zvx -C /tmp/softether --strip-components=1 && \
 	cd /tmp/softether && ./configure && make && make install && rm -fr /tmp/softether && \
+	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk del --quiet --no-cache --progress -t build-deps && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /

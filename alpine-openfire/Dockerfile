@@ -5,13 +5,11 @@ LABEL \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
-ADD https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4_1_5.tar.gz /app
-
-RUN apk --no-cache --progress add curl openjdk8-jre-base
+RUN apk --no-cache --progress add curl openjdk8-jre-base tar && \
+	mkdir /app && curl --location --silent https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4_1_5.tar.gz | tar zx -C /app && \
+	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
-
-RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 EXPOSE 	5222/tcp \
 	5223/tcp \

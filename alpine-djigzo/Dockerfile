@@ -14,11 +14,14 @@ ENV \
 	MAIL_CALLBACK_IP=172.17.0.1 \
 	MAIL_CALLBACK_PORT=10026
 
+ADD https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz /
+ADD https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo_3.2.7-5.tar.gz /app/djigzo
+ADD https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo-web_3.2.7-5.tar.gz /app/digzo-web
+
 RUN set -xe && apk --quiet --no-cache upgrade && \
 	apk add --no-cache --virtual=run-deps curl tar apache-ant openjdk8 bash openssl apr && \
 	apk add --no-cache openssl-dev alpine-sdk apr-dev && \
 	mkdir -p /app/djigzo /app/djigzo-web /app/tomcat8 /tmp/tomcat-native && \
-	curl -L https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo_3.2.7-5.tar.gz | tar zx -C /app/djigzo && \
 	cd /app/djigzo && find /app/djigzo/conf -type f -exec dos2unix {} \; && /usr/bin/ant && chmod +x /app/djigzo/start-djigzo.sh && \
 	curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v8.0.46/bin/apache-tomcat-8.0.46.tar.gz | \
 	tar zx -C /app/tomcat8 --strip-components=1 && tar zx -C /tmp/tomcat-native -f /app/tomcat8/bin/tomcat-native.tar.gz --strip-components=1 && \
@@ -27,9 +30,7 @@ RUN set -xe && apk --quiet --no-cache upgrade && \
 		--with-apr=/usr/bin/apr-1-config --prefix=/app/tomcat8 \
 		--libdir=/usr/java/packages/lib/amd64 --with-ssl=yes && \
 	make && make install && rm -fr /tmp/tomcat-native && \
-	rm -fr /app/tomcat8/webapps/* && \
-	curl -L https://www.ciphermail.com/downloads/djigzo-release-3.2.7-5/djigzo-web_3.2.7-5.tar.gz | tar zx -C /app/djigzo-web && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
+	rm -fr /app/tomcat8/webapps/*
 
 RUN set -xe && apk del --quiet --no-cache --progress openssl-dev alpine-sdk apr-dev && apk del --quiet --no-cache --progress --purge && \
 	rm -rf /var/cache/apk/* && apk --no-cache --progress --quiet fix openssl

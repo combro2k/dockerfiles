@@ -1,14 +1,13 @@
-FROM alpine:edge
+FROM combro2k/alpine-base:latest
 
 LABEL \
         org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
-RUN apk --no-cache --progress add curl prosody lua5.1-lzlib openssl && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
+RUN apk --no-cache --progress add curl prosody lua5.1-lzlib openssl
 
-COPY resources/etc/ /etc/
+COPY resources/ /
 
 RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 

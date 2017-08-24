@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:edge
+FROM combro2k/alpine-base:latest
 
 LABEL \
         org.label-schema.build-date=$BUILD_DATE \
@@ -7,10 +7,9 @@ LABEL \
 
 ENV DOCKER_ENDPOINT=unix:///tmp/docker.sock
 
-RUN set -xe && \
-	    apk --quiet --no-cache upgrade && apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl && mkdir /app -p && \
-	    curl -L -s https://github.com/jwilder/docker-gen/releases/download/0.7.3/docker-gen-alpine-linux-amd64-0.7.3.tar.gz | tar zx -C /app && \
-	    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
+ADD https://github.com/jwilder/docker-gen/releases/download/0.7.3/docker-gen-alpine-linux-amd64-0.7.3.tar.gz /app
+
+RUN set -xe && apk --quiet --no-cache upgrade && apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl
 
 COPY resources/ /
 

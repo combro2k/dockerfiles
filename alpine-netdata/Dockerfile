@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:edge
+FROM combro2k/alpine-base:latest
 
 LABEL \
         org.label-schema.build-date=$BUILD_DATE \
@@ -13,10 +13,9 @@ RUN \
 		make netcat-openbsd pkgconfig py-requests py-yaml python util-linux-dev zlib-dev libuuid fping && \
 	mkdir /usr/src && curl -L -Ss https://github.com/firehol/netdata/archive/master.tar.gz | tar zx -C /usr/src --strip-components=1 && \
 	cd /usr/src/ && ./netdata-installer.sh --dont-wait --dont-start-it && cd /root && rm -fr /usr/src && \
-	apk --quiet --no-cache --progress --purge del autoconf automake make pkgconfig alpine-sdk gcc git libmnl-dev util-linux-dev zlib-dev && \
-	curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-amd64.tar.gz | tar zx -C /
+	apk --quiet --no-cache --progress --purge del autoconf automake make pkgconfig alpine-sdk gcc git libmnl-dev util-linux-dev zlib-dev
 
-COPY resources/etc /etc/
+COPY resources/ /
 
 EXPOSE 19999/tcp
 

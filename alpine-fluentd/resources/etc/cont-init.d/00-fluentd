@@ -1,7 +1,8 @@
 #!/usr/bin/with-contenv sh
 
 if [ ! -f /fluent/fluent.conf ]; then
-	/usr/bin/fluentd --setup /fluent
+	cp /etc/fluent.conf /fluent/fluent.conf
+	mkdir /fluent/plugins
 fi
 
 exit 0

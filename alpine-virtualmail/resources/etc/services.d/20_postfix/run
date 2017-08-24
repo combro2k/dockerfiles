@@ -22,7 +22,7 @@ function start {
     # avoid exiting
 }
 
-trap stop EXIT SIGTERM SIGINT
+trap stop SIGINT SIGTERM SIGKILL
 trap reload SIGHUP
 
 start

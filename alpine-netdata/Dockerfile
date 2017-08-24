@@ -1,5 +1,10 @@
 FROM gliderlabs/alpine:edge
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 RUN \
 	apk --quiet --no-cache add \
 		bash curl alpine-sdk autoconf automake curl gcc git libmnl-dev jq \

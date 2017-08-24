@@ -1,6 +1,12 @@
 FROM gliderlabs/alpine:edge
 
-ENV FULL_NAME="aptly" \
+LABEL \
+	org.label-schema.build-date=$BUILD_DATE \
+	org.label-schema.vcs-ref=$VCS_REF \
+	org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
+ENV \
+	FULL_NAME="aptly" \
 	EMAIL_ADDRESS="aptly@aptly.container" \
 	GPG_PASSWORD="aptly" \
 	GPG_TTY="/dev/console" \

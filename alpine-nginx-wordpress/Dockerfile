@@ -1,5 +1,10 @@
 FROM combro2k/alpine-nginx-php5:latest
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 RUN \
 	apk --quiet --no-cache add php5-fpm php5-json php5-zlib php5-xml php5-pdo php5-phar php5-openssl php5-pdo_mysql php5-mysqli php5-gd php5-iconv php5-mcrypt && \
 	rm /data/web -fr && mkdir /data/web /wordpress && \

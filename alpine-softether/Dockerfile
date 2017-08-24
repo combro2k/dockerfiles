@@ -1,5 +1,10 @@
 FROM frolvlad/alpine-glibc:latest
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 RUN apk --no-cache upgrade && apk --no-cache add openssl readline ncurses curl && \
 	apk --no-cache -t build-deps add readline-dev openssl-dev ncurses-dev build-base && \
 	mkdir /tmp/softether && \

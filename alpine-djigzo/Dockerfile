@@ -1,5 +1,10 @@
 FROM frolvlad/alpine-glibc:latest
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 ENV \
 	DJIGZO_MYSQL_DATABASE=djigzo \
 	DJIGZO_MYSQL_USER=djigzo \

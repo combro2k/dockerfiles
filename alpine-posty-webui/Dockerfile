@@ -1,4 +1,9 @@
-FROM gliderlabs/alpine
+FROM gliderlabs/alpine:edge
+
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
 RUN set -xe && apk --quiet --no-cache upgrade && \
 	apk add --quiet --no-cache --virtual=run-deps ca-certificates curl tar lighttpd lighttpd-mod_auth apache2-utils pwgen && \

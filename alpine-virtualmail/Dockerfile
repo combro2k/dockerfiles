@@ -1,11 +1,17 @@
 FROM gliderlabs/alpine:edge
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 ENV \
 	POSTFIX_MYSQL_DATABASE=postfix \
 	POSTFIX_MYSQL_USER=postfix \
 	POSTFIX_MYSQL_PASSWORD=postfix \
 	MYSQL_PORT_3306_TCP_ADDR=172.17.0.1 \
-	MYSQL_PORT_3306_TCP_PORT=3306	
+	MYSQL_PORT_3306_TCP_PORT=3306 \
+	S6_KILL_GRACETIME=10000
 
 RUN set -xe && \
 	    addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \

@@ -1,5 +1,10 @@
 FROM alpine:edge
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 RUN \
 	apk --no-cache --progress add nodejs nodejs-npm tar curl bash inotify-tools openssl procps python2 openssh-server && \
 	apk --no-cache --progress add -t build-deps automake autoconf m4 libtool pkgconfig openssl-dev linux-headers build-base python2-dev && \

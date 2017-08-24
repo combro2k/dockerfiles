@@ -1,5 +1,10 @@
 FROM frolvlad/alpine-glibc:latest
 
+LABEL \
+        org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
+
 RUN set -xe && apk --no-cache --quiet upgrade && apk --no-cache --quiet add curl && mkdir /app -p && \
 	curl -L -s http://dl.4players.de/ts/releases/3.0.13.6/teamspeak3-server_linux_amd64-3.0.13.6.tar.bz2 | tar xj -C /app --strip-components=1 && \
 	adduser -D -h /teamspeak3 -u 1000 teamspeak3 && \

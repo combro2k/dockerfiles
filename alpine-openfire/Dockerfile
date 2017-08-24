@@ -9,7 +9,7 @@ ADD https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4_
 
 RUN apk --no-cache --progress add curl openjdk8-jre-base
 
-COPY resources/etc/ /etc/
+COPY resources/ /
 
 RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
@@ -28,5 +28,3 @@ EXPOSE 	5222/tcp \
 	9091/tcp
 
 VOLUME 	/openfire
-
-ENTRYPOINT ["/init"]

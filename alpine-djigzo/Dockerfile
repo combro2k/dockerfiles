@@ -30,13 +30,10 @@ RUN set -xe && apk --quiet --no-cache upgrade && \
 		--with-apr=/usr/bin/apr-1-config --prefix=/app/tomcat8 \
 		--libdir=/usr/java/packages/lib/amd64 --with-ssl=yes && \
 	make && make install && rm -fr /tmp/tomcat-native && \
-	rm -fr /app/tomcat8/webapps/*
-
-RUN set -xe && apk del --quiet --no-cache --progress openssl-dev alpine-sdk apr-dev && apk del --quiet --no-cache --progress --purge && \
+	rm -fr /app/tomcat8/webapps/* && \
+	apk del --quiet --no-cache --progress openssl-dev alpine-sdk apr-dev && apk del --quiet --no-cache --progress --purge && \
 	rm -rf /var/cache/apk/* && apk --no-cache --progress --quiet fix openssl
 
 COPY resources/ /
 
 EXPOSE 8443 8080 10025
-
-ENTRYPOINT ["/init"]

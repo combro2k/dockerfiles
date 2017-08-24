@@ -9,14 +9,14 @@ ENV DOCKER_ENDPOINT=unix:///tmp/docker.sock
 
 ADD https://github.com/jwilder/docker-gen/releases/download/0.7.3/docker-gen-alpine-linux-amd64-0.7.3.tar.gz /app
 
-RUN set -xe && apk --quiet --no-cache upgrade && apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl
+RUN set -xe && \
+	    apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl && \
+	    apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
+
+RUN chmod +x /app/reload-haproxy.sh
 
 #VOLUME /tmp/docker.sock
 
 EXPOSE 80/tcp 443/tcp 9000/tcp
-
-RUN set -xe && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/* && chmod +x /app/reload-haproxy.sh
-
-ENTRYPOINT ["/init"]

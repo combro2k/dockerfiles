@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/execlineb -P
 
 cd /usr/share/assp/
 

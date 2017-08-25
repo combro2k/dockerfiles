@@ -13,7 +13,11 @@ ENV \
 	MYSQL_PORT_3306_TCP_PORT=3306 \
 	S6_KILL_GRACETIME=10000
 
-RUN set -xe && addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
+RUN set -xe && \
+	addgroup -g 1000 -S vmail && \
+	adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
+	addgroup -g 1001 -S assp && \
+	adduser -S -u 1001 -h /usr/share/assp -s /usr/sbin/nologin -D assp -G assp && \
 	apk add --quiet --no-cache --virtual=run-deps \
 		bash \
 		perl-dev \

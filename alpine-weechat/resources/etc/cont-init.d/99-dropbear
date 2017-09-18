@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/dropbear/ ]; then
+	mkdir /data/dropbear
+
+	dropbearkey -t dss -f /data/dropbear/dropbear_dss_host_key
+	dropbearkey -t rsa -f /data/dropbear/dropbear_rsa_host_key
+	dropbearkey -t ecdsa -f /data/dropbear/dropbear_ecdsa_host_key
+fi
+
+exit 0

@@ -36,6 +36,8 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-fluentd:lates
 docker rmi combro2k/alpine-fluentd:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-spiderfeet:latest alpine-spiderfeet
 docker rmi combro2k/alpine-spiderfeet:latest
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-weechat:latest alpine-weechat
+docker rmi combro2k/alpine-weechat:latest
 
 # Build dependendable containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5

@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/weechat ]; then
+	mkdir -p /data/weechat
+	chown weechat:weechat /data/weechat
+	ln -s /data/weechat /home/weechat/.weechat
+fi
+
+if [ ! -d /data/ssh ]; then
+	mkdir -p /data/ssh
+	touch /data/ssh/authorized_keys
+	chmod 700 /data/ssh
+	chmod 640 /data/ssh/authorized_keys
+	chown weechat:weechat /data/ssh -R
+fi
+
+exit 0

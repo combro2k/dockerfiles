@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-cd /app/weecloud
+cd /app
 
 exec /usr/bin/node app.js

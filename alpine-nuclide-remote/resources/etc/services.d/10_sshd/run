@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-if [ ! -d /etc/dropbear ]; then
-	mkdir /etc/dropbear
-fi
-
-exec /usr/sbin/sshd -D

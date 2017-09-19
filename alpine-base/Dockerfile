@@ -15,3 +15,5 @@ RUN set -xe && apk --quiet --no-cache --progress upgrade && \
 	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/init"]
+
+ONBUILD RUN apk --no-cache --quiet upgrade && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*

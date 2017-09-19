@@ -10,6 +10,7 @@ RUN \
 	mkdir -p /data /data/weechat /data/dropbear /data/ssh && ln -s /data/dropbear /etc/dropbear && \
 	adduser -s /bin/bash -D -u 1000 -h /home/weechat weechat && \
 	ln -s /data/weechat /home/weechat/.weechat && ln -s /data/ssh /home/weechat/.ssh && \
+	chown weechat:weechat /home/weechat -R && \
 	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /

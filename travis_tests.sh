@@ -9,6 +9,11 @@ cd ${BASE}
 # Build base container
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base:latest alpine-base
 
+# Build dependendable containers
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php7:latest alpine-nginx-php7
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nodejs:latest alpine-nodejs
+
 # Standalone containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-posty-api:latest alpine-posty-api
 docker rmi combro2k/alpine-posty-api:latest
@@ -36,12 +41,8 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-fluentd:lates
 docker rmi combro2k/alpine-fluentd:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-spiderfeet:latest alpine-spiderfeet
 docker rmi combro2k/alpine-spiderfeet:latest
-docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-weechat:latest alpine-weechat
-docker rmi combro2k/alpine-weechat:latest
-
-# Build dependendable containers
-docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5
-docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php7:latest alpine-nginx-php7
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nodejs-weechat:latest alpine-nodejs-weechat
+docker rmi combro2k/alpine-nodejs-weechat:latest
 
 # Dependend PHP5 containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress:latest alpine-nginx-wordpress
@@ -58,6 +59,7 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-rainloo
 docker rmi combro2k/alpine-nginx-rainloop:latest
 
 # Destroy dependenable containers
+docker rmi combro2k/alpine-nodejs:latest
 docker rmi combro2k/alpine-nginx-php5:latest
 docker rmi combro2k/alpine-nginx-php7:latest
 docker rmi combro2k/alpine-base:latest

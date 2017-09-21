@@ -10,13 +10,12 @@ ENV \
 	RAILS_ENV=production \
 	RACK_ENV=production
 
-RUN set -xe && apk --quiet --no-cache upgrade && apk add --quiet --no-cache --virtual=run-deps ca-certificates curl tar ruby ruby-bundler mariadb-libs ruby-bigdecimal ruby-rake \
-		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && apk add --quiet --no-cache -t build-deps ruby-dev mysql-dev json-c-dev jsoncpp-dev \
-		make gcc musl-dev mariadb-client && \
+RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates curl tar ruby ruby-bundler mariadb-libs ruby-bigdecimal ruby-rake \
+		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && \
+	apk add --quiet --no-cache --virtual=.build-deps ruby-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
 	mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | tar zx -C /data/api --strip-components=1 && \
-	cd /data/api && bundle update json && bundle install --path /data/api/vendor --with mysql && apk del --quiet --no-cache --progress --purge -t build-deps && \
-	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
-
+	cd /data/api && bundle update json && bundle install --path /data/api/vendor --with mysql && apk del --quiet --no-cache --purge .build-deps && \
+	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

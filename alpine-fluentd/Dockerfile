@@ -6,10 +6,10 @@ LABEL \
         org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
 RUN set -xe && \
-      apk add --quiet --no-cache --virtual=run-deps ruby curl ruby-irb && \
-      apk add --quiet --no-cache --virtual=build-deps git openssl ruby-dev alpine-sdk && \
+      apk add --quiet --no-cache --virtual=.run-deps ruby curl ruby-irb && \
+      apk add --quiet --no-cache --virtual=.build-deps git openssl ruby-dev alpine-sdk && \
       mkdir /app /var/run/fluent /var/log/fluent -p && gem install fluentd -v "~> 0.12.0" --no-ri --no-rdoc && \
-      adduser -D -S -u 1000 -h /fluent fluent && apk del --quiet --no-cache --purge build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+      adduser -D -S -u 1000 -h /fluent fluent && apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

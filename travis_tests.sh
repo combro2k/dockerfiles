@@ -8,6 +8,7 @@ cd ${BASE}
 
 # Build base container
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base:latest alpine-base
+docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base-glibc:latest alpine-base-glibc
 
 # Build dependendable containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5
@@ -23,19 +24,19 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-netdata:lates
 docker rmi combro2k/alpine-netdata:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-haproxy:latest alpine-haproxy
 docker rmi combro2k/alpine-haproxy:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-teamspeak3:latest alpine-teamspeak3
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-teamspeak3:latest alpine-teamspeak3
 docker rmi combro2k/alpine-teamspeak3:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-prosody:latest alpine-prosody
 docker rmi combro2k/alpine-prosody:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-openfire:latest alpine-openfire
 docker rmi combro2k/alpine-openfire:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:latest alpine-softether
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:latest alpine-softether
 docker rmi combro2k/alpine-softether:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-aptly:latest alpine-aptly
 docker rmi combro2k/alpine-aptly:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:latest alpine-virtualmail
 docker rmi combro2k/alpine-virtualmail:latest
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-djigzo:latest alpine-djigzo
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-djigzo:latest alpine-djigzo
 docker rmi combro2k/alpine-djigzo:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-fluentd:latest alpine-fluentd
 docker rmi combro2k/alpine-fluentd:latest
@@ -60,4 +61,5 @@ docker rmi combro2k/alpine-nginx-rainloop:latest
 docker rmi combro2k/alpine-nodejs:latest
 docker rmi combro2k/alpine-nginx-php5:latest
 docker rmi combro2k/alpine-nginx-php7:latest
+docker rmi combro2k/alpine-base-glibc:latest
 docker rmi combro2k/alpine-base:latest

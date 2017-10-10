@@ -15,4 +15,4 @@ RUN set -xe && apk add --quiet --no-cache curl && \
 	curl --silent --location https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-i18n-2.25-r1.apk --output /tmp/glibc-i18n.apk && \
         apk --quiet --no-cache add /tmp/glibc.apk /tmp/glibc-bin.apk /tmp/glibc-i18n.apk && rm /tmp/glibc.apk /tmp/glibc-bin.apk /tmp/glibc-i18n.apk && \
         /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 C.UTF-8 || true && echo "export LANG=C.UTF-8" > /etc/profile.d/locale.sh && \
-        apk del --quiet --no-cache --purge curl tar glibc-i18n && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+        apk del --quiet --no-cache --purge curl glibc-i18n && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*

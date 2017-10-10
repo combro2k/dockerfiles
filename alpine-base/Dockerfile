@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:edge
+FROM alpine:edge
 
 ARG BUILD_DATE=unknown
 ARG VCS_REF=unknown

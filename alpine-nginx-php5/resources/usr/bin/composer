@@ -13,9 +13,15 @@ fi
 
 echo "Installing composer for the first time run..."
 
-apk --no-cache --progress add php5-zlib php5-phar php5-mbstring php5-iconv
+apk --no-cache --progress add php5-zlib php5-phar php5-iconv
 
 php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer
+
 RESULT=$?
 rm composer-setup.php
+
+if [ $RESULT -eq 0 ]; then
+	exec /bin/s6-setuidgid www-data /usr/bin/composer $@
+fi
+
 exit $RESULT

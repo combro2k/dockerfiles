@@ -18,4 +18,9 @@ apk --no-cache --progress add php7-phar php7-iconv php7-mbstring php7-zlib
 php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer
 RESULT=$?
 rm composer-setup.php
+
+if [ $RESULT -eq 0 ]; then
+	exec /bin/s6-setuidgid www-data /usr/bin/composer $@
+fi
+
 exit $RESULT

@@ -1,0 +1,20 @@
+#!/usr/bin/with-contenv sh
+
+if [ -f /phpbb/config.php ]; then
+	echo "[PHPBB INIT] Using existing config.."
+
+	rm -f /data/web/config.php
+	rm -fr /data/web/install
+
+	ln -s /phpbb/config.php /data/web/config.php
+fi
+
+if [ -f /phpbb/files ]; then
+	echo "[PHPBB INIT] Using existing files.."
+
+	rm -f /data/web/files
+
+	ln -s /phpbb/files /data/web/files
+fi
+
+exit 0

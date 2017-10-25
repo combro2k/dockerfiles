@@ -1,0 +1,19 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -L /data/web/config.php ]; then
+	echo "[PHPBB FINISH] Saving existing config.."
+
+	mv /data/web/config.php /phpbb/config.php
+
+	ln -s /phpbb/config.php /data/web/config.php
+fi
+
+if [ ! -L /data/web/files ]; then
+	echo "[PHPBB FINISH] Saving existing files.."
+
+        mv /data/web/files /phpbb/files
+
+        ln -s /phpbb/files /data/web/files
+fi
+
+exit 0

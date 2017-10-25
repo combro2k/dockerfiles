@@ -9,12 +9,28 @@ if [ -f /phpbb/config.php ]; then
 	ln -s /phpbb/config.php /data/web/config.php
 fi
 
-if [ -f /phpbb/files ]; then
+if [ -d /phpbb/files ]; then
 	echo "[PHPBB INIT] Using existing files.."
 
 	rm -f /data/web/files
 
 	ln -s /phpbb/files /data/web/files
+fi
+
+if [ -d /phpbb/ext ]; then
+	echo "[PHPBB INIT] Using existing ext.."
+
+	rm -f /data/web/ext
+
+	ln -s /phpbb/ext /data/web/ext
+fi
+
+if [ -d /phpbb/language ]; then
+	echo "[PHPBB INIT] Using existing language.."
+
+	rm -f /data/web/language
+
+	ln -s /phpbb/language /data/web/language
 fi
 
 exit 0

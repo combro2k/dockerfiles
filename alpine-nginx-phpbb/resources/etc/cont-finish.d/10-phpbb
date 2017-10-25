@@ -16,4 +16,20 @@ if [ ! -L /data/web/files ]; then
         ln -s /phpbb/files /data/web/files
 fi
 
+if [ ! -L /data/web/ext ]; then
+	echo "[PHPBB FINISH] Saving existing ext.."
+
+        mv /data/web/ext /phpbb/ext
+
+        ln -s /phpbb/ext /data/web/ext
+fi
+
+if [ ! -L /data/web/language ]; then
+	echo "[PHPBB FINISH] Saving existing language.."
+
+        mv /data/web/language /phpbb/language
+
+        ln -s /phpbb/language /data/web/language
+fi
+
 exit 0

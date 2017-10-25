@@ -32,4 +32,29 @@ if [ ! -L /data/web/language ]; then
         ln -s /phpbb/language /data/web/language
 fi
 
+if [ ! -L /data/web/store ]; then
+	echo "[PHPBB FINISH] Saving existing store.."
+
+        mv /data/web/store /phpbb/store
+
+        ln -s /phpbb/store /data/web/store
+fi
+
+if [ ! -L /data/web/styles ]; then
+	echo "[PHPBB FINISH] Saving existing styles.."
+
+        mv /data/web/styles /phpbb/styles
+
+        ln -s /phpbb/styles /data/web/styles
+fi
+
+if [ ! -L /data/web/images/avatars/upload ]; then
+	echo "[PHPBB FINISH] Saving existing uploaded avatars.."
+
+        mv /data/web/images/avatars/upload /phpbb/avatars_upload
+
+        ln -s /phpbb/avatars_upload /data/web/images/avatars/upload
+
+fi
+
 exit 0

@@ -12,7 +12,7 @@ fi
 if [ -d /phpbb/files ]; then
 	echo "[PHPBB INIT] Using existing files.."
 
-	rm -f /data/web/files
+	rm -fr /data/web/files
 
 	ln -s /phpbb/files /data/web/files
 fi
@@ -20,7 +20,7 @@ fi
 if [ -d /phpbb/ext ]; then
 	echo "[PHPBB INIT] Using existing ext.."
 
-	rm -f /data/web/ext
+	rm -fr /data/web/ext
 
 	ln -s /phpbb/ext /data/web/ext
 fi
@@ -28,9 +28,32 @@ fi
 if [ -d /phpbb/language ]; then
 	echo "[PHPBB INIT] Using existing language.."
 
-	rm -f /data/web/language
+	rm -fr /data/web/language
 
 	ln -s /phpbb/language /data/web/language
+fi
+
+if [ -d /phpbb/store ]; then
+	echo "[PHPBB INIT] Using existing store.."
+
+	rm -fr /data/web/store
+
+	ln -s /phpbb/store /data/web/store
+fi
+
+if [ -d /phpbb/styles ]; then
+	echo "[PHPBB INIT] Using existing styles.."
+
+	rm -fr /data/web/styles
+
+	ln -s /phpbb/styles /data/web/styles
+fi
+if [ -d /phpbb/avatars_upload ]; then
+	echo "[PHPBB INIT] Using existing uploaded avatars.."
+
+	rm -fr /data/web/images/avatars/upload
+
+	ln -s /phpbb/avatars_upload /data/web/images/avatars/upload
 fi
 
 exit 0

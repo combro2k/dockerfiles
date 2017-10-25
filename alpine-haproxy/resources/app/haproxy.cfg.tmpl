@@ -30,7 +30,7 @@ defaults
   option dontlognull
   option redispatch
 
-{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
+{{ range $host, $containers := groupBy $ "Env.VIRTUAL_HOST"}}{{ range $index, $value := $containers }}
 {{ $addrLen := len $value.Addresses }}
 backend {{ $value.Name }}
   description {{ $host }}
@@ -42,11 +42,11 @@ backend {{ $value.Name }}
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
 
 {{ if eq $addrLen 1 }}
-{{ with $address := index $value.Addresses 0 }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }}{{ end }}
+{{ with $address := index $value.Addresses 0 }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}
 {{ else if $value.Env.VIRTUAL_PORT }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port $value.Env.VIRTUAL_PORT }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
+{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port $value.Env.VIRTUAL_PORT }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
 {{ else }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port "80" }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
+{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port "80" }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
 {{ end }}
 
   http-response set-header X-Frame-Options "SAMEORIGIN"
@@ -123,11 +123,11 @@ frontend http-in
   acl ssl_backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
 {{ end }}{{ end }}
 
-{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
-  use_backend {{ $value.Name }} if backend_{{ $value.Name }} # {{ $host }}
+{{ range $host, $containers := groupBy $ "Env.VIRTUAL_HOST" }}{{ range $index, $value := $containers }}
+  use_backend {{ $value.Name }} if backend_{{ $value.Name }} # {{ $host }} {{ $index }}
 {{ end }}{{ end }}
-{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
-  use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }}
+{{ range $host, $containers := groupBy $ "Env.VIRTUAL_SSL_HOST" }}{{ range $index, $value := $containers }}
+  use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }} {{ $index }}
 {{ end }}{{ end }}
 
 frontend https-in
@@ -150,10 +150,9 @@ frontend https-in
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
   acl ssl_backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
 {{ end }}{{ end }}
-{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
-  use_backend {{ $value.Name }} if backend_{{ $value.Name }} # {{ $host }}
+{{ range $host, $containers := groupBy $ "Env.VIRTUAL_HOST" }}{{ range $index, $value := $containers }}
+  use_backend {{ $value.Name }} if backend_{{ $value.Name }} # {{ $host }} {{ $index }}
 {{ end }}{{ end }}
-{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
-  use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }}
+{{ range $host, $containers := groupBy $ "Env.VIRTUAL_SSL_HOST" }}{{ range $index, $value := $containers }}
+  use_backend SSL_{{ $value.Name }} if ssl_backend_{{ $value.Name }} # {{ $host }} {{ $index }}
 {{ end }}{{ end }}
-

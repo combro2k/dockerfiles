@@ -15,6 +15,7 @@ RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates cu
 	apk add --quiet --no-cache --virtual=.build-deps ruby2.2-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
 	mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | tar zx -C /data/api --strip-components=1 && \
 	gem2.2 install bundler --no-ri --no-rdoc && \
+	adduser -h /var/vmail -D -H -u 1000 vmail && \
 	cd /data/api && bundle update json && bundle install --path /data/api/vendor --with mysql && apk del --quiet --no-cache --purge .build-deps && \
 	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 

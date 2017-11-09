@@ -721,3 +721,4 @@ smtp_use_tls = yes
 smtputf8_enable = no
 message_size_limit = 20480000
 transport_maps = mysql:/etc/postfix/virtual/mysql-virtual-transports.cf
+forward_path=/var/vmail/${domain}/${user}/.forward

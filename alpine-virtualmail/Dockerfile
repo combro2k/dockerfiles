@@ -64,7 +64,7 @@ RUN set -xe && \
 	 cpanm -v -n \
 		Archive::Extract Lingua::Stem::Snowball Lingua::Identify Crypt::OpenSSL::AES Mail::SPF::Query Mail::SRS Regexp::Optimizer Thread::State Sys::MemInfo \
 		Text::Unidecode Schedule::Cron Email::Send Tie::RDBM Sys::CpuAffinity Unicode::GCString Convert::Scalar File::Scan::ClamAV && \
-	 curl -L -s https://goo.gl/WC9YyU --output /tmp/assp.zip && cd /usr/share && unzip /tmp/assp.zip && rm /tmp/assp.zip && apk del --quiet --no-cache --progress --purge && \
+	 curl -L -s https://goo.gl/Su4bTH --output /tmp/assp.zip && cd /usr/share && unzip /tmp/assp.zip && rm /tmp/assp.zip && apk del --quiet --no-cache --progress --purge && \
 	 rm -rf /var/cache/apk/* && apk del --quiet --no-cache --purge .build-deps && apk --no-cache --progress --quiet fix openssl
 
 COPY resources/ /

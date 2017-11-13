@@ -49,4 +49,20 @@ elif [ ! -L /usr/share/assp/quarantine ]; then
         ln -s /data/assp/quarantine /usr/share/assp/quarantine
 fi
 
+if [ ! -d /data/assp/notspam ]; then
+        mv /usr/share/assp/notspam /data/assp/notspam
+        ln -s /data/assp/notspam /usr/share/assp/notspam
+elif [ ! -L /usr/share/assp/notspam ]; then
+        rm -fr /usr/share/assp/notspam
+        ln -s /data/assp/notspam /usr/share/assp/notspam
+fi
+
+if [ ! -d /data/assp/spam ]; then
+        mv /usr/share/assp/spam /data/assp/spam
+        ln -s /data/assp/spam /usr/share/assp/spam
+elif [ ! -L /usr/share/assp/spam ]; then
+        rm -fr /usr/share/assp/spam
+        ln -s /data/assp/spam /usr/share/assp/spam
+fi
+
 exit 0

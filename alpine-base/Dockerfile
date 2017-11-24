@@ -9,7 +9,7 @@ LABEL \
         org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
 RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-cache curl tar && \
-	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.2.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
+	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.2.1/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk del --quiet --no-cache --purge curl tar && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*

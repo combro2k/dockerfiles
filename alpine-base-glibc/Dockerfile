@@ -1,12 +1,4 @@
 FROM combro2k/alpine-base:latest
-  
-ARG BUILD_DATE=unknown
-ARG VCS_REF=unknown
-
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
-        org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
 
 RUN set -xe && apk add --quiet --no-cache curl && \
 	curl --silent --location https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/sgerrand.rsa.pub --output /etc/apk/keys/sgerrand.rsa.pub && \

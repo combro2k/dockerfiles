@@ -1,10 +1,5 @@
 FROM combro2k/alpine-nginx-php7:latest
 
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
-        org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
-
 RUN apk add --quiet --no-cache --virtual=.build-dependencies autoconf automake file g++ gcc make php7-dev re2c samba-dev zlib-dev && \
 	apk add --quiet --no-cache curl ffmpeg libxml2 php7-apcu php7-bz2 php7-ctype php7-curl php7-dom php7-exif php7-ftp php7-gd \
 		php7-gmp php7-iconv php7-imap php7-intl php7-ldap php7-mbstring php7-mcrypt php7-memcached php7-opcache php7-pcntl \

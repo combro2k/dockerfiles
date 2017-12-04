@@ -1,10 +1,5 @@
 FROM combro2k/alpine-base:latest
 
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
-        org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
-
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py2-pip curl tar python2 openssl py-virtualenv libstdc++ && \
 	    apk add --quiet --no-cache --virtual=.build-deps alpine-sdk openssl-dev python2-dev && \
       addgroup -g 1000 -S syncserver && adduser -S -u 1000 -h /app -s /usr/sbin/nologin -D syncserver -G syncserver && \

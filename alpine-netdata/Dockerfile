@@ -1,10 +1,5 @@
 FROM combro2k/alpine-base:latest
 
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
-        org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
-
 RUN \
       apk --no-cache --virtual=.run-deps add bash curl jq sysfsutils lm_sensors libcrypto1.0 http-parser libssl1.0 libuv nodejs mariadb-common  netcat-openbsd \
         mariadb-client-libs py-mysqldb py-psycopg2 py-egenix-mx-base db libsasl libldap libpq py2-psycopg2 py-requests py-yaml python libuuid fping && \

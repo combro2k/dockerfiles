@@ -1,10 +1,5 @@
 FROM combro2k/alpine-base:latest
 
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
-        org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/"
-
 ENV \
 	HOME=/data/api \
 	RAILS_ENV=production \

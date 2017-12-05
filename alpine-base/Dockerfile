@@ -3,7 +3,12 @@ FROM alpine:edge
 ARG BUILD_DATE=now
 ARG VCS_REF=master
 ARG VCS_URL=https://github.com/combro2k/dockerfiles
-ARG DOCKERFILE=Dockerfile
+ARG DOCKERFILE=alpine-base/Dockerfile
+
+ONBUILD ARG BUILD_DATE=now
+ONBUILD ARG VCS_REF=master
+ONBUILD ARG VCS_URL=https://github.com/combro2k/dockerfiles/tree/master/alpine-base
+ONBUILD ARG DOCKERFILE=alpine-base/Dockerfile
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

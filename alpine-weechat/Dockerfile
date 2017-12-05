@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base:latest
 
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
 RUN \
 	apk --quiet --no-cache add weechat weechat-python weechat-perl weechat-lua python lua5.3 weechat-ruby ruby tmux dropbear bash && \
 	mkdir -p /data /data/weechat /data/dropbear /data/ssh && ln -s /data/dropbear /etc/dropbear && \

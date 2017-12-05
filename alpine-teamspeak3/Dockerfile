@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base-glibc:latest
 
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
 RUN set -xe && apk --no-cache --quiet add curl && mkdir /app -p && \
 	curl -L -s http://dl.4players.de/ts/releases/3.0.13.8/teamspeak3-server_linux_amd64-3.0.13.8.tar.bz2 | tar xj -C /app --strip-components=1 && \
 	adduser -D -h /teamspeak3 -u 1000 teamspeak3 && touch /teamspeak3/ts3server.ini /teamspeak3/ts3server.sqlitedb && \

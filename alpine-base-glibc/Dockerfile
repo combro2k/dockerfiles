@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base:latest
 
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
 RUN set -xe && apk add --quiet --no-cache curl && \
 	curl --silent --location https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/sgerrand.rsa.pub --output /etc/apk/keys/sgerrand.rsa.pub && \
 	curl --silent --location https://github.com/sgerrand/alpine-pkg-glibc/releases/download/unreleased/glibc-2.25-r1.apk --output /tmp/glibc.apk && \

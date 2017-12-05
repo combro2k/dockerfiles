@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base:latest
 
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
 RUN apk --no-cache --progress add curl openjdk8-jre-base tar && \
 	mkdir /app && curl --location --silent https://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_4_1_5.tar.gz | tar zx -C /app && \
 	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*

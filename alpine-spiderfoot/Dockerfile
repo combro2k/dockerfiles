@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base:latest
 
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py2-pip curl tar libxml2 xmlsec python2 openssl && \
 	    apk add --quiet --no-cache --virtual=.build-deps alpine-sdk openssl-dev python2-dev libxml2-dev xmlsec-dev swig && \
       addgroup -g 1000 -S spiderfoot && adduser -S -u 1000 -h /app -s /usr/sbin/nologin -D spiderfoot -G spiderfoot && \

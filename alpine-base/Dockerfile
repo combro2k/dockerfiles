@@ -1,13 +1,13 @@
 FROM alpine:edge
 
-ARG BUILD_DATE=unknown
-ARG VCS_REF=unknown
-ARG DOCKERFILE=unknown
+ARG BUILD_DATE=now
+ARG VCS_REF=master
+ARG VCS_URL=https://github.com/combro2k/dockerfiles
+ARG DOCKERFILE=Dockerfile
 
-LABEL \
-        org.label-schema.build-date=$BUILD_DATE \
+LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
-        org.label-schema.vcs-url="https://github.com/combro2k/dockerfiles/" \
+        org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-cache --virtual=.s6-deps curl tar && \

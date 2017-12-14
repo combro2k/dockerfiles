@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+su-exec spiderfoot /usr/bin/python /app/sfcli.py "${@}"

@@ -1,1 +1,2 @@
 /data true spiderfoot 0664 2755
+/usr/bin/sfcli false root 0755 2755

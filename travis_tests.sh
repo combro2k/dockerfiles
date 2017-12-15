@@ -30,8 +30,8 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-prosody:lates
 docker rmi combro2k/alpine-prosody:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-openfire:latest alpine-openfire
 docker rmi combro2k/alpine-openfire:latest
-#docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:latest alpine-softether
-#docker rmi combro2k/alpine-softether:latest
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:latest alpine-softether
+docker rmi combro2k/alpine-softether:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-aptly:latest alpine-aptly
 docker rmi combro2k/alpine-aptly:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:latest alpine-virtualmail

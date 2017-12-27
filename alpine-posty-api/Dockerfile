@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.4
   
 ARG BUILD_DATE=now
 ARG VCS_REF=master

@@ -1,5 +1,10 @@
 FROM combro2k/alpine-base:latest
 
+ONBUILD ARG BUILD_DATE=now
+ONBUILD ARG VCS_REF=master
+ONBUILD ARG VCS_URL=https://github.com/combro2k/dockerfiles/tree/master/alpine-nginx-php5
+ONBUILD ARG DOCKERFILE=alpine-nginx-php5/Dockerfile
+
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
         org.label-schema.vcs-url=$VCS_URL \

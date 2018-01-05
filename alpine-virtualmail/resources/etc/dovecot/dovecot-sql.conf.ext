@@ -9,15 +9,15 @@ default_pass_scheme = SHA512-CRYPT
 password_query = \
   SELECT email AS user, \
     password, \
-    'maildir:/var/vmail/%Ld/%Ln' AS userdb_home, \
-    'maildir:/var/vmail/%Ld/%Ln' AS userdb_mail, \
+    'maildir:/var/vmail/%2d/%Ld/%Ln' AS userdb_home, \
+    'maildir:~/Maildir' AS userdb_mail, \
     1000 AS userdb_uid, \
     1000 AS userdb_gid \
   FROM users_view WHERE email='%Lu';
 
 user_query = \
-  SELECT '/var/vmail/%Ld/%Ln' AS home, \
-    'maildir:/var/vmail/%Ld/%Ln' AS mail, \
+  SELECT '/var/vmail/%2d/%Ld/%Ln' AS home, \
+    'maildir:~/Maildir' AS mail, \
     1000 AS uid, \
     1000 AS gid \
   FROM users_view WHERE email = '%Lu';

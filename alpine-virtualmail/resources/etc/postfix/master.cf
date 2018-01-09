@@ -59,4 +59,4 @@ scache    unix  -       -       n       -       1       scache
 
 # use dovecot's LDA to deliver mail and allow sieve to filter the mail
 dovecot   unix  -       n       n       -       -       pipe
-  flags=DRhu user=vmail:vmail argv=/usr/libexec/dovecot/deliver -f ${sender} -d ${recipient}
+  flags=DRhu user=vmail:vmail argv=/usr/libexec/dovecot/deliver -f ${sender} -d ${recipient} -a ${original_recipient}

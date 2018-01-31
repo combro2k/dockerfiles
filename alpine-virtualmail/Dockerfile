@@ -60,12 +60,12 @@ RUN set -xe && \
 		perl-ldap && \
 	 apk add --quiet --no-cache --virtual=.build-deps make alpine-sdk gcc perl-dev openssl-dev snowball-dev && \
 	 mkdir -p /usr/share/assp /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
-	 curl -L -s https://cpanmin.us/ --output /bin/cpanm && chmod +x /bin/cpanm && \
-	 cpanm -v -n \
+	 curl -L -s https://cpanmin.us/ --output /bin/cpanm && chmod +x /bin/cpanm && cpanm -v -n \
 		Archive::Extract Lingua::Stem::Snowball Lingua::Identify Crypt::OpenSSL::AES Mail::SPF::Query Mail::SRS Regexp::Optimizer Thread::State Sys::MemInfo \
 		Text::Unidecode Schedule::Cron Email::Send Tie::RDBM Sys::CpuAffinity Unicode::GCString Convert::Scalar File::Scan::ClamAV && \
-	 curl -L -s https://goo.gl/7cFuDR --output /tmp/assp.zip && cd /usr/share && unzip /tmp/assp.zip && rm /tmp/assp.zip && apk del --quiet --no-cache --progress --purge && \
-	 rm -rf /var/cache/apk/* && apk del --quiet --no-cache --purge .build-deps && apk --no-cache --progress --quiet fix openssl
+	 curl -L -s https://goo.gl/7cFuDR --output /tmp/assp.zip && cd /usr/share && unzip /tmp/assp.zip && mkdir -p /usr/share/assp/tmpDB/files && \
+   chown assp:assp -R /usr/share/assp && rm /tmp/assp.zip && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/* && \
+   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --progress --quiet fix openssl
 
 COPY resources/ /
 

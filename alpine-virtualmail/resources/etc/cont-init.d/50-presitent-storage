@@ -1,68 +1,74 @@
 #!/usr/bin/with-contenv sh
 
 if [ ! -d /data/assp ]; then
-	mkdir -p /data/assp
+  mkdir -p /data/assp
 fi
 
 if [ ! -d /data/assp/database ]; then
-	mv /usr/share/assp/database /data/assp/database
-	ln -s /data/assp/database /usr/share/assp/database
+  mv /usr/share/assp/database /data/assp/database
+  ln -s /data/assp/database /usr/share/assp/database
 elif [ ! -L /usr/share/assp/database ]; then
-	rm -fr /usr/share/assp/database
-	ln -s /data/assp/database /usr/share/assp/database
+  rm -fr /usr/share/assp/database
+  ln -s /data/assp/database /usr/share/assp/database
 fi
 
 if [ ! -d /data/assp/dkim ]; then
-        mv /usr/share/assp/dkim /data/assp/dkim
-        ln -s /data/assp/dkim /usr/share/assp/dkim
+  mv /usr/share/assp/dkim /data/assp/dkim
+  ln -s /data/assp/dkim /usr/share/assp/dkim
 elif [ ! -L /usr/share/assp/dkim ]; then
-        rm -fr /usr/share/assp/dkim
-        ln -s /data/assp/dkim /usr/share/assp/dkim
+  rm -fr /usr/share/assp/dkim
+  ln -s /data/assp/dkim /usr/share/assp/dkim
 fi
 
 if [ -f /data/assp/assp.cfg ]; then
-	rm /usr/share/assp/assp.cfg
-	ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
+  rm /usr/share/assp/assp.cfg
+  ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
+elif [ ! -f /usr/share/assp/assp.cfg ]; then
+  cp /usr/share/assp/assp.cfg.defaults /data/assp/assp.cfg
+  ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
 else
-	if [ ! -f /usr/share/assp/assp.cfg ]; then
-		cp /usr/share/assp/assp.cfg.defaults /data/assp/assp.cfg
-		ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
-	else
-		mv /usr/share/assp/assp.cfg /data/assp/assp.cfg
-		ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
-	fi
+  mv /usr/share/assp/assp.cfg /data/assp/assp.cfg
+  ln -s /data/assp/assp.cfg /usr/share/assp/assp.cfg
 fi
 
 if [ ! -d /data/assp/files ]; then
-        mv /usr/share/assp/files /data/assp/files
-        ln -s /data/assp/files /usr/share/assp/files
+  mv /usr/share/assp/files /data/assp/files
+  ln -s /data/assp/files /usr/share/assp/files
 elif [ ! -L /usr/share/assp/files ]; then
-        rm -fr /usr/share/assp/files
-        ln -s /data/assp/files /usr/share/assp/files
+  rm -fr /usr/share/assp/files
+  ln -s /data/assp/files /usr/share/assp/files
+fi
+
+if [ ! -d /data/assp/tmpDB/files ]; then
+  mv /usr/share/assp/tmpDB/files /data/assp/tmpDB/files
+  ln -s /data/assp/tmpDB/files /usr/share/assp/tmpDB/files
+elif [ ! -L /usr/share/assp/tmpDB/files ]; then
+  rm -fr /usr/share/assp/tmpDB/files
+  ln -s /data/assp/tmpDB/files /usr/share/assp/tmpDB/files
 fi
 
 if [ ! -d /data/assp/quarantine ]; then
-        mv /usr/share/assp/quarantine /data/assp/quarantine
-        ln -s /data/assp/quarantine /usr/share/assp/quarantine
+  mv /usr/share/assp/quarantine /data/assp/quarantine
+  ln -s /data/assp/quarantine /usr/share/assp/quarantine
 elif [ ! -L /usr/share/assp/quarantine ]; then
-        rm -fr /usr/share/assp/quarantine
-        ln -s /data/assp/quarantine /usr/share/assp/quarantine
+  rm -fr /usr/share/assp/quarantine
+  ln -s /data/assp/quarantine /usr/share/assp/quarantine
 fi
 
 if [ ! -d /data/assp/notspam ]; then
-        mv /usr/share/assp/notspam /data/assp/notspam
-        ln -s /data/assp/notspam /usr/share/assp/notspam
+  mv /usr/share/assp/notspam /data/assp/notspam
+  ln -s /data/assp/notspam /usr/share/assp/notspam
 elif [ ! -L /usr/share/assp/notspam ]; then
-        rm -fr /usr/share/assp/notspam
-        ln -s /data/assp/notspam /usr/share/assp/notspam
+  rm -fr /usr/share/assp/notspam
+  ln -s /data/assp/notspam /usr/share/assp/notspam
 fi
 
 if [ ! -d /data/assp/spam ]; then
-        mv /usr/share/assp/spam /data/assp/spam
-        ln -s /data/assp/spam /usr/share/assp/spam
+  mv /usr/share/assp/spam /data/assp/spam
+  ln -s /data/assp/spam /usr/share/assp/spam
 elif [ ! -L /usr/share/assp/spam ]; then
-        rm -fr /usr/share/assp/spam
-        ln -s /data/assp/spam /usr/share/assp/spam
+  rm -fr /usr/share/assp/spam
+  ln -s /data/assp/spam /usr/share/assp/spam
 fi
 
 exit 0

@@ -5,6 +5,8 @@ ARG VCS_REF=master
 ARG VCS_URL=https://github.com/combro2k/dockerfiles
 ARG DOCKERFILE=alpine-base/Dockerfile
 
+ENV S6_KILL_GRACETIME=300000
+
 ONBUILD ARG BUILD_DATE=now
 ONBUILD ARG VCS_REF=master
 ONBUILD ARG VCS_URL=https://github.com/combro2k/dockerfiles/tree/master/alpine-base

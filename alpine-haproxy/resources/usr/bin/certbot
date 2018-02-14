@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "Installing for first use..."
+apk add --no-cache --quiet certbot
+
+exec $0 "$@"

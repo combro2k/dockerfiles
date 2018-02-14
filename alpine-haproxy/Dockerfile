@@ -5,16 +5,20 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV DOCKER_ENDPOINT=unix:///tmp/docker.sock
+ENV \
+  S6_KILL_GRACETIME=3000 \
+  DOCKER_ENDPOINT=unix:///tmp/docker.sock \
+  LETSENCRYPT_BACKEND_IP=127.0.0.1 \
+  LETSENCRYPT_BACKEND_PORT=8888
 
 RUN set -xe && \
-	apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl certbot && mkdir /app && \
-	curl --location --silent https://github.com/jwilder/docker-gen/releases/download/0.7.3/docker-gen-alpine-linux-amd64-0.7.3.tar.gz | tar zx -C /app && \
+	apk add --quiet --no-cache --virtual=run-deps haproxy curl ca-certificates openssl && mkdir /app && \
+	curl --location --silent https://github.com/jwilder/docker-gen/releases/download/0.7.4/docker-gen-alpine-linux-amd64-0.7.4.tar.gz | tar zx -C /app && \
 	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 
-RUN chmod +x /app/reload-haproxy.sh
+RUN chmod +x /app/reload-haproxy.sh /usr/bin/certbot
 
 #VOLUME /tmp/docker.sock
 

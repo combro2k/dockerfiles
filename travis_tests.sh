@@ -8,7 +8,7 @@ cd ${BASE}
 
 # Build base container
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base:latest alpine-base
-docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base-glibc:latest alpine-base-glibc
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-base-glibc:latest alpine-base-glibc
 
 # Build dependendable containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5

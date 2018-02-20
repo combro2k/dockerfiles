@@ -1,14 +1,16 @@
 FROM combro2k/alpine-base:latest
 
-ENV GEM_PATH="/app"
+RUN apk add --no-cache --quiet --progress alpine-sdk shadow && \
+  adduser -D builder &&  mkdir -p /var/cache/distfiles && \
+  chgrp abuild /var/cache/distfiles &&  chmod a+w /var/cache/distfiles && \
+  addgroup builder abuild
 
-RUN apk --no-cache --quiet --progress --virtual=.run-deps add ruby libffi ruby-etc && \
-  apk --no-cache --quiet --progress --virtual=.build-deps add libffi-dev ruby-dev alpine-sdk && \
-  apk --no-cache --quiet --progress --virtual=.fpm-deps add py2-virtualenv dpkg xz python2-dev && \
-  gem install fpm --no-rdoc --no-ri --install-dir /app && pip install virtualenv-tools
+COPY resources/ /
 
-ADD resources/ /
+USER builder
 
-RUN chmod +x /usr/bin/fpm
+RUN abuild-keygen -a -i -q -n
 
-CMD /bin/sh
+USER root
+
+CMD ['su', '-', 'builder']

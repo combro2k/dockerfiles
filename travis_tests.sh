@@ -42,6 +42,8 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-fluentd:lates
 docker rmi combro2k/alpine-fluentd:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-spiderfoot:latest alpine-spiderfoot
 docker rmi combro2k/alpine-spiderfoot:latest
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-builder:latest alpine-builder
+docker rmi combro2k/alpine-builder:latest
 
 # Dependend PHP5 containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-wordpress:latest alpine-nginx-wordpress

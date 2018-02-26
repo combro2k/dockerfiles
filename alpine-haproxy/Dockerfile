@@ -28,4 +28,4 @@ EXPOSE 80/tcp 443/tcp 9000/tcp
 
 ENTRYPOINT ["/init"]
 
-CMD [""]
+CMD []

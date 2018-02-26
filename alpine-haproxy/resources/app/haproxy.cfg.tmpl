@@ -134,7 +134,7 @@ frontend http-in
 
 frontend https-in
   description proxy-https
-  bind :::443 v4v6 ssl crt-list /data/ssl/crt-list.txt
+  bind :::443 v4v6 ssl crt-list /data/ssl/crt-list.txt alpn h2,http/1.1
 
   mode http
 

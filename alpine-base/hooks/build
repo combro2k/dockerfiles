@@ -14,7 +14,7 @@ echo "Build hook running"
 
 set -x
 
-docker build --build-arg BUILD_DATE="${BUILD_DATE}" \
+docker build --pull --build-arg BUILD_DATE="${BUILD_DATE}" \
              --build-arg VCS_REF="${VCS_REF}" \
              --build-arg VCS_URL="${VCS_URL}" \
              --build-arg DOCKERFILE="${DOCKERFILE}" \

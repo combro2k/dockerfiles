@@ -2,4 +2,4 @@
 
 OPT="-f /etc/haproxy/haproxy.cfg -f /data/haproxy.d/"
 
-exec haproxy -db -p /tmp/haproxy.pid $OPT
+exec haproxy -W -db -p /tmp/haproxy.pid $OPT

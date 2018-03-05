@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -f /mumble/murmur.sqlite ]; then
+  exec /usr/bin/murmurd -fg -v -supw $SUPW
+fi
+
+exit 0

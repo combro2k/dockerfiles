@@ -26,6 +26,8 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-haproxy:lates
 docker rmi combro2k/alpine-haproxy:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-teamspeak3:latest alpine-teamspeak3
 docker rmi combro2k/alpine-teamspeak3:latest
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-mumble:latest alpine-mumble
+docker rmi combro2k/alpine-mumble:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-prosody:latest alpine-prosody
 docker rmi combro2k/alpine-prosody:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-openfire:latest alpine-openfire

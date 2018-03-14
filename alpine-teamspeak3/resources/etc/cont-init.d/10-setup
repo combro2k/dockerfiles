@@ -18,4 +18,10 @@ if [ ! -d /teamspeak3/files ]; then
   chown teamspeak3:teamspeak3 /teamspeak3/files
 fi
 
+if [ ! -d /teamspeak3/logs ]; then
+  mkdir /teamspeak3/logs
+
+  chown teamspeak3:teamspeak3 /teamspeak3/logs
+fi
+
 exit 0

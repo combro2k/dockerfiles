@@ -2,10 +2,20 @@
 
 if [ ! -f /teamspeak3/ts3server.ini ]; then
 	touch /teamspeak3/ts3server.ini
+
+  chown teamspeak3:teamspeak3 /teamspeak3/ts3server.ini
 fi
 
 if [ ! -f /teamspeak3/ts3server.sqlitedb ]; then
 	touch /teamspeak3/ts3server.sqlitedb
+
+  chown teamspeak3:teamspeak3 /teamspeak3/ts3server.sqlitedb
+fi
+
+if [ ! -d /teamspeak3/files ]; then
+  mkdir /teamspeak3/files
+
+  chown teamspeak3:teamspeak3 /teamspeak3/files
 fi
 
 exit 0

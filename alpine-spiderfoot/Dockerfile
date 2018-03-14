@@ -5,7 +5,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV SPIDERFOOT_VERSION 2.11.0
+ENV SPIDERFOOT_VERSION 2.12.0
 
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py2-pip curl tar libxml2 xmlsec python2 openssl su-exec && \
 	    apk add --quiet --no-cache --virtual=.build-deps alpine-sdk openssl-dev python2-dev libxml2-dev xmlsec-dev swig && \

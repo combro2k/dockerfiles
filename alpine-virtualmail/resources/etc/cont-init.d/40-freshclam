@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv sh
 
-/usr/bin/freshclam
+/usr/bin/freshclam &
 
 exit 0

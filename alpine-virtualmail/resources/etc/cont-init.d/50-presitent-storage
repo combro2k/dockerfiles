@@ -39,6 +39,11 @@ elif [ ! -L /usr/share/assp/files ]; then
   ln -s /data/assp/files /usr/share/assp/files
 fi
 
+if [ ! -d /data/assp/tmpDB ]; then
+  mkdir /data/assp/tmpDB
+  chown -R assp:assp /data/assp/tmpDB
+fi
+
 if [ ! -d /data/assp/tmpDB/files ]; then
   mv /usr/share/assp/tmpDB/files /data/assp/tmpDB/files
   ln -s /data/assp/tmpDB/files /usr/share/assp/tmpDB/files

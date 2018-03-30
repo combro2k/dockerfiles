@@ -7,7 +7,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 
 RUN \
       apk --no-cache --virtual=.run-deps add bash curl jq sysfsutils lm_sensors libcrypto1.0 http-parser libssl1.0 libuv nodejs mariadb-common  netcat-openbsd \
-        mariadb-client-libs py-mysqldb py-psycopg2 py-egenix-mx-base db libsasl libldap libpq py2-psycopg2 py-requests py-yaml python libuuid fping && \
+        mariadb-client py-mysqldb py-psycopg2 py-egenix-mx-base db libsasl libldap libpq py2-psycopg2 py-requests py-yaml python libuuid fping && \
       apk --no-cache --virtual=.build-deps add alpine-sdk autoconf automake gcc git libmnl-dev make pkgconfig util-linux-dev zlib-dev && \
       mkdir /usr/src && curl -L -Ss https://github.com/firehol/netdata/archive/master.tar.gz | tar zx -C /usr/src --strip-components=1 && \
       cd /usr/src/ && ./netdata-installer.sh --dont-wait --dont-start-it && cd /root && rm -fr /usr/src && \

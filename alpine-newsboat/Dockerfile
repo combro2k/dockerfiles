@@ -5,10 +5,17 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-RUN apk --no-cache add newsboat su-exec && addgroup -g 1000 -S newsboat && \
+ENV \
+  OPML_URLS="https://git.io/vx5Jn" \
+  NEWSBOAT_MAX_ITEMS=100 \
+  NEWSBOAT_RELOAD_TIME=15
+
+RUN apk --no-cache add newsboat w3m su-exec && addgroup -g 1000 -S newsboat && \
   adduser -S -u 1000 -h /newsboat newsboat -D newsboat -G newsboat && \
   apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 
 VOLUME /newsboat/.newsboat
+
+CMD ["/usr/local/bin/newsboat"]

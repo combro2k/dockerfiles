@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -f /newsboat/.newsboat/config ]; then
+  cat << EOF > /newsboat/.newsboat/config
+
+auto-reload yes
+reload-time ${NEWSBOAT_RELOAD_TIME}
+max-items ${NEWSBOAT_MAX_ITEMS}
+browser "w3m %u"
+user-agent "NewsBoat"
+show-keymap-hint yes
+
+urls-source "opml"
+opml-url ${OPML_URLS}
+
+EOF
+
+  chown newsboat:newsboat /newsboat/.newsboat/config
+fi
+
+exit 0

@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv sh
+
+su-exec newsboat /usr/bin/newsboat "${@}"

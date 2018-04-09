@@ -1,5 +1,4 @@
-#FROM combro2k/alpine-base:latest
-FROM haproxy:alpine
+FROM combro2k/alpine-base:latest
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
@@ -13,8 +12,7 @@ ENV \
   LETSENCRYPT_BACKEND_PORT=8888
 
 RUN set -xe && \
-	apk add --quiet --no-cache --virtual=run-deps curl ca-certificates openssl && mkdir /app && \
-  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.4.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
+	apk add --quiet --no-cache --virtual=run-deps curl ca-certificates openssl haproxy && mkdir /app && \
 	curl --location --silent https://github.com/jwilder/docker-gen/releases/download/0.7.4/docker-gen-alpine-linux-amd64-0.7.4.tar.gz | tar zx -C /app && \
 	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
@@ -27,5 +25,3 @@ RUN chmod +x /app/reload-haproxy.sh /usr/bin/certbot
 EXPOSE 80/tcp 443/tcp 9000/tcp
 
 ENTRYPOINT ["/init"]
-
-CMD []

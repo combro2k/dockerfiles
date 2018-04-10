@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV \
-  OPML_URLS="https://git.io/vx5Jn" \
+  OPML_URLS="https://combro2k.github.io/opml/news.opml" \
   NEWSBOAT_MAX_ITEMS=100 \
   NEWSBOAT_RELOAD_TIME=15
 

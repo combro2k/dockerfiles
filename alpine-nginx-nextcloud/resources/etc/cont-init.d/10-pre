@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /nextcloud/data ]; then
+  mkdir /nextcloud/data
+  chown www-data:www-data /nextcloud/data
+fi
+
+if [ ! -d /nextcloud/config ]; then
+  mkdir /nextcloud/config
+  chown www-data:www-data /nextcloud/config
+fi

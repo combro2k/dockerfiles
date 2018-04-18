@@ -1,0 +1,2 @@
+/nextcloud/config true www-data 0750 0750
+/nextcloud/data true www-data 0750 0750

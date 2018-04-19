@@ -9,3 +9,72 @@ if [ ! -d /nextcloud/config ]; then
   mkdir /nextcloud/config
   chown www-data:www-data /nextcloud/config
 fi
+
+if [ ! -d /nextcloud/apps ]; then
+  mkdir /nextcloud/apps
+  chown www-data:www-data /nextcloud/apps
+fi
+
+if [ ! -f /nextcloud/config/config.php ]; then
+  instanceid=oc$(cat /etc/hostname | sha1sum | fold -w 10 | head -n 1)
+
+  cat > /nextcloud/config/config.php <<EOF;
+<?php
+\$CONFIG = array (
+  'datadirectory' => '/nextcloud/data',
+  "apps_paths" => array (
+      0 => array (
+              "path"     => "/data/web/apps",
+              "url"      => "/apps",
+              "writable" => false,
+      ),
+      1 => array (
+              "path"     => "/nextcloud/apps",
+              "url"      => "/apps2",
+              "writable" => true,
+      ),
+  ),
+  'memcache.local' => '\OC\Memcache\APCu',
+  'instanceid' => '${instanceid}',
+  'log_type' => 'syslog',
+  'loglevel' => 1,
+  'syslog_tag' => 'NextCloud',
+);
+?>
+EOF
+  
+  chown www-data:www-data /nextcloud/config/config.php
+
+	adminpassword=$(dd if=/dev/urandom bs=1 count=40 2>/dev/null | sha1sum | fold -w 30 | head -n 1)
+
+	cat > /nextcloud/config/autoconfig.php <<EOF;
+<?php
+\$AUTOCONFIG = array (
+  # storage/database
+  'directory'     => '/nextcloud/data',
+  'dbtype'        => '${DB_TYPE}',
+  'dbname'        => '${DB_NAME}',
+  'dbuser'        => '${DB_USER}',
+  'dbpass'        => '${DB_PASSWORD}',
+  'dbhost'        => '${DB_HOST}',
+  'dbtableprefix' => '${DB_PREFIX}',
+EOF
+
+  if [[ ! -z "$ADMIN_USER" ]]; then
+    cat >> /nextcloud/config/autoconfig.php <<EOF;
+  # create an administrator account with a random password so that
+  # the user does not have to enter anything on first load of ownCloud
+  'adminlogin'    => '${ADMIN_USER}',
+  'adminpass'     => '${ADMIN_PASSWORD}',
+EOF
+
+  fi
+
+  cat >> /nextcloud/config/autoconfig.php <<EOF;
+);
+?>
+EOF
+  
+  chown www-data:www-data /nextcloud/config/autoconfig.php
+fi
+

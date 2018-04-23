@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/web/install ]; then
+  /usr/bin/phpbbcli db:migrate
+fi
+
+exit 0

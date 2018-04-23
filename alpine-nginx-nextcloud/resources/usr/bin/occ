@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-su-exec www-data /usr/bin/php7 /data/web/occ "${@}"
+su-exec www-data /usr/bin/php /data/web/occ "${@}"

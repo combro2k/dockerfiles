@@ -1,1 +1,1 @@
-*/5 * * * * s6-setuidgid www-data php -f /data/web/bin/phpbbcli.php cron:run > /dev/stdout 2>&1
+*/5 * * * * test ! -d /data/web/install && /usr/bin/phpbbcli cron:run > /dev/stdout 2>&1

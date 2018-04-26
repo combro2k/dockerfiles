@@ -1,5 +1,13 @@
 #!/usr/bin/with-contenv sh
 
+if [ $WWW_UID -ne 82 ]; then
+  usermod -u $WWW_UID www-data
+fi
+
+if [ $WWW_GID -ne 82 ]; then
+  groupmod -g $WWW_GID www-data
+fi
+
 if [ ! -d /nextcloud/data ]; then
   mkdir /nextcloud/data
   chown www-data:www-data /nextcloud/data
@@ -78,3 +86,8 @@ EOF
   chown www-data:www-data /nextcloud/config/autoconfig.php
 fi
 
+if [ $WWW_UID -ne 82 ] || [ $WWW_GID -ne 82 ]; then
+  find /data/web /nextcloud ! -user $WWW_UID -o ! -group $WWW_UID -exec chown $WWW_UID:$WWW_UID {} \;
+fi
+
+exit 0

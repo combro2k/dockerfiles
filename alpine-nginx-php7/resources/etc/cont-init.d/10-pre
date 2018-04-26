@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv sh
+
+if [ $WWW_UID -ne 82 ]; then
+  usermod -u $WWW_UID www-data
+fi
+
+if [ $WWW_GID -ne 82 ]; then
+  groupmod -g $WWW_GID www-data
+fi
+
+if [ $WWW_UID -ne 82 ] || [ $WWW_GID -ne 82 ]; then                                                                                                                                      
+  find /data/web ! -user $WWW_UID -o ! -group $WWW_UID -exec chown $WWW_UID:$WWW_UID {} \;                                                                                    
+fi 
+
+exit 0

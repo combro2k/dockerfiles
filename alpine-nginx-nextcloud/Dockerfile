@@ -19,8 +19,9 @@ RUN set -xe && apk add --progress --quiet --no-cache --virtual=.build-dependenci
 		php7-gmp php7-iconv php7-imap php7-intl php7-ldap php7-mbstring php7-mcrypt php7-memcached php7-opcache php7-pcntl \
 		php7-pdo_mysql php7-pdo_pgsql php7-pdo_sqlite php7-pgsql php7-posix php7-sqlite3 php7-xml php7-xmlreader php7-zip php7-fileinfo \
 		samba sudo tar unzip php7-xmlwriter php7-simplexml su-exec && \
-	curl -L https://download.nextcloud.com/server/releases/nextcloud-${NC_VERSION}.tar.bz2 | tar jx -C /data/web --strip-components=1 && chown -R www-data:www-data /data/web && \
-  mkdir -p /nextcloud/data && mv /data/web/config /nextcloud/config && ln -s /nextcloud/data /data/web/data && ln -s /nextcloud/config /data/web/config && \
+	curl -L https://download.nextcloud.com/server/releases/nextcloud-${NC_VERSION}.tar.bz2 | tar jx -C /data/web --strip-components=1 && \
+  chown -R www-data:www-data /data/web && mkdir -p /nextcloud/data && mv /data/web/config /nextcloud/config && \
+  ln -s /nextcloud/data /data/web/data && ln -s /nextcloud/config /data/web/config && ln -s /nextcloud/apps /data/web/apps2 && \
 	mkdir -p /tmp/smbclient && curl -L https://github.com/eduardok/libsmbclient-php/archive/master.tar.gz | \
     tar zx -C /tmp/smbclient --strip-components=1 && cd /tmp/smbclient && phpize7 && \
   ./configure --with-php-config=/usr/bin/php-config7 && make && make install && echo "extension="smbclient.so"" > /etc/php7/conf.d/00_smbclient.ini && \

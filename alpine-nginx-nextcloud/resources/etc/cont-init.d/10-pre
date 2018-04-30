@@ -86,8 +86,9 @@ EOF
   chown www-data:www-data /nextcloud/config/autoconfig.php
 fi
 
-if [ $WWW_UID -ne 82 ] || [ $WWW_GID -ne 82 ]; then
-  find /data/web /nextcloud ! -user $WWW_UID -o ! -group $WWW_UID -exec chown $WWW_UID:$WWW_UID {} \;
-fi
+test -z $WWW_UID && WWW_UID=82
+test -z $WWW_GID && WWW_GID=82
+
+find /data/web /nextcloud \( ! -user $WWW_UID -o ! -group $WWW_GID \) -exec chown $WWW_UID:$WWW_GID {} \;
 
 exit 0

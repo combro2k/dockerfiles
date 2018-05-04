@@ -16,7 +16,7 @@ ENV \
 
 RUN set -xe && apk add --no-cache --virtual=run-deps curl tar apache-ant openjdk8 bash openssl apr && \
 	apk add --no-cache openssl-dev alpine-sdk apr-dev && \
-	mkdir -p /app/tomcat8 /tmp/tomcat-native && curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v8.0.48/bin/apache-tomcat-8.0.48.tar.gz | \
+	mkdir -p /app/tomcat8 /tmp/tomcat-native && curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v8.0.51/bin/apache-tomcat-8.0.51.tar.gz | \
 	tar zx -C /app/tomcat8 --strip-components=1 && tar zx -C /tmp/tomcat-native -f /app/tomcat8/bin/tomcat-native.tar.gz --strip-components=1 && \
 	cd /tmp/tomcat-native/native && ./configure --with-java-home=/usr/lib/jvm/default-jvm	--with-apr=/usr/bin/apr-1-config \
     --prefix=/app/tomcat8 --libdir=/usr/java/packages/lib/amd64 --with-ssl=yes && \

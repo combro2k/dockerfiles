@@ -47,6 +47,7 @@ if [ ! -f /nextcloud/config/config.php ]; then
   'log_type' => 'syslog',
   'loglevel' => 1,
   'syslog_tag' => 'NextCloud',
+  'mysql.utf8mb4' => true,
 );
 ?>
 EOF

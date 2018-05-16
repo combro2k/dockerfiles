@@ -53,9 +53,16 @@ backend {{ $value.Name }}
   http-response set-header X-Content-Type-Options "nosniff"
   http-response set-header X-XSS-Protection "1; mode=block"
 
-{{ if $value.Env.SSL_ONLY }}
+{{ if $value.Env.VHOST_SSL_ONLY }}
   http-response set-header Strict-Transport-Security "max-age=15768000"
 {{ end }}
+
+{{ if $value.Env.VHOST_WHITELIST }}
+  acl allow_list src {{ $value.Env.VHOST_WHITELIST }}
+  http-request allow if allow_list
+  http-request deny
+{{ end }}
+
 {{ end }}{{ end }}
 
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
@@ -77,13 +84,21 @@ backend SSL_{{ $value.Name }}
 {{ else }}
 {{ range $i, $address := $value.Addresses }}{{ if eq $address.Port "443" }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }} ssl verify none{{ end }}{{ end }}
 {{ end }}
+
   http-response set-header X-Frame-Options "SAMEORIGIN"
   http-response set-header X-Content-Type-Options "nosniff"
   http-response set-header X-XSS-Protection "1; mode=block"
 
-{{ if $value.Env.SSL_ONLY }}
+{{ if $value.Env.VHOST_SSL_ONLY }}
   http-response set-header Strict-Transport-Security "max-age=15768000"
 {{ end }}
+
+{{ if $value.Env.VHOST_WHITELIST }}
+  acl allow_list src {{ $value.Env.VHOST_WHITELIST }}
+  http-request allow if allow_list
+  http-request deny
+{{ end }}
+
 {{ end }}{{ end }}
 
 frontend stats
@@ -115,12 +130,13 @@ frontend http-in
   compression type text/css text/html text/javascript application/javascript text/plain text/xml application/json 
 
   acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}{{ range $index, $value := $containers }}
-{{ if $value.Env.SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
+{{ if $value.Env.VHOST_SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
   acl backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
 {{ end }}{{ end }}
 {{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_SSL_HOST" "," }}{{ range $index, $value := $containers }}
-{{ if $value.Env.SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
+{{ if $value.Env.VHOST_SSL_ONLY }}  redirect scheme https code 301 if { hdr_dom(host) -i {{ $host }} } !{ ssl_fc } {{ end }}
   acl ssl_backend_{{ $value.Name }} hdr_dom(host) -i {{ $host }}
 {{ end }}{{ end }}
 

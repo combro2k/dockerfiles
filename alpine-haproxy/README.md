@@ -10,3 +10,14 @@ docker run -d -v /var/run/docker.sock:/tmp/docker.sock:ro combro2k/alpine-haprox
 
 docker run -d -e DOCKER_ENPOINT=tcp://172.42.0.1:4242 combro2k/alpine-haproxy:latest
 ```
+
+### VHOST Variables
+
+```
+  
+  VIRTUAL_HOST
+  VIRTUAL_SSL_HOST
+  VHOST_SSL_ONLY
+  VHOST_WHITELIST
+
+```

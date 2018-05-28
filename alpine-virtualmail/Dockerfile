@@ -65,8 +65,8 @@ RUN set -xe && \
 		Text::Unidecode Schedule::Cron Email::Send Tie::RDBM Sys::CpuAffinity Unicode::GCString Convert::Scalar File::Scan::ClamAV && \
 	 curl -L -s https://netix.dl.sourceforge.net/project/assp/ASSP%20V2%20multithreading/2.6.1%2018120/ASSP_2.6.1_18120_install.zip --output /tmp/assp.zip && \
    cd /usr/share && unzip /tmp/assp.zip && mkdir -p /usr/share/assp/tmpDB/files /usr/share/assp/quarantine /usr/share/assp/notspam /usr/share/assp/spam /usr/share/assp/download && \
-   chown assp:assp -R /usr/share/assp && rm /tmp/assp.zip && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/* && \
-   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --progress --quiet fix openssl
+   chown assp:assp -R /usr/share/assp && rm /tmp/assp.zip && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
+   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl
 
 COPY resources/ /
 

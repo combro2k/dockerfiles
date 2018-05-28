@@ -8,10 +8,10 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 
 
 RUN set -xe && apk --no-cache add openssl readline ncurses curl busybox-extras && \
-  apk --no-cache -t .build-deps add readline-dev openssl-dev ncurses-dev build-base && \
+  apk --no-cache -t .build-deps add readline-dev openssl-dev ncurses-dev build-base cmake && \
 	mkdir /tmp/softether && curl -L https://github.com/SoftEtherVPN/SoftEtherVPN/archive/master.tar.gz | tar zvx -C /tmp/softether --strip-components=1 && \
-	cd /tmp/softether && ./configure && make && make install && rm -fr /tmp/softether && \
-	apk del --quiet --no-cache --progress .build-deps && apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
+	cd /tmp/softether && ./configure && make -C tmp && make -C tmp install && rm -fr /tmp/softether && \
+	apk del --quiet --no-cache .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

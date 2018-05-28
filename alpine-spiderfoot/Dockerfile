@@ -13,7 +13,7 @@ RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py2-pip curl tar l
 	    curl -L https://github.com/smicallef/spiderfoot/archive/v${SPIDERFOOT_VERSION}-final.tar.gz | tar zx -C /app --strip-components=1 && \
 	    cd /app && pip install --upgrade --no-cache-dir -r /app/requirements.txt && chown -R spiderfoot:spiderfoot /app && \
 	    apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
-      apk --no-cache --progress --quiet fix openssl
+      apk --no-cache --quiet fix openssl
 
 COPY resources/ /
 

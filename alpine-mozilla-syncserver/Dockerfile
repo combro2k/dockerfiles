@@ -11,7 +11,7 @@ RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py2-pip curl tar p
 	    curl -L https://github.com/mozilla-services/syncserver/archive/master.tar.gz | tar zx -C /app --strip-components=1 && \
 	    cd /app && make build && chown -R syncserver:syncserver /app && \
 	    apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
-      apk --no-cache --progress --quiet fix openssl
+      apk --no-cache --quiet fix openssl
 
 COPY resources/ /
 

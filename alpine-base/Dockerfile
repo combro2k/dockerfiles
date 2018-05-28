@@ -21,6 +21,6 @@ RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.4.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk del --quiet --no-cache --purge .s6-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
-ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*
+# ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*
 
 ENTRYPOINT ["/init"]

@@ -7,4 +7,4 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 
 RUN \
 	apk --quiet --no-cache add nodejs nodejs-npm curl tar && mkdir -p /app && \
-	apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
+	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*

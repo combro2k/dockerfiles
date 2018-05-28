@@ -12,7 +12,7 @@ ENV \
 
 RUN apk --no-cache add newsboat w3m su-exec && addgroup -g 1000 -S newsboat && \
   adduser -S -u 1000 -h /newsboat newsboat -D newsboat -G newsboat && \
-  apk del --quiet --no-cache --progress --purge && rm -rf /var/cache/apk/*
+  apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

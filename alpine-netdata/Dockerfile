@@ -11,7 +11,7 @@ RUN \
       apk --no-cache --virtual=.build-deps add alpine-sdk autoconf automake gcc git libmnl-dev make pkgconfig util-linux-dev zlib-dev && \
       mkdir /usr/src && curl -L -Ss https://github.com/firehol/netdata/archive/master.tar.gz | tar zx -C /usr/src --strip-components=1 && \
       cd /usr/src/ && ./netdata-installer.sh --dont-wait --dont-start-it && cd /root && rm -fr /usr/src && \
-      apk --no-cache --purge del .build-deps && apk del --no-cache --progress --purge && rm -rf /var/cache/apk/* && \
+      apk --no-cache --purge del .build-deps && apk del --no-cache --purge && rm -rf /var/cache/apk/* && \
       ln -sf /dev/stdout /var/log/netdata/access.log && ln -sf /dev/stdout /var/log/netdata/debug.log && ln -sf /dev/stderr /var/log/netdata/error.log
 
 COPY resources/ /

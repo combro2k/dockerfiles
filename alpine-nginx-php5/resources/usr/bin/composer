@@ -13,7 +13,7 @@ fi
 
 echo "Installing composer for the first time run..."
 
-apk --no-cache --progress add php5-zlib php5-phar php5-iconv
+apk --no-cache add php5-zlib php5-phar php5-iconv
 
 php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer
 

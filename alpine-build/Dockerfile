@@ -1,6 +1,6 @@
 FROM combro2k/alpine-base:latest
 
-RUN apk add --no-cache --quiet --progress alpine-sdk shadow && \
+RUN apk add --no-cache --quiet alpine-sdk shadow && \
   adduser -D builder &&  mkdir -p /var/cache/distfiles && \
   chgrp abuild /var/cache/distfiles &&  chmod a+w /var/cache/distfiles && \
   addgroup builder abuild

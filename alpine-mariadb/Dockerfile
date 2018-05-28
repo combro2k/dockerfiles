@@ -8,8 +8,8 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 ENV LC_ALL=en_GB.UTF-8 \
 	PID_FILE=/run/mysqld/mysqld.pid
 
-RUN set -xe && apk --no-cache --progress add mariadb mariadb-client && \
-  	apk del --no-cache --progress --purge && rm -rf /var/cache/apk/*
+RUN set -xe && apk --no-cache add mariadb mariadb-client && \
+  	apk del --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

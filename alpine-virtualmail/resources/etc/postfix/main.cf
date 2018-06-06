@@ -723,3 +723,11 @@ message_size_limit = 20480000
 transport_maps = mysql:/etc/postfix/virtual/mysql-virtual-transports.cf
 forward_path=/var/vmail/${domain}/${user}/.forward
 enable_long_queue_ids = yes
+
+# Some spam measures
+smtpd_helo_required = yes
+strict_rfc821_envelopes = yes
+disable_vrfy_command = yes
+unknown_address_reject_code = 554
+unknown_hostname_reject_code = 554
+unknown_client_reject_code = 554

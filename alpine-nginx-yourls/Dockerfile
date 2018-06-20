@@ -1,0 +1,29 @@
+FROM combro2k/alpine-nginx-php5:latest
+
+LABEL   org.label-schema.build-date=$BUILD_DATE \
+        org.label-schema.vcs-ref=$VCS_REF \
+        org.label-schema.vcs-url=$VCS_URL \
+        org.label-scheme.dockerfile=$DOCKERFILE
+
+ENV version=master \
+ YOURLS_DB_USER="yourls" \
+ YOURLS_DB_PASS="yourls" \
+ YOURLS_DB_NAME="yourls" \
+ YOURLS_DB_HOST="localhost" \
+ YOURLS_DB_PREFIX="yourls_" \
+ YOURLS_SITE="http://yourls.org" \
+ YOURLS_HOURS_OFFSET="0" \
+ YOURLS_LANG="" \
+ YOURLS_UNIQUE_URLS="true" \
+ YOURLS_PRIVATE="true" \
+ YOURLS_ADMIN_USER="admin" \
+ YOURLS_ADMIN_PASSWD="pass" \
+ YOURLS_COOKIEKEY="modify this text with something random" \
+ YOURLS_URL_CONVERT="62"
+
+RUN set -xe && apk --quiet --no-cache add --virtual=run-deps php5-iconv php5-zlib php5-openssl php5-pdo_mysql && \
+	rm /data/web -fr && mkdir /data/web && curl -L https://github.com/YOURLS/YOURLS/archive/master.tar.gz | tar zx -C /data/web --strip-components=1
+
+COPY resources/ /
+
+VOLUME /yourls

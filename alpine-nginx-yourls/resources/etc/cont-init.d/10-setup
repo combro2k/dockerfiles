@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/with-contenv sh
 
 if [ ! -f /yourls/config.php ]; then
   cat > /yourls/config.php << EOF

@@ -20,7 +20,8 @@ ENV version=master \
  YOURLS_URL_CONVERT="62"
 
 RUN set -xe && apk --quiet --no-cache add --virtual=run-deps php5-iconv php5-zlib php5-openssl php5-pdo_mysql && \
-	rm /data/web -fr && mkdir /data/web && curl -L https://github.com/YOURLS/YOURLS/archive/master.tar.gz | tar zx -C /data/web --strip-components=1
+	rm /data/web -fr && mkdir /data/web && curl -L https://github.com/YOURLS/YOURLS/archive/master.tar.gz | tar zx -C /data/web --strip-components=1 && \
+  chown www-data:www-data -R /data/web && apk del --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

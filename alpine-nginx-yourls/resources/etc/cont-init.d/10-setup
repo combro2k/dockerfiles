@@ -96,4 +96,10 @@ define( 'YOURLS_URL_CONVERT', '${YOURLS_URL_CONVERT}' );
  */
 EOF
 
+  chown www-data:www-data /data/web/user/config.php
+fi
+
+if [ ! -L /data/web/user/config.php ]; then
+  test -f /data/web/user/config.php && rm /data/web/user/config.php
+  ln -s /yourls/config.php /data/web/user/config.php
 fi

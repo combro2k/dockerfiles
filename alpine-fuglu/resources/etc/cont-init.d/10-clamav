@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/clamav ]; then
+  mkdir /data/clamav
+  chown -R clamav:clamav /data/clamav
+fi
+
+if [ ! -d /run/clamav ]; then
+  mkdir -p /run/clamav
+  chown -R clamav:clamav /run/clamav
+fi
+
+/usr/bin/freshclam
+
+exit 0

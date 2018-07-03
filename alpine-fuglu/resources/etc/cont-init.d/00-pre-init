@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/logs ]; then
+  mkdir -p /data/logs
+  chown vmail:vmail /data/logs
+fi
+
+if [ ! -d /data/conf.d ]; then
+  mkdir -p /data/conf.d
+  chown vmail:vmail /data/conf.d
+fi
+
+if [ ! -d /data/fuglu/plugins ]; then
+  mkdir -p /data/fuglu/plugins
+  chown vmail:vmail /data/fuglu
+fi
+
+exit 0

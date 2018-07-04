@@ -21,7 +21,11 @@ if [ ! -d /data/fuglu/plugins ]; then
 fi
 
 if [ ! -f /data/fuglu/fuglu.conf ]; then
-  cat /etc/fuglu/fuglu.conf.dist | sed "s~^dbconnectstring=~dbconnectstring=mysql://$FUGLU_DBUSERNAME:$FUGLU_DBPASSWORD@$FUGLU_DBHOST/$FUGLU_DBDATABASE~g" > /data/fuglu/fuglu.conf
+  cat /etc/fuglu/fuglu.conf.dist \
+    | sed "s~^dbconnectstring=$~dbconnectstring=mysql://$FUGLU_DB_USERNAME:$FUGLU_DB_PASSWORD@$FUGLU_DB_HOST/$FUGLU_DB_DATABASE~g" \
+    | sed "s~^outgoinghost=127.0.0.1$~outgoinghost=$FUGLU_TARGET_HOST~g" \
+    | sed "s~^outgoinghost=10026$~outgoinghost=$FUGLU_TARGET_PORT~g" \
+  > /data/fuglu/fuglu.conf
   chown vmail:vmail /data/fuglu/fuglu.conf
 fi
 
@@ -46,7 +50,7 @@ if [ ! -d /data/fuglu/rules ]; then
 fi
 
 for SQL in /etc/fuglu/sql/*.sql; do
-  cat $SQL | mysql -u$FUGLU_DBUSERNAME -h$FUGLU_DBHOST -p$FUGLU_DBPASSWORD $FUGLU_DBDATABASE
+  mysql -u$FUGLU_DB_USERNAME -h$FUGLU_DB_HOST -p$FUGLU_DB_PASSWORD $FUGLU_DB_DATABASE < $SQL
 done
 
 exit 0

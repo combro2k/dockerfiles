@@ -5,10 +5,12 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV     FUGLU_DBDATABASE=fuglu \
-        FUGLU_DBUSERNAME=fuglu \
-        FUGLU_DBPASSWORD=password \
-        FUGLU_DBHOST=172.17.0.1
+ENV     FUGLU_DB_DATABASE=fuglu \
+        FUGLU_DB_USERNAME=fuglu \
+        FUGLU_DB_PASSWORD=password \
+        FUGLU_DB_HOST=172.17.0.1 \
+        FUGLU_TARGET_HOST=172.17.0.1 \
+        FUGLU_TARGET_PORT=10026
 
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps clamav spamassassin p7zip unrar mariadb-connector-c mariadb-client && \
   apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \

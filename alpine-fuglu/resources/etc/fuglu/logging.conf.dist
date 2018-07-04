@@ -43,7 +43,7 @@ args=(sys.stdout,)
 [handler_logfile]
 class=handlers.TimedRotatingFileHandler
 level=NOTSET
-args=('/data/logs/fuglu.log','midnight',1,14)
+args=('/data/fuglu/logs/fuglu.log','midnight',1,14)
 formatter=logfileformatter
 
 [handler_syslog]

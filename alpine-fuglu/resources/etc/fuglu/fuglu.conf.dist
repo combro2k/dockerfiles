@@ -38,7 +38,7 @@ bindaddress=0.0.0.0
 #10025: standard incoming mail
 #10099: outgoing mail
 #10888: debug port
-incomingport=10025,10099,10888
+incomingport=esmtp:10025,10099,10888
 
 #outgoing hostname/ip where postfix is listening for re-injects.
 #use ${injecthost} to connect back to the IP where the incoming connection came from
@@ -161,7 +161,7 @@ defaultlowspamaction=DUNNO
 #in after-queue mode this is probably still DUNNO or maybe DELETE for courageous people
 #this is a DEFAULT action, eg. anti spam plugins should take this if you didn't set
 # a individual override 
-defaulthighspamaction=DUNNO
+defaulthighspamaction=REJECT
 
 [smtpconnector]
 
@@ -192,12 +192,12 @@ ignore_multiple_recipients=0
 #in pre-queue mode you could use REJECT
 #this is a DEFAULT action, eg. anti-virus plugins should take this if you didn't set 
 # a individual override
-defaultvirusaction=DELETE
+defaultvirusaction=REJECT
 
 [ArchivePlugin]
 
 #Archiving SuspectFilter File
-archiverules=/etc/fuglu/archive.regex
+archiverules=/data/fuglu/archive.regex
 
 #storage for archived messages
 archivedir=/tmp
@@ -224,20 +224,20 @@ chmod=
 [FiletypePlugin]
 
 #Mail template for the bounce to inform sender about blocked attachment
-template_blockedfile=/etc/fuglu/templates/blockedfile.tmpl
+template_blockedfile=/data/fuglu/templates/blockedfile.tmpl
 
 #inform the sender about blocked attachments.
 #If a previous plugin tagged the message as spam or infected, no bounce will be sent to prevent backscatter
 sendbounce=1
 
 #directory that contains attachment rules
-rulesdir=/etc/fuglu/rules
+rulesdir=/data/fuglu/rules
 
 #what should the plugin do when a blocked attachment is detected
 #REJECT : reject the message (recommended in pre-queue mode)
 #DELETE : discard messages
 #DUNNO  : mark as blocked but continue anyway (eg. if you have a later quarantine plugin)
-blockaction=DELETE
+blockaction=REJECT
 
 #sqlalchemy connectstring to load rules from a database and use files only as fallback. requires SQL extension to be enabled
 dbconnectstring=
@@ -354,7 +354,7 @@ lowspamaction=DEFAULTLOWSPAMACTION
 problemaction=DEFER
 
 #reject message template if running in pre-queue mode
-rejectmessage=message identified as spam
+rejectmessage=message from ${from_address} to ${to_domain} identified as spam (score=${spamscore})
 
 #consult spamassassins(or any other) sql blacklist for messages that are too big for spam checks
 #requires the sql extension to be enabled
@@ -387,4 +387,4 @@ noappender=1
 
 [PluginSkipper]
 
-filterfile=/etc/fuglu/skipplugins.regex
+filterfile=/data/fuglu/skipplugins.regex

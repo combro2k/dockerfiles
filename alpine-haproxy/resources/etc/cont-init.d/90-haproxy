@@ -4,4 +4,10 @@ if [ ! -d /data/haproxy.d ]; then
 	mkdir -p /data/haproxy.d
 fi
 
+if [ ! -d /data/acme-challenge ]; then
+  mkdir -p /data/acme-challenge
+  chown -R haproxy:haproxy /data/acme-challenge
+  chmod +rwx /data/acme-challenge
+fi
+
 exit 0

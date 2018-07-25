@@ -17,7 +17,7 @@ RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps clamav spamassassi
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy && \
   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev && \
   addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
-  /usr/bin/pip3 install fuglu pylzma mysqlclient && apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+  /usr/bin/pip3 install fuglu pylzma mysqlclient pyspf dkimpy py3DNS && apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

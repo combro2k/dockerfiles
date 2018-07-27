@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+/usr/bin/sa-update -v
+
+exit 0

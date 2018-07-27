@@ -1,0 +1,5 @@
+user = __REPLACE_DATABASE_USER__
+password = __REPLACE_DATABASE_PASSWORD__
+hosts = __REPLACE_DATABASE_HOST__:__REPLACE_DATABASE_PORT__
+dbname = __REPLACE_DATABASE_NAME__
+query = SELECT "lmtp:unix:private/dovecot-lmtp" FROM virtual_domains WHERE virtual_domains.name='%s'

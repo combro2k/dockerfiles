@@ -1,0 +1,54 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -d /data/fuglu ]; then
+  mkdir -p /data/fuglu
+  chown -R vmail:vmail /data/fuglu  
+fi
+
+if [ ! -d /data/fuglu/logs ]; then
+  mkdir -p /data/fuglu/logs
+  chown -R vmail:vmail /data/fuglu/logs
+fi
+
+if [ ! -d /data/fuglu/conf.d ]; then
+  mkdir -p /data/fuglu/conf.d
+  chown -R vmail:vmail /data/fuglu/conf.d
+fi
+
+if [ ! -d /data/fuglu/plugins ]; then
+  mkdir -p /data/fuglu/plugins
+  chown -R vmail:vmail /data/fuglu/plugins
+fi
+
+if [ ! -f /data/fuglu/fuglu.conf ]; then
+  cat /etc/fuglu/fuglu.conf.dist \
+    | sed "s~^dbconnectstring=$~dbconnectstring=mysql://$FUGLU_DB_USERNAME:$FUGLU_DB_PASSWORD@$FUGLU_DB_HOST/$FUGLU_DB_DATABASE~g" \
+  > /data/fuglu/fuglu.conf
+  chown vmail:vmail /data/fuglu/fuglu.conf
+fi
+
+if [ ! -f /data/fuglu/logging.conf ]; then
+  cp /etc/fuglu/logging.conf.dist /data/fuglu/logging.conf
+  chown vmail:vmail /data/fuglu/logging.conf
+fi
+
+if [ ! -f /data/fuglu/skipplugins.regex ]; then
+  cp /etc/fuglu/skipplugins.regex.dist /data/fuglu/skipplugins.regex
+  chown vmail:vmail /data/fuglu/skipplugins.regex
+fi
+
+if [ ! -f /data/fuglu/archive.regex ]; then
+  cp /etc/fuglu/archive.regex.dist /data/fuglu/archive.regex
+  chown vmail:vmail /data/fuglu/archive.regex
+fi
+
+if [ ! -d /data/fuglu/rules ]; then
+  mkdir -p /data/fuglu/rules
+  chown -R vmail:vmail /data/fuglu/rules
+fi
+
+for SQL in /etc/fuglu/sql/*.sql; do
+  mysql -u$FUGLU_DB_USERNAME -h$FUGLU_DB_HOST -p$FUGLU_DB_PASSWORD $FUGLU_DB_DATABASE < $SQL
+done
+
+exit 0

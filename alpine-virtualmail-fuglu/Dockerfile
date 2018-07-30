@@ -33,8 +33,8 @@ RUN set -xe && \
 		dovecot \
 		dovecot-mysql \
 		dovecot-sqlite \
-    dovecot-pop3d \
-    dovecot-lmtpd \
+		dovecot-pop3d \
+		dovecot-lmtpd \
 		dovecot-pigeonhole-plugin \
 		clamav \
 		clamav-libunrar \

@@ -24,6 +24,8 @@ RUN set -xe && \
 		postfix \
 		postfix-mysql \
 		postfix-pgsql \
+		dovecot-pop3d \
+		dovecot-lmtpd \
 		dovecot \
 		dovecot-mysql \
 		dovecot-sqlite \

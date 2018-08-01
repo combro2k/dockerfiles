@@ -23,6 +23,10 @@ submission  inet  n       -       n       -       -       smtpd
     -o smtpd_recipient_restrictions=
     -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
     -o milter_macro_daemon_name=ORIGINATING
+    -o smtpd_client_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
+    -o smtpd_proxy_filter=127.0.0.1:10025
+    -o smtpd_client_connection_count_limit=10
+    -o smtpd_proxy_options=speed_adjust
 
 smtps	      inet  n       -       n       -       -       smtpd
     -o syslog_name=postfix/smtps
@@ -32,6 +36,15 @@ smtps	      inet  n       -       n       -       -       smtpd
     -o smtpd_recipient_restrictions=
     -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
     -o milter_macro_daemon_name=ORIGINATING
+    -o smtpd_client_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
+    -o smtpd_proxy_filter=127.0.0.1:10025
+    -o smtpd_client_connection_count_limit=10
+    -o smtpd_proxy_options=speed_adjust
+
+# Fuglu config
+fuglu_trusted   unix  -       -       n       -       10      smtp          
+    -o smtp_send_xforward_command=yes                                   
+    -o disable_mime_output_conversion=yes
 
 #
 # After-filter SMTP server. Receive mail from the content filter

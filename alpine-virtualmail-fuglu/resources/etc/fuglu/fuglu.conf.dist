@@ -18,7 +18,7 @@ group=vmail
 plugindir=/data/fuglu/plugins
 
 #what SCANNER plugins do we load, comma separated
-plugins=archive,attachment,clamav,spamassassin
+plugins=archive,attachment,clamav,spf,dkimverify,spamassassin
 
 #what PREPENDER plugins do we load, comma separated
 prependers=debug,skip
@@ -388,3 +388,8 @@ noappender=1
 [PluginSkipper]
 
 filterfile=/data/fuglu/skipplugins.regex
+
+[DKIMVerifyPlugin]
+
+[SPFPlugin]
+

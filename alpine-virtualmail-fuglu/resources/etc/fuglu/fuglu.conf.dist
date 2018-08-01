@@ -38,7 +38,7 @@ bindaddress=0.0.0.0
 #10025: standard incoming mail
 #10099: outgoing mail
 #10888: debug port
-incomingport=esmtp:10025,10099,10888
+incomingport=esmtp:10025,esmtp:10099,10888
 
 #outgoing hostname/ip where postfix is listening for re-injects.
 #use ${injecthost} to connect back to the IP where the incoming connection came from

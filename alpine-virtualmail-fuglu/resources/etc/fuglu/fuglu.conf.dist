@@ -143,7 +143,7 @@ minthreads=2
 #maximum scanner threads
 maxthreads=40
 
-#Method for parallelism, either 'thread' or 'process' 
+#Method for parallelism, either 'thread' or 'process'
 backend=thread
 
 #Initial number of processes when backend='process'. If 0 (the default), automatically selects twice the number of available virtual cores. Despite its 'initial'-name, this number currently is not adapted automatically.
@@ -153,14 +153,14 @@ initialprocs=0
 
 #what to do with messages that plugins think are spam but  not so sure  ("low spam")
 #in normal usage you probably never set this something other than DUNNO
-#this is a DEFAULT action, eg. anti spam plugins should take this if you didn't set 
+#this is a DEFAULT action, eg. anti spam plugins should take this if you didn't set
 # a individual override
 defaultlowspamaction=DUNNO
 
-#what to do with messages if a plugin is sure it is spam ("high spam") 
+#what to do with messages if a plugin is sure it is spam ("high spam")
 #in after-queue mode this is probably still DUNNO or maybe DELETE for courageous people
 #this is a DEFAULT action, eg. anti spam plugins should take this if you didn't set
-# a individual override 
+# a individual override
 defaulthighspamaction=REJECT
 
 [smtpconnector]
@@ -190,7 +190,7 @@ ignore_multiple_recipients=0
 ##what to do with messages if a plugin detects a virus
 #in after-queue mode this should probably be DELETE
 #in pre-queue mode you could use REJECT
-#this is a DEFAULT action, eg. anti-virus plugins should take this if you didn't set 
+#this is a DEFAULT action, eg. anti-virus plugins should take this if you didn't set
 # a individual override
 defaultvirusaction=REJECT
 
@@ -266,7 +266,7 @@ enabledarchivetypes=
 host=localhost
 
 #tcp port number or path to clamd.sock for unix domain sockets
-#example /var/lib/clamav/clamd.sock or on ubuntu: /var/run/clamav/clamd.ctl 
+#example /var/lib/clamav/clamd.sock or on ubuntu: /var/run/clamav/clamd.ctl
 port=3310
 
 #socket timeout
@@ -275,8 +275,8 @@ timeout=30
 #*EXPERIMENTAL*: Perform multiple scans over the same connection. May improve performance on busy systems.
 pipelining=0
 
-#maximum message size, larger messages will not be scanned.  
-#should match the 'StreamMaxLength' config option in clamd.conf 
+#maximum message size, larger messages will not be scanned.
+#should match the 'StreamMaxLength' config option in clamd.conf
 maxsize=22000000
 
 #how often should fuglu retry the connection before giving up
@@ -320,16 +320,16 @@ strip_oversize=0
 #how often should fuglu retry the connection before giving up
 retries=3
 
-#should we scan the original message as retreived from postfix or scan the current state 
+#should we scan the original message as retreived from postfix or scan the current state
 #in fuglu (which might have been altered by previous plugins)
-#only set this to disabled if you have a custom plugin that adds special headers to the message that will be 
+#only set this to disabled if you have a custom plugin that adds special headers to the message that will be
 #used in spamassassin rules
 scanoriginal=1
 
 #forward the original message or replace the content as returned by spamassassin
 #if this is set to True/1/Yes , no spamassassin headers will be visible in the final message.
 #"original" in this case means "as passed to spamassassin", eg. if 'scanoriginal' is set to 0 above this will forward the
-#message as retreived from previous plugins 
+#message as retreived from previous plugins
 forwardoriginal=0
 
 #what header does SA set to indicate the spam status
@@ -393,3 +393,21 @@ filterfile=/data/fuglu/skipplugins.regex
 
 [SPFPlugin]
 
+[DKIMSignPlugin]
+#comma separated list of headers to sign. empty string=sign all headers
+signheaders=From,Reply-To,Subject,Date,To,CC,Resent-Date,Resent-From,Resent-To,Resent-CC,In-Reply-To,References,List-Id,List-Help,List-Unsubscribe,List-Subscribe,List-Post,List-Owner,List-Archive
+
+#include l= tag in dkim header
+signbodylength=False
+
+#selector to use when signing, supports templates
+selector=mail
+
+#Location of the private key file. supports standard template variables plus additional ${he
+privatekeyfile=/data/fuglu/dkim/${header_from_domain}.key
+
+#Type of body canonicalization (simple or relaxed)
+canonicalizebody=relaxed
+
+#Type of header canonicalization (simple or relaxed)
+canonicalizeheaders=relaxed

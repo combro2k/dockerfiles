@@ -10,12 +10,12 @@
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
 
-25	inet  n       -       n       -       -       smtpd
+smtp        inet  -       -       n       -       -       smtpd
     -o smtpd_proxy_filter=127.0.0.1:10025
     -o smtpd_client_connection_count_limit=10
     -o smtpd_proxy_options=speed_adjust
 
-587	inet  n       -       n       -       -       smtpd
+submission  inet  n       -       n       -       -       smtpd
     -o syslog_name=postfix/submission
     -o smtpd_tls_security_level=encrypt
     -o smtpd_sasl_auth_enable=yes
@@ -24,7 +24,7 @@
     -o smtpd_relay_restrictions=permit_sasl_authenticated,reject
     -o milter_macro_daemon_name=ORIGINATING
 
-465	inet  n       -       n       -       -       smtpd
+smtps	      inet  n       -       n       -       -       smtpd
     -o syslog_name=postfix/smtps
     -o smtpd_tls_wrappermode=yes
     -o smtpd_sasl_auth_enable=yes

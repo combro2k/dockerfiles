@@ -46,8 +46,10 @@ RUN set -xe && \
    apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy && \
    apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev && \
-	 mkdir -p /usr/share/assp /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
-   /usr/bin/pip3 install fuglu pylzma mysqlclient pyspf dkimpy py3DNS && \
+	 mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
+   /usr/bin/pip3 install pylzma mysqlclient pyspf dkimpy py3DNS && \
+   mkdir -p /tmp/fuglu && curl -L https://github.com/fumail/fuglu/archive/master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
+   cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
    apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
    apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl
 

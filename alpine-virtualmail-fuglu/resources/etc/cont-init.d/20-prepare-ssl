@@ -10,4 +10,8 @@ if [ ! -f /data/ssl/ssl.pem ] && [ ! -f /data/ssl/ssl.crt ]; then
 	cat /data/ssl/ssl.crt /data/ssl/ssl.key > /data/ssl/ssl.pem
 fi
 
+if [ ! -f /data/ssl/dh.pem ]; then
+  openssl dhparam -out /data/ssl/dh.pem 2048
+fi
+
 exit 0

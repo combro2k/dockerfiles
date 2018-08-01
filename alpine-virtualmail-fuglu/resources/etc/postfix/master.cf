@@ -10,7 +10,7 @@
 #               (yes)   (yes)   (no)    (never) (100)
 # ==========================================================================
 
-smtp        inet  -       -       n       -       -       smtpd
+smtp        inet  n       -       n       -       -       smtpd
     -o smtpd_proxy_filter=127.0.0.1:10025
     -o smtpd_client_connection_count_limit=10
     -o smtpd_proxy_options=speed_adjust

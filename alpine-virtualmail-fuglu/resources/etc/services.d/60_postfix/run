@@ -1,3 +1,3 @@
 #!/usr/bin/execlineb -P
 
-exec /usr/lib/postfix/master -d
+exec /usr/libexec/postfix/master -d

@@ -18,6 +18,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-cache --virtual=.s6-deps curl tar && \
+  apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.4.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
   echo '@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
 	apk del --quiet --no-cache --purge .s6-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  

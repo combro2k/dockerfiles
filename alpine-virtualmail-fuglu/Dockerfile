@@ -42,6 +42,8 @@ RUN set -xe && \
 		mysql-client \
 		curl \
 		ca-certificates \
+    findutils \
+    su-exec \
 		openssl && \
    apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy && \

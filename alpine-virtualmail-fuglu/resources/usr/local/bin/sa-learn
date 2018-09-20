@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec /sbin/su-exec vmail /usr/bin/sa-learn "$@"

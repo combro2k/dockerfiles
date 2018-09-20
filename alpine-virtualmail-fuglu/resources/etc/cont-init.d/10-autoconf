@@ -25,6 +25,8 @@ do
 	sed -i "s/__REPLACE_DATABASE_PASSWORD__/${POSTFIX_MYSQL_PASSWORD:-postfix}/g" ${file}
 done
 
+sed -i "s/imapsieve_url = __SIEVE_URL__/imapsieve_url = sieve:\/\/${HOSTNAME}/g" /etc/dovecot/conf.d/90-plugin.conf
+
 # Create files if they aren't created
 if [ ! -f /etc/aliases ]; then
 	touch /etc/aliases

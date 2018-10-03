@@ -1,3 +1,3 @@
 require ["include"];
 
-include :global "assp";
+include :global "spamassassin";

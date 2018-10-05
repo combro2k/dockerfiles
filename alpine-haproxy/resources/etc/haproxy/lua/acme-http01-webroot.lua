@@ -32,7 +32,7 @@ acme.version = "0.1.1"
 -- that as 'webroot-path' to the letsencrypt client
 
 acme.conf = {
-	["non_chroot_webroot"] = "/data/challenge"
+	["non_chroot_webroot"] = "/data/acme-challenge"
 }
 
 --

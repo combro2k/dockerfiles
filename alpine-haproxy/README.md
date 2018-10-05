@@ -19,5 +19,7 @@ docker run -d -e DOCKER_ENPOINT=tcp://172.42.0.1:4242 combro2k/alpine-haproxy:la
   VIRTUAL_SSL_HOST
   VHOST_SSL_ONLY
   VHOST_WHITELIST
+  VIRTUAL_PORT
+  VIRTUAL_SSL_PORT
 
 ```

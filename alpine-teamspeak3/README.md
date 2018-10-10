@@ -5,12 +5,15 @@
 
 TeamSpeak 3 server running on Alpine with SQLite3 database
 
+Be sure to read the license before using this container, you can find it in the container at /app/LICENSE
+
 To start this container use:
 
 ~~~
 docker run -d \
 	-v /your/own/presistence/path:/teamspeak3 \
 	-p 9987:9987/udp \
+  -e TS3SERVER_LICENSE=accept \
 	-p 30033:30033 \
 	-p 10011:10011 \
 	--rm \

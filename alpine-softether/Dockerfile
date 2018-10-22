@@ -5,12 +5,14 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
+ENV LD_LIBRARY_PATH=/usr/local/lib64
+
 RUN set -xe && apk --no-cache add openssl readline ncurses curl busybox-extras && \
   apk --no-cache -t .build-deps add readline-dev openssl-dev ncurses-dev build-base cmake git && \
   git clone https://github.com/SoftEtherVPN/SoftEtherVPN.git /tmp/softether && \
   cd /tmp/softether && git submodule init && git submodule update && export USE_MUSL=YES && \
-  ./configure && make -C tmp && make -C tmp install && rm -fr /tmp/softether && \
-  apk del --quiet --no-cache .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+  ./configure && make -C tmp && make -C tmp install && cp /tmp/softether/build/libcedar.so /tmp/softether/build/libmayaqua.so /usr/lib && \
+  rm -fr /tmp/softether && apk del --quiet --no-cache .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

@@ -1,5 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-OPT="-f /etc/haproxy/haproxy.cfg -f /data/haproxy.d/"
-
-exec haproxy -W -db -p /tmp/haproxy.pid $OPT
+exec haproxy -W -db -p /tmp/haproxy.pid -f /etc/haproxy/haproxy.cfg -f /data/haproxy.d/

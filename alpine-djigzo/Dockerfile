@@ -16,7 +16,7 @@ ENV \
 	MAIL_CALLBACK_IP=172.17.0.1 \
 	MAIL_CALLBACK_PORT=10026
 
-RUN set -xe && apk add --no-cache --virtual=run-deps curl tar apache-ant openjdk8 bash openssl apr sudo && \
+RUN set -xe && apk add --no-cache --virtual=run-deps curl tar apache-ant openjdk8 bash openssl apr sudo coreutils && \
 	apk add --no-cache openssl-dev alpine-sdk apr-dev && \
 	mkdir -p /app/tomcat8 /tmp/tomcat-native && curl -L -s  http://ftp.tudelft.nl/apache/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz | \
 	tar zx -C /app/tomcat8 --strip-components=1 && tar zx -C /tmp/tomcat-native -f /app/tomcat8/bin/tomcat-native.tar.gz --strip-components=1 && \

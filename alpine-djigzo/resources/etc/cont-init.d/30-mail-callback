@@ -17,4 +17,8 @@ cat > /app/djigzo/conf/james/SAR-INF/smtp_transport_config.xml <<EOF
 <gatewayPort> ${MAIL_CALLBACK_PORT} </gatewayPort>
 EOF
 
+if [ ${MAIL_CALLBACK_IP} = "127.0.0.1" ]; then
+  [ ! -L /app/djigzo/scripts/scripts.d/postfix.sh ] && ln -s /app/djigzo/scripts/postfix.sh /app/djigzo/scripts/scripts.d/postfix.sh
+fi
+
 exit 0

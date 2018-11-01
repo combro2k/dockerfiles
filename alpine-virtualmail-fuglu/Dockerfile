@@ -50,7 +50,7 @@ RUN set -xe && \
    apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev && \
 	 mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
    /usr/bin/pip3 install pylzma mysqlclient pyspf dkimpy py3DNS && \
-   mkdir -p /tmp/fuglu && curl -L https://github.com/fumail/fuglu/archive/master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
+   mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
    cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
    apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
    apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl

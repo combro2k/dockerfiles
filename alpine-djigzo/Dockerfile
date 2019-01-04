@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV \
-  TOMCAT_VERSION=8.0.53 \
+  TOMCAT_VERSION=8.5.37 \
   DJIGZO_VERSION=4.1.3-0 \
 	DJIGZO_MYSQL_DATABASE=djigzo \
 	DJIGZO_MYSQL_USER=djigzo \

@@ -10,6 +10,10 @@ if [ ! -f /data/ssl/default.pem ]; then
 	rm /data/ssl/default.crt /data/ssl/default.key /data/ssl/default.csr
 fi
 
+if [ ! -f /data/ssl/dh-param.pem ]; then
+  curl https://2ton.com.au/dhparam/4096 --output /data/ssl/dh-param.pem
+fi
+
 if [ ! -f /data/ssl/crt-list.txt ]; then
 	touch /data/ssl/crt-list.txt
 fi

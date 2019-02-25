@@ -18,6 +18,8 @@ ENV \
   FUGLU_DB_PORT=3306 \
 	S6_KILL_GRACETIME=10000
 
+COPY patches/ /tmp/patches/
+
 RUN set -xe && \
 	addgroup -g 1000 -S vmail && \
 	adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
@@ -51,6 +53,7 @@ RUN set -xe && \
 	 mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
    /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \
    mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
+   patch /tmp/fuglu/fuglu/src/fuglu/plugins/domainauth.py < /tmp/patches/domainauth.patch && \
    cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
    apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
    apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl

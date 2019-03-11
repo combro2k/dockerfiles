@@ -19,7 +19,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 
 RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-cache --virtual=.s6-deps curl tar && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
-	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
+	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.22.0.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk del --quiet --no-cache --purge .s6-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  
 
 # ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*

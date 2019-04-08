@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV TS3SERVER_LICENSE=view \
-    TS3_VERSION=3.6.1
+    TS3_VERSION=3.7.1
 
 RUN set -xe && apk --no-cache --quiet add curl && mkdir /app -p && \
   curl -L -s http://dl.4players.de/ts/releases/${TS3_VERSION}/teamspeak3-server_linux_amd64-${TS3_VERSION}.tar.bz2 | tar xj -C /app --strip-components=1 && \

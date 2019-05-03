@@ -17,10 +17,12 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-RUN set -xe && (apk --quiet --no-cache upgrade || true) && apk add --quiet --no-cache --virtual=.s6-deps curl tar && \
+RUN set -xe && (apk --quiet --no-cache upgrade || true) && \
+  apk add --quiet --no-cache --virtual=.build-deps curl tar go alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
+  go get github.com/noqcks/gucci && mv /root/go/bin/gucci /usr/bin/gucci && rm /root/go -fr && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
-	apk del --quiet --no-cache --purge .s6-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  
+	apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  
 
 # ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*
 

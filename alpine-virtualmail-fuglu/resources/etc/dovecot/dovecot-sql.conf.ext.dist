@@ -1,7 +1,7 @@
 # Database driver: mysql, pgsql, sqlite
 driver = mysql
 
-connect = host=__REPLACE_DATABASE_HOST__ dbname=__REPLACE_DATABASE_NAME__ user=__REPLACE_DATABASE_USER__ password=__REPLACE_DATABASE_PASSWORD__
+connect = host={{ .MYSQL_PORT_3306_TCP_ADDR }} dbname={{ .POSTFIX_MYSQL_DATABASE }} user={{ .POSTFIX_MYSQL_USER }} password={{ .POSTFIX_MYSQL_PASSWORD }}
 
 # default_pass_scheme = MD5-CRYPT
 default_pass_scheme = SHA512-CRYPT

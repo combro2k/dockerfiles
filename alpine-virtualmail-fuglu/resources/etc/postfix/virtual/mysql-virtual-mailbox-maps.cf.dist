@@ -1,0 +1,5 @@
+user = {{ .POSTFIX_MYSQL_USER }}
+password = {{ .POSTFIX_MYSQL_PASSWORD }}
+hosts = {{ .MYSQL_PORT_3306_TCP_ADDR }}:{{ .MYSQL_PORT_3306_TCP_PORT }}
+dbname = {{ .POSTFIX_MYSQL_DATABASE }}
+query = SELECT email FROM users_view WHERE email='%s'

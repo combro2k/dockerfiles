@@ -9,5 +9,5 @@
 plugin {
   #setting_name = value
   fts_autoindex = yes
-  imapsieve_url = __SIEVE_URL__
+  imapsieve_url = sieve://{{ .HOSTNAME }}
 }

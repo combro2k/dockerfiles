@@ -129,7 +129,7 @@ spf=fuglu.plugins.domainauth.SPFPlugin
 [databaseconfig]
 
 #read runtime configuration values from a database. requires sqlalchemy to be installed
-dbconnectstring=
+dbconnectstring=mysql://{{ .FUGLU_DB_USERNAME }}:{{ .FUGLU_DB_PASSWORD }}@{{ .FUGLU_DB_HOST }}/{{ .FUGLU_DB_DATABASE }}
 
 #sql query that returns a configuration value override. sql placeholders are ':section',':option' in addition the usual suspect filter default values like ':to_domain', ':to_address' etc
 #if the statement returns more than one row/value only the first value in the first row is used

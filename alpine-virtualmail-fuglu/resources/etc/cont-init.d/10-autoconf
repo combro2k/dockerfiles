@@ -16,16 +16,12 @@ fi
 
 echo ${HOSTNAME} > /etc/mailname
 
-for file in /etc/postfix/virtual/*.cf /etc/dovecot/dovecot-sql.conf.ext
+for file in /etc/postfix/virtual/*.cf.dist /etc/dovecot/dovecot-sql.conf.ext.dist
 do
-	sed -i "s/__REPLACE_DATABASE_HOST__/${MYSQL_PORT_3306_TCP_ADDR}/g" ${file}
-	sed -i "s/__REPLACE_DATABASE_PORT__/${MYSQL_PORT_3306_TCP_PORT}/g" ${file}
-	sed -i "s/__REPLACE_DATABASE_NAME__/${POSTFIX_MYSQL_DATABASE:-postfix}/g" ${file}
-	sed -i "s/__REPLACE_DATABASE_USER__/${POSTFIX_MYSQL_USER:-postfix}/g" ${file}
-	sed -i "s/__REPLACE_DATABASE_PASSWORD__/${POSTFIX_MYSQL_PASSWORD:-postfix}/g" ${file}
+  /usr/bin/gucci ${file} > $(dirname ${file})/$(basename $file .dist)
 done
 
-sed -i "s/imapsieve_url = __SIEVE_URL__/imapsieve_url = sieve:\/\/${HOSTNAME}/g" /etc/dovecot/conf.d/90-plugin.conf
+/usr/bin/gucci /etc/dovecot/conf.d/90-plugin.conf.dist > /etc/dovecot/conf.d/90-plugin.conf
 
 # Create files if they aren't created
 if [ ! -f /etc/aliases ]; then

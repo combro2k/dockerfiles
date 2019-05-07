@@ -16,12 +16,15 @@ fi
 
 echo ${HOSTNAME} > /etc/mailname
 
-for file in /etc/postfix/virtual/*.cf.dist /etc/dovecot/dovecot-sql.conf.ext.dist
+for file in /etc/postfix/header_checks.dist \
+  /etc/postfix/virtual/*.cf.dist \
+  /etc/dovecot/dovecot-sql.conf.ext.dist \
+  /etc/dovecot/conf.d/90-plugin.conf.dist
 do
   /usr/bin/gucci ${file} > $(dirname ${file})/$(basename $file .dist)
 done
 
-/usr/bin/gucci /etc/dovecot/conf.d/90-plugin.conf.dist > /etc/dovecot/conf.d/90-plugin.conf
+# /usr/bin/gucci /etc/dovecot/conf.d/90-plugin.conf.dist > /etc/dovecot/conf.d/90-plugin.conf
 
 # Create files if they aren't created
 if [ ! -f /etc/aliases ]; then

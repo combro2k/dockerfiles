@@ -1,5 +1,5 @@
 if test $TMUX; then
-	exec /usr/bin/weechat 
+	LC_ALL=c exec /usr/bin/weechat 
 elif tmux has-session -t WeeChat 2>/dev/null; then
 	tmux attach -t WeeChat
 	exit

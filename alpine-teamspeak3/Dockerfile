@@ -1,4 +1,4 @@
-FROM combro2k/alpine-base-glibc:latest
+FROM combro2k/alpine-base:latest
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
@@ -6,10 +6,10 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV TS3SERVER_LICENSE=view \
-    TS3_VERSION=3.7.1
+    TS3_VERSION=3.8.0
 
-RUN set -xe && apk --no-cache --quiet add curl && mkdir /app -p && \
-  curl -L -s http://dl.4players.de/ts/releases/${TS3_VERSION}/teamspeak3-server_linux_amd64-${TS3_VERSION}.tar.bz2 | tar xj -C /app --strip-components=1 && \
+RUN set -xe && apk --no-cache --quiet add curl libstdc++ && mkdir /app -p && \
+  curl -L -s https://files.teamspeak-services.com/releases/server/${TS3_VERSION}/teamspeak3-server_linux_alpine-${TS3_VERSION}.tar.bz2 | tar xj -C /app --strip-components=1 && \
   adduser -D -h /teamspeak3 -u 1000 teamspeak3 && touch /teamspeak3/ts3server.ini /teamspeak3/ts3server.sqlitedb && \
   ln -s /teamspeak3/ts3server.ini /app/ts3server.ini && ln -s /teamspeak3/ts3server.sqlitedb /app/ts3server.sqlitedb && \
   mkdir /teamspeak3/files /teamspeak3/logs && ln -s /teamspeak3/files /app/files && ln -s /teamspeak3/logs /app/logs && \

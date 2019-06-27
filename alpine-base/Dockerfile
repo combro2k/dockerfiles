@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.10
 
 ARG BUILD_DATE=now
 ARG VCS_REF=master
@@ -17,8 +17,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-RUN set -xe && (apk --quiet --no-cache upgrade || true) && \
-  apk add --quiet --no-cache upgrade && \
+RUN set -xe && apk upgrade --quiet --no-cache && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar go alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
   go get github.com/noqcks/gucci && mv /root/go/bin/gucci /usr/bin/gucci && rm /root/go -fr && \

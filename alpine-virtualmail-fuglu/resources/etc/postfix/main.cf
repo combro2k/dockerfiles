@@ -27,11 +27,13 @@ smtpd_recipient_restrictions =
   reject_non_fqdn_hostname,
   reject_unknown_recipient_domain,
   reject_unknown_sender_domain,
-  reject_rbl_client zen.spamhaus.org,
-  reject_rbl_client dul.dnsbl.sorbs.net,
+  reject_rbl_client cbl.abuseat.org,
+  reject_rbl_client sbl.spamhaus.org,
+  reject_rbl_client xbl.spamhaus.org,
   reject_rbl_client bl.spamcop.net,
-  reject_rbl_client b.barracudacentral.org,
   reject_rbl_client psbl.surriel.com,
+  reject_rbl_client b.barracudacentral.org,
+  reject_rbl_client rbl.interserver.net,
   reject_rbl_client ix.dnsbl.manitu.net,
   permit
 

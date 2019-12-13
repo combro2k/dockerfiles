@@ -1,4 +1,4 @@
-FROM combro2k/alpine-base-glibc:latest
+FROM combro2k/alpine-base:latest
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

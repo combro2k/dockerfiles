@@ -8,7 +8,7 @@ cd ${BASE}
 
 # Build base container
 docker build --pull --no-cache --rm --force-rm=true --tag combro2k/alpine-base:latest alpine-base
-docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-base-glibc:latest alpine-base-glibc
+#docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-base-glibc:latest alpine-base-glibc
 
 # Build dependendable containers
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-nginx-php5:latest alpine-nginx-php5
@@ -36,8 +36,10 @@ docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-softether:lat
 docker rmi combro2k/alpine-softether:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-aptly:latest alpine-aptly
 docker rmi combro2k/alpine-aptly:latest
-docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:latest alpine-virtualmail
-docker rmi combro2k/alpine-virtualmail:latest
+#docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:latest alpine-virtualmail
+#docker rmi combro2k/alpine-virtualmail:latest
+docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-virtualmail:fuglu alpine-virtualmail-fuglu
+docker rmi combro2k/alpine-virtualmail:fuglu
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-djigzo:latest alpine-djigzo
 docker rmi combro2k/alpine-djigzo:latest
 docker build --no-cache --rm --force-rm=true --tag combro2k/alpine-fluentd:latest alpine-fluentd
@@ -63,5 +65,5 @@ docker rmi combro2k/alpine-nginx-rainloop:latest
 docker rmi combro2k/alpine-nodejs:latest
 docker rmi combro2k/alpine-nginx-php5:latest
 docker rmi combro2k/alpine-nginx-php7:latest
-docker rmi combro2k/alpine-base-glibc:latest
+#docker rmi combro2k/alpine-base-glibc:latest
 docker rmi combro2k/alpine-base:latest

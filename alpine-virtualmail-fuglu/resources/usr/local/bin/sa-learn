@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 if [[ "$USER" != "vmail" ]]; then
-  echo "Execute as vmail user"
+  echo "Execute as vmail user: /usr/bin/sa-learn $@"
   exec /sbin/su-exec vmail /usr/bin/sa-learn "$@"
 fi
 

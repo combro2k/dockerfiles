@@ -11,7 +11,8 @@ if [ ! -f /data/ssl/ssl.pem ] && [ ! -f /data/ssl/ssl.crt ]; then
 fi
 
 if [ ! -f /data/ssl/dh.pem ]; then
-  openssl dhparam -out /data/ssl/dh.pem 2048
+#  use internet standards dhe pem
+  wget https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem --output-document /data/ssl/dh.pem
 fi
 
 exit 0

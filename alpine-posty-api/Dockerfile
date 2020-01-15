@@ -15,12 +15,12 @@ ENV \
 	RAILS_ENV=production \
 	RACK_ENV=production
 
-RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates curl tar ruby mariadb-libs ruby-bigdecimal ruby-rake \
+RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates curl tar ruby mariadb-libs ruby-bigdecimal ruby-rake ruby-bundler \
 		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && \
   curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk add --quiet --no-cache --virtual=.build-deps ruby-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
 	mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | tar zx -C /data/api --strip-components=1 && \
-	gem install bundler --no-ri --no-rdoc && adduser -h /var/vmail -D -H -u 1000 vmail && cd /data/api && bundle update json && \
+	adduser -h /var/vmail -D -H -u 1000 vmail && cd /data/api && bundle update json && \
   bundle install --path /data/api/vendor --with mysql && apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && \
   rm -rf /var/cache/apk/*
 

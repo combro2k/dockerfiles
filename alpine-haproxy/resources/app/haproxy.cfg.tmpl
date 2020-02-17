@@ -40,7 +40,7 @@ defaults
   option redispatch
 
 {{ range $host, $containers := groupBy $ "Env.VIRTUAL_HOST"}}{{ range $index, $value := $containers }}
-{{ $addrLen := len $value.Addresses }}
+{{ $addrLen := len $value.Networks }}
 backend {{ $value.Name }}
   description {{ $host }}
 
@@ -50,12 +50,10 @@ backend {{ $value.Name }}
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
 
-{{ if eq $addrLen 1 }}
-{{ with $address := index $value.Addresses 0 }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}
-{{ else if $value.Env.VIRTUAL_PORT }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port $value.Env.VIRTUAL_PORT }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
-{{ else }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port "80" }}  server {{ $value.Name }} {{ $address.IP }}:{{ $address.Port }}{{ end }}{{ end }}
+{{ if gt $addrLen 0 }}
+{{ with $address := index $value.Networks 0 }}
+  server {{ $value.Name }} {{ $address.IP }}:{{ if $value.Env.VIRTUAL_PORT }}{{ $value.Env.VIRTUAL_PORT }}{{ else }}80{{ end }}
+{{ end }}
 {{ end }}
 
   http-response set-header X-Frame-Options "SAMEORIGIN"
@@ -86,12 +84,10 @@ backend SSL_{{ $value.Name }}
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
 
-{{ if eq $addrLen 1 }}
-{{ with $address := index $value.Addresses 0 }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }} ssl verify none{{ end }}
-{{ else if $value.Env.VIRTUAL_SSL_PORT }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port $value.Env.VIRTUAL_SSL_PORT }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }} ssl verify none{{ end }}{{ end }}
-{{ else }}
-{{ range $i, $address := $value.Addresses }}{{ if eq $address.Port "443" }}  server {{ $host }} {{ $address.IP }}:{{ $address.Port }} ssl verify none{{ end }}{{ end }}
+{{ if gt $addrLen 0 }}
+{{ with $address := index $value.Networks 0 }}
+  server {{ $value.Name }} {{ $address.IP }}:{{ if $value.Env.VIRTUAL_SSL_PORT }}{{ $value.Env.VIRTUAL_SSL_PORT }}{{ else }}443{{ end }} ssl verify none
+{{ end }}
 {{ end }}
 
   http-response set-header X-Frame-Options "SAMEORIGIN"

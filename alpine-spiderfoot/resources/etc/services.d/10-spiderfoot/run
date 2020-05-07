@@ -2,4 +2,4 @@
 
 cd /app
 
-exec /bin/s6-setuidgid spiderfoot /usr/bin/python /app/sf.py 0.0.0.0:5001
+exec /bin/s6-setuidgid spiderfoot /usr/bin/python3 /app/sf.py -l 0.0.0.0:5001

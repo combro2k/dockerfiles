@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+if [ ! -z $TZ ]; then
+  if [ ! -f /etc/timezone ] || grep $TZ /etc/timezone; then
+    apk --no-cache add tzdata
+
+    echo $TZ > /etc/timezone
+  fi
+fi

@@ -27,4 +27,6 @@ RUN set -xe && apk upgrade --quiet --no-cache && \
 
 # ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*
 
+COPY resources/ /
+
 ENTRYPOINT ["/init"]

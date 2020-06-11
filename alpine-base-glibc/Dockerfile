@@ -9,7 +9,7 @@ ENV \
   LANG=C.UTF-8 \
   LANGUAGE=en_US:en \
   LC_ALL=en_US.UTF-8 \
-  GLIB_VERSION=2.30-r0
+  GLIB_VERSION=2.31-r0
 
 RUN set -x && apk add --quiet --no-cache curl && \
 	curl --silent --location https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub --output /etc/apk/keys/sgerrand.rsa.pub && \

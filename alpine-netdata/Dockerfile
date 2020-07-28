@@ -5,7 +5,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV NETDATA_VERSION=1.23.1
+ENV NETDATA_VERSION=1.23.2
 
 RUN \
       apk --no-cache --virtual=.run-deps add bash curl jq sysfsutils lm_sensors libcrypto1.1 http-parser libssl1.1 libuv nodejs mariadb-common  netcat-openbsd \

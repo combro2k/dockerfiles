@@ -66,8 +66,9 @@ enable_long_queue_ids = yes
 biff = no
 
 # TLS settings
-smtpd_tls_cert_file = /data/ssl/ssl.crt
-smtpd_tls_key_file = /data/ssl/ssl.key
+#smtpd_tls_cert_file = /data/ssl/ssl.crt
+#smtpd_tls_key_file = /data/ssl/ssl.key
+smtpd_tls_chain_files = /data/ssl/ssl.pem
 smtpd_tls_dh1024_param_file = /data/ssl/dh.pem
 smtpd_use_tls = yes
 smtpd_tls_session_cache_timeout  = 3600s

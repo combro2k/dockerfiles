@@ -30,6 +30,7 @@ RUN set -xe && \
 		postfix \
 		postfix-mysql \
 		postfix-pgsql \
+    postfix-pcre \
 		dovecot \
 		dovecot-mysql \
 		dovecot-sqlite \

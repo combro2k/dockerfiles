@@ -9,7 +9,7 @@ postconf "myhostname = ${HOSTNAME}"
 
 if [ -f /data/conf/postfix/transport ]; then
 	postmap /data/conf/postfix/transport
-	postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf,hash:/data/conf/postfix/transport"
+	postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf, hash:/data/conf/postfix/transport"
 else
 	postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf"
 fi

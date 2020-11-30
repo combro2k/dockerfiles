@@ -2,9 +2,7 @@ FROM combro2k/alpine-nginx-php5:latest
 
 ENV \
   PHPBB_MAINLINE=3.3 \
-  PHPBB_VERSION=3.3.0
-
-# https://download.phpbb.com/pub/release/3.3/3.3.0/phpBB-3.3.0.zip
+  PHPBB_VERSION=3.3.2
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

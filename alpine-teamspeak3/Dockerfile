@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV TS3SERVER_LICENSE=view \
-    TS3_VERSION=3.12.1
+    TS3_VERSION=3.12.2
 
 RUN set -xe && apk --no-cache --quiet add curl libstdc++ && mkdir /app -p && \
   curl -L -s https://files.teamspeak-services.com/releases/server/${TS3_VERSION}/teamspeak3-server_linux_alpine-${TS3_VERSION}.tar.bz2 | tar xj -C /app --strip-components=1 && \

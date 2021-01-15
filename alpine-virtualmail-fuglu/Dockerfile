@@ -39,6 +39,7 @@ RUN set -xe && \
 		dovecot-pigeonhole-plugin \
 		clamav \
 		clamav-libunrar \
+    db \
 		spamassassin \
     spamassassin-compiler \
 		mysql-client \
@@ -49,9 +50,9 @@ RUN set -xe && \
 		openssl && \
    apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis && \
-   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev && \
+   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev db-dev perl-dev perl-app-cpanminus && \
 	 mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
-   /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \
+   /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && /usr/bin/cpanm install DB_File && \
    mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
    cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
    apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \

@@ -40,6 +40,7 @@ RUN set -xe && \
 		clamav \
 		clamav-libunrar \
 		spamassassin \
+    spamassassin-compiler \
 		mysql-client \
 		curl \
 		ca-certificates \

@@ -18,7 +18,7 @@ ENV \
   FUGLU_DB_PORT=3306 \
 	S6_KILL_GRACETIME=10000
 
-RUN set -xe && \
+RUN set -x && \
 	addgroup -g 1000 -S vmail && \
 	adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
 	apk add --quiet --no-cache --virtual=.run-deps \
@@ -42,6 +42,7 @@ RUN set -xe && \
     db \
     db-dev \
     spamassassin \
+    spamassassin-compiler \
     mysql-client \
     curl \
     ca-certificates \
@@ -52,7 +53,7 @@ RUN set -xe && \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis && \
   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev perl-dev perl-app-cpanminus && \
   mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
-  /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && /usr/bin/cpanm install DB_File && \
+  /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \
   mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
   cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
   apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \

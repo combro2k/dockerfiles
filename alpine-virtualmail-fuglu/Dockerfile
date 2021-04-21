@@ -56,6 +56,8 @@ RUN set -x && \
   /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \
   mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
   cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
+  mkdir -p /tmp/domainmagic && curl -L https://gitlab.com/fumail/domainmagic/-/archive/master/domainmagic-master.tar.gz | tar zxv -C /tmp/domainmagic --strip-components=1 && \
+  cd /tmp/domainmagic && python3 setup.py install && cd && rm -fr /tmp/domainmagic && \
   apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl
 

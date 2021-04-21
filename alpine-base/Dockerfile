@@ -21,8 +21,8 @@ RUN set -xe && apk upgrade --quiet --no-cache && \
   apk add --quiet --no-cache libc6-compat && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
-  curl --location --silent https://github.com/noqcks/gucci/releases/download/1.2.2/gucci-v1.2.2-linux-amd64 --output /usr/bin/gucci && chmod +x /usr/bin/gucci && \
-	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v2.1.0.2/s6-overlay-amd64.tar.gz | tar zx -C / && \
+  curl --location --silent https://github.com/noqcks/gucci/releases/download/1.4.0/gucci-v1.4.0-linux-amd64 --output /usr/bin/gucci && chmod +x /usr/bin/gucci && \
+	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-amd64.tar.gz | tar zx -C / && \
 	apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  
 
 # ONBUILD RUN (apk --quiet --no-cache upgrade || true) && rm -fr /var/cache/apk/*

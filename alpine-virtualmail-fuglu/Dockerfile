@@ -58,6 +58,7 @@ RUN set -x && \
   cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
   mkdir -p /tmp/domainmagic && curl -L https://gitlab.com/fumail/domainmagic/-/archive/master/domainmagic-master.tar.gz | tar zxv -C /tmp/domainmagic --strip-components=1 && \
   cd /tmp/domainmagic && python3 setup.py install && cd && rm -fr /tmp/domainmagic && \
+  cpan install DB_File && \
   apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl
 

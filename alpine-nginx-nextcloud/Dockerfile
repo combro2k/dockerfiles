@@ -1,4 +1,4 @@
-FROM combro2k/alpine-nginx-php7:latest
+FROM combro2k/alpine-nginx:php8
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
@@ -14,19 +14,19 @@ ENV \
   DB_HOST="nextcloud-db" \
   DB_PREFIX="oc_"
 
-RUN set -xe && apk add --quiet --no-cache --virtual=.build-dependencies autoconf automake file g++ gcc make php7-dev re2c samba-dev zlib-dev && \
-	apk add --quiet --no-cache curl ffmpeg libxml2 php7-apcu php7-bz2 php7-ctype php7-curl php7-dom php7-exif php7-ftp php7-gd \
-		php7-gmp php7-iconv php7-imap php7-intl php7-ldap php7-mbstring php7-mcrypt php7-memcached php7-opcache php7-pcntl php7-pecl-imagick \
-		php7-pdo_mysql php7-pdo_pgsql php7-pdo_sqlite php7-pgsql php7-posix php7-sqlite3 php7-xml php7-xmlreader php7-zip php7-fileinfo php7-bcmath \
-		samba sudo tar unzip php7-xmlwriter php7-simplexml php7-openssl openssl su-exec findutils && \
+RUN set -xe && apk add --quiet --no-cache --virtual=.build-dependencies autoconf automake file g++ gcc make php8-dev re2c samba-dev zlib-dev && \
+	apk add --quiet --no-cache curl ffmpeg libxml2 php8-pecl-apcu php8-bz2 php8-ctype php8-curl php8-dom php8-exif php8-ftp php8-gd \
+		php8-gmp php8-iconv php8-imap php8-intl php8-ldap php8-mbstring php8-pecl-mcrypt php8-pecl-memcached php8-opcache php8-pcntl php8-pecl-imagick \
+		php8-pdo_mysql php8-pdo_pgsql php8-pdo_sqlite php8-pgsql php8-posix php8-sqlite3 php8-xml php8-xmlreader php8-zip php8-fileinfo php8-bcmath \
+		samba sudo tar unzip php8-xmlwriter php8-simplexml php8-openssl openssl su-exec findutils && \
 	curl -L https://download.nextcloud.com/server/releases/nextcloud-${NC_VERSION}.tar.bz2 | tar jx -C /data/web --strip-components=1 && \
   chown -R www-data:www-data /data/web && mkdir -p /nextcloud/data && mv /data/web/config /nextcloud/config && \
   ln -s /nextcloud/data /data/web/data && ln -s /nextcloud/config /data/web/config && ln -s /nextcloud/apps /data/web/apps2 && \
 	mkdir -p /tmp/smbclient && curl -L https://github.com/eduardok/libsmbclient-php/archive/master.tar.gz | \
-    tar zx -C /tmp/smbclient --strip-components=1 && cd /tmp/smbclient && phpize7 && \
-  ./configure --with-php-config=/usr/bin/php-config7 && make && make install && echo "extension="smbclient.so"" > /etc/php7/conf.d/00_smbclient.ini && \
-	sed -i 's/;always_populate_raw_post_data = -1/always_populate_raw_post_data = -1/g' /etc/php7/php.ini && \
-	echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php7/php-fpm.conf && rm -Rf /tmp/smbclient && \
+    tar zx -C /tmp/smbclient --strip-components=1 && cd /tmp/smbclient && phpize8 && \
+  ./configure --with-php-config=/usr/bin/php-config8 && make && make install && echo "extension="smbclient.so"" > /etc/php8/conf.d/00_smbclient.ini && \
+	sed -i 's/;always_populate_raw_post_data = -1/always_populate_raw_post_data = -1/g' /etc/php8/php.ini && \
+	echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /etc/php8/php-fpm.conf && rm -Rf /tmp/smbclient && \
 	apk del --no-cache --purge .build-dependencies && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /

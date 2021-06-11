@@ -1,4 +1,4 @@
-FROM combro2k/alpine-nginx-php7:latest
+FROM combro2k/alpine-nginx:php7
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

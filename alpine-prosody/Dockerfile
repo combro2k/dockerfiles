@@ -5,7 +5,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-RUN apk --no-cache add curl prosody lua5.1-lzlib openssl && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+RUN apk --no-cache add curl prosody lua5.2-lzlib su-exec openssl && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
 

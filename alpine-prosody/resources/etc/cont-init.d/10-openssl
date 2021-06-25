@@ -9,4 +9,6 @@ if [ ! -f /prosody/ssl/default.crt ]; then
 	openssl x509 -req -days 365 -in /prosody/ssl/default.csr -signkey /prosody/ssl/default.key -out /prosody/ssl/default.crt
 fi
 
+prosodyctl --root cert import /prosody/ssl
+
 exit 0

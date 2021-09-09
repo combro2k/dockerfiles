@@ -1,4 +1,4 @@
-FROM combro2k/alpine-nginx-php5:latest
+FROM combro2k/alpine-nginx:php5
 
 ENV \
   PHPBB_MAINLINE=3.3 \

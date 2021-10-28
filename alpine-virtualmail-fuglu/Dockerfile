@@ -50,7 +50,7 @@ RUN set -x && \
     su-exec \
     openssl && \
   apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
-    python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis && \
+    python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis py3-greenlet && \
   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev perl-dev perl-app-cpanminus && \
   mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
   /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \

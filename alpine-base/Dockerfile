@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.14
 
 ARG BUILD_DATE=now
 ARG VCS_REF=master
@@ -17,7 +17,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-RUN set -xe && apk upgrade --quiet --no-cache && \
+RUN set -xe && \
   apk add --quiet --no-cache libc6-compat && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \

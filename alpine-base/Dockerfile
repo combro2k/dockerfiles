@@ -18,6 +18,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 RUN set -xe && \
+  apk upgrade --quiet --no-cache && \
   apk add --quiet --no-cache libc6-compat && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \

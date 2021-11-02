@@ -6,6 +6,6 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 RUN set -xe && apk add --quiet --no-cache --virtual=.build-deps git go
-ONBUILD RUN if [ -x /app/build ] && sh /app/build && rm /app/build && apk --quiet --no-cache del .build-deps 
+ONBUILD RUN if [ -x /app/build ]; then sh /app/build && rm /app/build && apk --quiet --no-cache del .build-deps; fi
 
 COPY resources/ /

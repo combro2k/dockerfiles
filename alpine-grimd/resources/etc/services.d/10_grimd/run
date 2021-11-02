@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+cd /config
+
+su-exec grimd /usr/local/bin/grimd -config /config/grimd.toml -update

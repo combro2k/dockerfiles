@@ -25,16 +25,55 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
-        name: Alpine-base build and push
+        name: alpine-base
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-base:latest
+          tags: 
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-base:latest
           context: alpine-base
       -
-        name: Alpine-nginx-php5 build and push
+        name: alpine-nginx-php5 
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php5
+          tags: 
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php5
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-php5:latest
           context: alpine-nginx-php5
+      -
+        name: alpine-nginx-php7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: 
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php7
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-php7:latest
+          context: alpine-nginx-php7
+      -
+        name: alpine-nginx-php8
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: 
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php8
+          context: alpine-nginx-php8
+      -
+        name: alpine-nginx-static
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags:
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:static
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:latest
+          context: alpine-nginx-static
+      -
+        name: alpine-virtualmail
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags:
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:static
+            - ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:latest
+          context: alpine-nginx-static
+

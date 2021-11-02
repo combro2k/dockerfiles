@@ -23,8 +23,9 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       -
         name: Alpine-base build and push
-        working-directory: alpine-base
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-base:latest
+          context: alpine-base
+          file: alpine-base/Dockerfile

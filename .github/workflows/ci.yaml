@@ -66,14 +66,38 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:static
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:latest
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-static:latest
           context: alpine-nginx-static
+      -
+        name: alpine-virtualmail-fuglu
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-virtualmail:fuglu
+          context: alpine-virtualmail-fuglu
       -
         name: alpine-virtualmail
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:static
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:latest
-          context: alpine-nginx-static
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-virtualmail:latest
+          context: alpine-virtualmail
+      -
+        name: alpine-nginx-nextcloud
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-nextcloud:latest
+          context: alpine-nginx-nextcloud
+      -
+        name: alpine-haproxy
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-haproxy:latest
+          context: alpine-haproxy
 

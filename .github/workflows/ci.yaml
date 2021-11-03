@@ -75,15 +75,8 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-virtualmail:fuglu
-          context: alpine-virtualmail-fuglu
-      -
-        name: alpine-virtualmail
-        uses: docker/build-push-action@v2.7.0
-        with:
-          push: true
-          tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-virtualmail:latest
-          context: alpine-virtualmail
+          context: alpine-virtualmail-fuglu
       -
         name: alpine-nginx-nextcloud
         uses: docker/build-push-action@v2.7.0

@@ -52,13 +52,14 @@ RUN set -x && \
   apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis py3-greenlet && \
   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev perl-dev perl-app-cpanminus && \
+  rm /etc/postfix/virtual && \
   mkdir -p /run/clamav/ && chown clamav:clamav /run/clamav/ -R && \
   /usr/bin/pip3 install pysrs pylzma mysqlclient pyspf dkimpy py3dns && \
   mkdir -p /tmp/fuglu && curl -L https://gitlab.com/fumail/fuglu/-/archive/master/fuglu-master.tar.gz | tar zxv -C /tmp/fuglu --strip-components=1 && \
   cd /tmp/fuglu/fuglu && python3 setup.py install && cd && rm -fr /tmp/fuglu && \
   mkdir -p /tmp/domainmagic && curl -L https://gitlab.com/fumail/domainmagic/-/archive/master/domainmagic-master.tar.gz | tar zxv -C /tmp/domainmagic --strip-components=1 && \
   cd /tmp/domainmagic && python3 setup.py install && cd && rm -fr /tmp/domainmagic && \
-  cpan install DB_File && rm /etc/postfix/virtual && \
+  cpan install DB_File && \
   apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
   apk del --quiet --no-cache --purge .build-deps && apk --no-cache --quiet fix openssl
 

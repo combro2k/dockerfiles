@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv sh
+
+chown -R www-data:www-data /data/web /rainloop
+
+if [ -d /rainloop/data ]; then
+	echo "Symlinking data to /data/web/data"
+	
+	rm -fr /data/web/data
+	ln -s /rainloop/data /data/web/data
+fi
+
+find /data/web -type d -exec chmod 755 {} \;
+find /data/web -type f -exec chmod 644 {} \;
+
+find /rainloop -type d -exec chmod 755 {} \;
+find /rainloop -type f -exec chmod 644 {} \;
+
+exit 0

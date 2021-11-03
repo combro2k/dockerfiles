@@ -93,4 +93,182 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-haproxy:latest
           context: alpine-haproxy
-
+      -
+        name: alpine-aptly
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-aptly:latest
+          context: alpine-aptly
+      -
+        name: alpine-netdata
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-netdata:latest
+          context: alpine-netdata
+      -
+        name: alpine-nginx-freshrss
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-freshrss:latest
+          context: alpine-nginx-freshrss
+      -
+        name: alpine-grimd
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-grimd:latest
+          context: alpine-grimd
+      -
+        name: alpine-nginx-matomo
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-matomo:latest
+          context: alpine-nginx-matomo
+      -
+        name: alpine-nginx-matomo
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-matomo:latest
+          context: alpine-nginx-matomo
+      -
+        name: alpine-nginx-nextcloud
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-nextcloud:latest
+          context: alpine-nginx-nextcloud
+      -
+        name: alpine-nginx-rainloop
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:php5
+          context: alpine-nginx-rainloop
+      -
+        name: alpine-nginx-rainloop-php7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:php7
+          context: alpine-nginx-rainloop-php7
+      -
+        name: alpine-nginx-rainloop-php8
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:php8
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:latest
+          context: alpine-nginx-rainloop-php8
+      -
+        name: alpine-nginx-wordpress-php7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-wordpress:php7
+          context: alpine-nginx-wordpress-php7
+      -
+        name: alpine-nginx-wordpress-php8
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-wordpress:php8
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-wordpress:latest
+          context: alpine-nginx-wordpress-php8
+      -
+        name: alpine-prosody
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-prosody:latest
+          context: alpine-prosody
+      -
+        name: alpine-posty-api
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-api:latest
+          context: alpine-posty-api
+      -
+        name: alpine-posty-web
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-web:latest
+          context: alpine-posty-web
+      -
+        name: alpine-spiderfoot
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-spiderfoot:latest
+          context: alpine-spiderfoot
+      -
+        name: alpine-mumble
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-mumble:latest
+          context: alpine-mumble
+      -
+        name: alpine-teamspeak3
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-teamspeak3:latest
+          context: alpine-teamspeak3
+      -
+        name: alpine-weechat
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-weechat:latest
+          context: alpine-weechat
+      -
+        name: alpine-newsboot
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-newsboot:latest
+          context: alpine-newsboot
+      -
+        name: alpine-nginx-phpbb
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-phpbb:php5
+          context: alpine-nginx-phpbb
+      -
+        name: alpine-nginx-phpbb-php7
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-phpbb:php7
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-phpbb:latest
+          context: alpine-nginx-phpbb-php7

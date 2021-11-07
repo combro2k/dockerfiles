@@ -7,7 +7,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 
 ENV SPIDERFOOT_VERSION 3.4
 
-RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py3-pip curl tar libxml2 xmlsec libxslt tinyxml python3 openssl su-exec openjpeg libjpeg && \
+RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py3-pip py3-wheel curl tar libxml2 xmlsec libxslt tinyxml python3 openssl su-exec openjpeg libjpeg && \
 	    apk add --quiet --no-cache --virtual=.build-deps alpine-sdk openssl-dev python3-dev libxml2-dev xmlsec-dev swig jpeg-dev openjpeg-dev zlib-dev \
         tinyxml-dev python3-dev musl-dev openssl-dev libffi-dev libxslt-dev && \
       addgroup -g 1000 -S spiderfoot && adduser -S -u 1000 -h /app -s /usr/sbin/nologin -D spiderfoot -G spiderfoot && \

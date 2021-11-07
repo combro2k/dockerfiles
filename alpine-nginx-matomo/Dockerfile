@@ -8,7 +8,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 RUN set -xe && apk --quiet --no-cache add --virtual=run-deps php8-iconv php8-zlib php8-imap php8-openssl php8-pdo_sqlite php8-pdo_mysql php8-ctype && \
 	rm /data/web -fr && mkdir /data/web /matomo && cd /data/web && curl --silent --location https://builds.matomo.org/matomo-latest.tar.gz | \
   tar zxv -C /data/web --strip-components=1 && cd /data/web && chown www-data:www-data /data/web && \
-  /usr/bin/composer install && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
+  apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 VOLUME /matomo
 

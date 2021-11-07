@@ -200,13 +200,13 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-api:latest
           context: alpine-posty-api
       -
-        name: alpine-posty-web
+        name: alpine-posty-webui
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-web:latest
-          context: alpine-posty-web
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-webui:latest
+          context: alpine-posty-webui
       -
         name: alpine-spiderfoot
         uses: docker/build-push-action@v2.7.0

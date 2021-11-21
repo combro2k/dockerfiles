@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV \
-  NC_VERSION="22.2.0" \
+  NC_VERSION="22.2.3" \
   DB_TYPE="sqlite3" \
   DB_NAME="nextcloud" \
   DB_USER="nextcloud" \

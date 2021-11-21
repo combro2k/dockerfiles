@@ -207,14 +207,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-posty-webui:latest
           context: alpine-posty-webui
-#      -
-#        name: alpine-spiderfoot
-#        uses: docker/build-push-action@v2.7.0
-#        with:
-#          push: true
-#          tags: |
-#            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-spiderfoot:latest
-#          context: alpine-spiderfoot
       -
         name: alpine-mumble
         uses: docker/build-push-action@v2.7.0
@@ -264,3 +256,11 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-phpbb:php7
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-phpbb:latest
           context: alpine-nginx-phpbb-php7
+      -
+        name: alpine-spiderfoot
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-spiderfoot:latest
+          context: alpine-spiderfoot            

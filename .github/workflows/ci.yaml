@@ -232,13 +232,13 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-weechat:latest
           context: alpine-weechat
       -
-        name: alpine-newsboot
+        name: alpine-newsboat
         uses: docker/build-push-action@v2.7.0
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-newsboot:latest
-          context: alpine-newsboot
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-newsboat:latest
+          context: alpine-newsboat
       -
         name: alpine-nginx-phpbb
         uses: docker/build-push-action@v2.7.0

@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+cd /app/MusicBot
+
+exec /bin/s6-setuidgid musicbot /usr/bin/python3 /app/MusicBot/run.py

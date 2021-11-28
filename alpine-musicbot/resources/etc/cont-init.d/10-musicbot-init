@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv sh
+
+[ ! -d /musicbot/config ] && mkdir /musicbot/config
+
+[ ! -f /musicbot/config/options.ini ] && cp /app/MusicBot/config/example_options.ini /musicbot/config/options.ini
+[ ! -f /musicbot/config/aliases.json ] && cp /app/MusicBot/config/example_aliases.ini /musicbot/config/aliases.json
+[ ! -f /musicbot/config/permissions.ini ] && cp /app/MusicBot/config/example_permissions.ini /musicbot/config/permissions.ini
+[ ! -f /musicbot/config/_autoplaylist.txt ] && cp /app/MusicBot/config/_autoplaylist.txt /musicbot/config/_autoplaylist.txt
+
+ln -fs /musicbot/config/options.ini /app/MusicBot/config/options.ini
+ln -fs /musicbot/config/aliases.json /app/MusicBot/config/aliases.json
+ln -fs /musicbot/config/permissions.ini /app/MusicBot/config/permissions.ini
+ln -fs /musicbot/config/_autoplaylist.txt /app/MusicBot/config/_autoplaylist.txt
+
+chown -R musicbot:musicbot /musicbot

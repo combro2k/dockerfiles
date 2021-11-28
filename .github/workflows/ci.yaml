@@ -263,4 +263,13 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-spiderfoot:latest
-          context: alpine-spiderfoot            
+          context: alpine-spiderfoot
+      -
+        name: alpine-musicbot
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-musicbot:latest
+          context: alpine-musicbot
+

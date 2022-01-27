@@ -6,6 +6,6 @@ if ! haproxy -c -f /etc/haproxy/haproxy.cfg -f /data/haproxy.d/; then
   exit 1
 fi
 
-/command/s6-svc -t /var/run/s6/services/50_haproxy/
+/command/s6-svc -t /var/run/s6/legacy-services/50_haproxy/
 
 exit 0

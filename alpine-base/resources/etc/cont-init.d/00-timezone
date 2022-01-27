@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -z $TZ ]; then
   if [ ! -f /etc/timezone ] || grep $TZ /etc/timezone; then

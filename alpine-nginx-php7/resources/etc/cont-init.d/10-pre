@@ -1,11 +1,11 @@
 #!/command/with-contenv sh
 
 if [ $WWW_UID -ne 82 ]; then
-  usermod -u $WWW_UID www-data
+  /usr/sbin/usermod -u $WWW_UID www-data
 fi
 
 if [ $WWW_GID -ne 82 ]; then
-  groupmod -g $WWW_GID www-data
+  /usr/sbin/groupmod -g $WWW_GID www-data
 fi
 
 if [ $WWW_UID -ne 82 ] || [ $WWW_GID -ne 82 ]; then                                                                                                                                      

@@ -2,4 +2,4 @@
 
 cd /usr/share/assp/
 
-exec perl assp.pl
+exec /usr/bin/perl assp.pl

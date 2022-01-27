@@ -51,7 +51,7 @@ if [ ! -d /data/fuglu/dkim ]; then
 fi
 
 for SQL in /etc/fuglu/sql/*.sql; do
-  mysql -u$FUGLU_DB_USERNAME -h$FUGLU_DB_HOST -p$FUGLU_DB_PASSWORD $FUGLU_DB_DATABASE < $SQL
+  /usr/bin/mysql -u$FUGLU_DB_USERNAME -h$FUGLU_DB_HOST -p$FUGLU_DB_PASSWORD $FUGLU_DB_DATABASE < $SQL
 done
 
 exit 0

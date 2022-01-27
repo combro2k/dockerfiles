@@ -4,4 +4,4 @@ cd /data/webui
 
 test -f /data/config/lighttpd.user && exec lighttpd -f /etc/lighttpd/lighttpd-htpasswd.conf -D
 
-exec lighttpd -f /etc/lighttpd/lighttpd.conf -D
+exec /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf -D

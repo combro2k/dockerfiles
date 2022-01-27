@@ -5,13 +5,13 @@ if [ ! -d /data/ssl ]; then
 fi
 
 if [ ! -f /data/ssl/ssl.pem ] && [ ! -f /data/ssl/ssl.crt ]; then
-	openssl req -nodes -newkey rsa:4096 -keyout /data/ssl/ssl.key -out /data/ssl/ssl.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
-	openssl x509 -req -days 365 -in /data/ssl/ssl.csr -signkey /data/ssl/ssl.key -out /data/ssl/ssl.crt
+	/usr/bin/openssl req -nodes -newkey rsa:4096 -keyout /data/ssl/ssl.key -out /data/ssl/ssl.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
+	/usr/bin/openssl x509 -req -days 365 -in /data/ssl/ssl.csr -signkey /data/ssl/ssl.key -out /data/ssl/ssl.crt
 	cat /data/ssl/ssl.crt /data/ssl/ssl.key > /data/ssl/ssl.pem
 fi
 
 if [ ! -f /data/ssl/dh.pem ]; then
-  openssl dhparam -out /data/ssl/dh.pem 2048
+  /usr/bin/openssl dhparam -out /data/ssl/dh.pem 2048
 fi
 
 exit 0

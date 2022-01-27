@@ -5,10 +5,10 @@ if [ ! -d /prosody/ssl ]; then
 fi
 
 if [ ! -f /prosody/ssl/default.crt ]; then
-	openssl req -nodes -newkey rsa:4096 -keyout /prosody/ssl/default.key -out /prosody/ssl/default.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
-	openssl x509 -req -days 365 -in /prosody/ssl/default.csr -signkey /prosody/ssl/default.key -out /prosody/ssl/default.crt
+	/usr/bin/openssl req -nodes -newkey rsa:4096 -keyout /prosody/ssl/default.key -out /prosody/ssl/default.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
+	/usr/bin/openssl x509 -req -days 365 -in /prosody/ssl/default.csr -signkey /prosody/ssl/default.key -out /prosody/ssl/default.crt
 fi
 
-prosodyctl --root cert import /prosody/ssl
+/usr/bin/prosodyctl --root cert import /prosody/ssl
 
 exit 0

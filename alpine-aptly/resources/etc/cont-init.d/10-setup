@@ -15,21 +15,21 @@ Passphrase: ${GPG_PASSWORD}
 %commit
 %echo done
 EOF
-	su-exec aptly gpg --batch --gen-key /aptly/gpg_batch
+	/sbin/su-exec aptly gpg --batch --gen-key /aptly/gpg_batch
 	rm /aptly/gpg_batch
 
 	# Import Debian keyrings
-	su-exec aptly gpg --list-keys
-	su-exec aptly gpg --no-default-keyring \
+	/sbin/su-exec aptly gpg --list-keys
+	/sbin/su-exec aptly gpg --no-default-keyring \
 	    --keyring /usr/share/keyrings/debian-archive-keyring.gpg \
 	    --export | \
-	su-exec aptly gpg --no-default-keyring \
+	/sbin/su-exec aptly gpg --no-default-keyring \
 	    --keyring trustedkeys.gpg \
 	    --import
 fi
 
 if [ -d /aptly/data/public ] && [ ! -f /aptly/data/public/${HOSTNAME}.gpg ]; then
-	su-exec aptly gpg --armor --export --output /aptly/data/public/${HOSTNAME}.gpg
+	/sbin/su-exec aptly gpg --armor --export --output /aptly/data/public/${HOSTNAME}.gpg
 fi
 
 cat << EOF > /etc/nginx/conf.d/default.conf

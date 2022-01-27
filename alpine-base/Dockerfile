@@ -22,7 +22,7 @@ RUN set -xe && \
   apk upgrade --quiet --no-cache && \
   apk add --quiet --no-cache libc6-compat && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar xz alpine-sdk && \
-  apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo && \
+  apk add --quiet --no-cache --virtual=.term-deps rxvt-unicode-terminfo shadow && \
   curl --location --silent https://github.com/noqcks/gucci/releases/download/1.5.2/gucci-v1.5.2-linux-amd64 --output /usr/bin/gucci && chmod +x /usr/bin/gucci && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch-${S6_OVERLAY_VERSION}.tar.xz | tar -C / -Jxp && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64-${S6_OVERLAY_VERSION}.tar.xz | tar -C / -Jxp && \

@@ -5,13 +5,13 @@ echo "Initializing the container..."
 test -z "${MYSQL_PORT_3306_TCP_ADDR}" && echo "Can not run without MySQL link!" && exit 1
 test -z "${MYSQL_PORT_3306_TCP_PORT}" && echo "Can not run without MySQL link!" && exit 1
 
-postconf "myhostname = ${HOSTNAME}"
+/usr/sbin/postconf "myhostname = ${HOSTNAME}"
 
 if [ -f /data/conf/postfix/transport ]; then
-	postmap /data/conf/postfix/transport
-	postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf,hash:/data/conf/postfix/transport"
+	/usr/sbin/postmap /data/conf/postfix/transport
+	/usr/sbin/postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf,hash:/data/conf/postfix/transport"
 else
-	postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf"
+	/usr/sbin/postconf "transport_maps=mysql:/etc/postfix/virtual/mysql-virtual-transports.cf"
 fi
 
 echo ${HOSTNAME} > /etc/mailname

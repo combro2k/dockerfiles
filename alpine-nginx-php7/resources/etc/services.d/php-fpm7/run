@@ -1,2 +1,3 @@
 #!/command/with-contenv sh
-exec php-fpm7
+
+exec /usr/sbin/php-fpm7

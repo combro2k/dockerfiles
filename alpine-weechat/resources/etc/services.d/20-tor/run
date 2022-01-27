@@ -1,3 +1,3 @@
 #!/command/with-contenv sh
 
-su-exec weechat /usr/bin/tor
+/sbin/su-exec weechat /usr/bin/tor

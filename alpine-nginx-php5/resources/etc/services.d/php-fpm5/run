@@ -1,2 +1,2 @@
 #!/command/with-contenv sh
-exec php-fpm5
+exec /usr/sbin/php-fpm5

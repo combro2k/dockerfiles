@@ -2,4 +2,4 @@
 
 cd /config
 
-su-exec grimd /usr/local/bin/grimd -config /config/grimd.toml -update
+/sbin/su-exec grimd /usr/local/bin/grimd -config /config/grimd.toml -update

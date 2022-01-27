@@ -45,12 +45,12 @@ EOF
 
 bundle exec rake db:migrate --trace
 
-API_KEY=$(mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
+API_KEY=$(/usr/bin/mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
 
 if [ -z ${API_KEY} ]; then
     echo -e "\e[31mGenerating API key...\e[0m"
     rake api_key:generate > /dev/null 2>&1
-    API_KEY=$(mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
+    API_KEY=$(/usr/bin/mysql -s -h ${MYSQL_PORT_3306_TCP_ADDR} -u ${POSTY_USER} -p"${POSTY_PASSWORD}" ${POSTY_DATABASE} <<< 'SELECT access_token FROM api_keys ORDER BY ID DESC LIMIT 1;')
 fi
 
 echo -e "\e[31mUsing API key: ${API_KEY} \e[0m"

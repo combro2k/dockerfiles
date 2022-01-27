@@ -9,10 +9,10 @@ if [ -d /rainloop/data ]; then
 	ln -s /rainloop/data /data/web/data
 fi
 
-find /data/web -type d -exec chmod 755 {} \;
-find /data/web -type f -exec chmod 644 {} \;
+/usr/bin/find /data/web -type d -exec chmod 755 {} \;
+/usr/bin/find /data/web -type f -exec chmod 644 {} \;
 
-find /rainloop -type d -exec chmod 755 {} \;
-find /rainloop -type f -exec chmod 644 {} \;
+/usr/bin/find /rainloop -type d -exec chmod 755 {} \;
+/usr/bin/find /rainloop -type f -exec chmod 644 {} \;
 
 exit 0

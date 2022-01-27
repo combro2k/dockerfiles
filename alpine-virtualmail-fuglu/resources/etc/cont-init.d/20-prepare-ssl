@@ -12,7 +12,7 @@ fi
 
 if [ ! -f /data/ssl/dh.pem ]; then
 #  use internet standards dhe pem
-  wget https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem --output-document /data/ssl/dh.pem
+  /usr/bin/wget https://raw.githubusercontent.com/internetstandards/dhe_groups/master/ffdhe4096.pem --output-document /data/ssl/dh.pem
 fi
 
 exit 0

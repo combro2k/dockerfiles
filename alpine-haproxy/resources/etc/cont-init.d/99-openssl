@@ -4,14 +4,14 @@ if [ ! -d /data/ssl ]; then
 	mkdir -p /data/ssl
 fi
 if [ ! -f /data/ssl/default.pem ]; then
-	openssl req -nodes -newkey rsa:4096 -keyout /data/ssl/default.key -out /data/ssl/default.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
-	openssl x509 -req -days 365 -in /data/ssl/default.csr -signkey /data/ssl/default.key -out /data/ssl/default.crt
+	/usr/bin/openssl req -nodes -newkey rsa:4096 -keyout /data/ssl/default.key -out /data/ssl/default.csr -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=default"
+	/usr/bin/openssl x509 -req -days 365 -in /data/ssl/default.csr -signkey /data/ssl/default.key -out /data/ssl/default.crt
 	cat /data/ssl/default.crt /data/ssl/default.key > /data/ssl/default.pem
 	rm /data/ssl/default.crt /data/ssl/default.key /data/ssl/default.csr
 fi
 
 if [ ! -f /data/ssl/dh-param.pem ]; then
-  curl https://2ton.com.au/dhparam/4096 --output /data/ssl/dh-param.pem
+  /usr/bin/curl https://2ton.com.au/dhparam/4096 --output /data/ssl/dh-param.pem
 fi
 
 if [ ! -f /data/ssl/crt-list.txt ]; then

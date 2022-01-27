@@ -2,4 +2,4 @@
 
 cd /data/api
 
-exec bundle exec rackup
+exec /usr/bin/bundle exec rackup

@@ -2,6 +2,6 @@
 
 cd /data/webui
 
-test -f /data/config/lighttpd.user && exec lighttpd -f /etc/lighttpd/lighttpd-htpasswd.conf -D
+test -f /data/config/lighttpd.user && exec /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd-htpasswd.conf -D
 
 exec /usr/sbin/lighttpd -f /etc/lighttpd/lighttpd.conf -D

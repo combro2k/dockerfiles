@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 set -e # terminate on errors
 set -xo pipefail

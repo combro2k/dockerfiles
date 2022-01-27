@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -L /data/web/config.php ]; then
 	echo "[PHPBB FINISH] Saving existing config.."

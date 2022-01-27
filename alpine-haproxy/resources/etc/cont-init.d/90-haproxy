@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -d /data/haproxy.d ]; then
 	mkdir -p /data/haproxy.d

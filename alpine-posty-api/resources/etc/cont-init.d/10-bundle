@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 test -z "${MYSQL_PORT_3306_TCP_ADDR}" && echo "Can not run without MySQL link!" && exit 1
 test -z "${MYSQL_PORT_3306_TCP_PORT}" && echo "Can not run without MySQL link!" && exit 1

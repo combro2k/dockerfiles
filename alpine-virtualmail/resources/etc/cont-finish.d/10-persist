@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -L /usr/share/assp/assp.cfg ]; then
 	mv /usr/share/assp/assp.cfg /data/assp/assp.cfg

@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ $WWW_UID -ne 82 ]; then
   usermod -u $WWW_UID www-data

@@ -21,7 +21,7 @@ RESULT=$?
 rm composer-setup.php
 
 if [ $RESULT -eq 0 ]; then
-	exec /bin/s6-setuidgid www-data /usr/bin/composer $@
+	exec /command/s6-setuidgid www-data /usr/bin/composer $@
 fi
 
 exit $RESULT

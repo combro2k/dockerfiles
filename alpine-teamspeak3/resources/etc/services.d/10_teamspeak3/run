@@ -1,3 +1,3 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
-exec /bin/s6-setuidgid teamspeak3 /app/ts3server_minimal_runscript.sh inifile=ts3server.ini
+exec /command/s6-setuidgid teamspeak3 /app/ts3server_minimal_runscript.sh inifile=ts3server.ini

@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 test -z "${POSTY_API_URL}" && echo "Can not run without POSTY_API_URL!" && exit 1
 test -z "${POSTY_API_KEY}" && echo "Can not run without POSTY_API_KEY!" && exit 1

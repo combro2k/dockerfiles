@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -f /phpbb/config.php ] && [ $(stat -c '%b' /phpbb/config.php) -ne 0 ]; then
 	echo "[PHPBB INIT] Using existing config.."

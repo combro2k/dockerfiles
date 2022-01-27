@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -z $DOCKER_ENDPOINT ]; then
 	exec /app/docker-gen -config /app/docker-gen.cfg -endpoint $DOCKER_ENDPOINT

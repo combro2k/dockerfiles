@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -d /data/web/data ] && [ ! -L /data/web/data ]; then
 	echo "Moving data to mounted volume"

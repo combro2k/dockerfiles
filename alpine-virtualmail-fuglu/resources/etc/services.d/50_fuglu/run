@@ -1,2 +1,2 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 exec /usr/bin/fuglu --foreground --config /data/fuglu/fuglu.conf --baseloglevel=INFO

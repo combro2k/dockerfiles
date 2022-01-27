@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 # allow to run own scripts inside /data/cont-init.d/
 if [ -d /data/cont-finish.d ]; then

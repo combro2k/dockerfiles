@@ -1,1 +1,1 @@
-*/5 * * * * s6-setuidgid fluent find /var/log/fluent/ -mtime +7 -delete > /dev/stdout 2>&1
+*/5 * * * * /command/s6-setuidgid fluent find /var/log/fluent/ -mtime +7 -delete > /dev/stdout 2>&1

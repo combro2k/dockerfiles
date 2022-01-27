@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -f /data/vpn_server.config ]; then
 	cp /data/vpn_server.config /usr/local/libexec/softether/vpnserver/vpn_server.config

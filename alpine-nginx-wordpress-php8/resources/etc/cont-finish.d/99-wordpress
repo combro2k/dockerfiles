@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -f /data/web/wp-config.php ] && [ ! -L /data/web/wp-config.php ]; then
 	echo "Move wp-config.php to mounted volume"

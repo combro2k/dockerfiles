@@ -1,5 +1,5 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 cd /app
 
-exec /bin/s6-setuidgid spiderfoot /usr/bin/python3 /app/sf.py -l 0.0.0.0:5001
+exec /command/s6-setuidgid spiderfoot /usr/bin/python3 /app/sf.py -l 0.0.0.0:5001

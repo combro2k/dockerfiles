@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -d /openfire/conf ]; then
 	if [ ! -L /app/openfire/conf ]; then

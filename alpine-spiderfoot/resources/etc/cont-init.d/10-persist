@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ -f /data/spiderfoot.db ]; then
 	ln -s /data/spiderfoot.db /app/spiderfoot.db

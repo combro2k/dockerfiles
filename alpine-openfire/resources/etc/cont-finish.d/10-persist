@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 if [ ! -d /openfire/conf ]; then
 	mv /app/openfire/conf /openfire/conf

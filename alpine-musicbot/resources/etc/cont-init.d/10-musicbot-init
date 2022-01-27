@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/command/with-contenv sh
 
 [ ! -d /musicbot/config ] && mkdir /musicbot/config
 

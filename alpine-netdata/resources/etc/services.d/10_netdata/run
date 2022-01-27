@@ -1,3 +1,3 @@
 #!/command/with-contenv sh
 
-exec /usr/sbin/netdata -D -u root -s /host -p 19999 
+exec /usr/sbin/netdata -D -u root -s /host -i 0.0.0.0 -p 19999

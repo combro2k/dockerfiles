@@ -1,0 +1,3 @@
+#!/command/with-contenv sh
+
+HOME=/home/b3 exec /command/s6-setuidgid b3 /usr/bin/python2 /b3/b3_run.py --config /data/b3.ini

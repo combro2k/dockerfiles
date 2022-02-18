@@ -1,7 +1,10 @@
-#!/command/with-contenv sh
+#!/command/execlineb -P
 
-if [ ! -z $DOCKER_ENDPOINT ]; then
-	exec /app/docker-gen -config /app/docker-gen.cfg -endpoint $DOCKER_ENDPOINT
-fi
+with-contenv
+fdmove -c 2 1
 
-exec /app/docker-gen -config /app/docker-gen.cfg -endpoint unix:///tmp/docker.sock
+multisubstitute
+{
+  importas -u -D "unix:///tmp/docker.sock" DOCKER_ENDPOINT DOCKER_ENDPOINT
+}
+/app/docker-gen -config /app/docker-gen.cfg -endpoint "${DOCKER_ENDPOINT}"

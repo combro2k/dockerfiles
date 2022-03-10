@@ -129,7 +129,7 @@ spf=fuglu.plugins.domainauth.SPFPlugin
 [databaseconfig]
 
 #read runtime configuration values from a database. requires sqlalchemy to be installed
-dbconnectstring=mysql://{{ .FUGLU_DB_USERNAME }}:{{ .FUGLU_DB_PASSWORD }}@{{ .FUGLU_DB_HOST }}/{{ .FUGLU_DB_DATABASE }}
+dbconnectstring=mysql+mysqldb://{{ .FUGLU_DB_USERNAME }}:{{ .FUGLU_DB_PASSWORD }}@{{ .FUGLU_DB_HOST }}/{{ .FUGLU_DB_DATABASE }}
 
 #sql query that returns a configuration value override. sql placeholders are ':section',':option' in addition the usual suspect filter default values like ':to_domain', ':to_address' etc
 #if the statement returns more than one row/value only the first value in the first row is used
@@ -240,7 +240,7 @@ rulesdir=/data/fuglu/rules
 blockaction=REJECT
 
 #sqlalchemy connectstring to load rules from a database and use files only as fallback. requires SQL extension to be enabled
-dbconnectstring=
+dbconnectstring=mysql+mysqldb://{{ .FUGLU_DB_USERNAME }}:{{ .FUGLU_DB_PASSWORD }}@{{ .FUGLU_DB_HOST }}/{{ .FUGLU_DB_DATABASE }}
 
 #sql query to load rules from a db. #:scope will be replaced by the recipient address first, then by the recipient domain
 #:check will be replaced 'filename','contenttype','archive-filename' or 'archive-contenttype'
@@ -361,7 +361,7 @@ rejectmessage=message from ${from_address} to ${to_domain} identified as spam (s
 check_sql_blacklist=0
 
 #sqlalchemy db connect string
-sql_blacklist_dbconnectstring=mysql:///localhost/spamassassin
+sql_blacklist_dbconnectstring=mysql+mysqldb:///localhost/spamassassin
 
 #SQL query to get the blacklist entries for a suspect
 #you may use template variables: ${from_address} ${from_domain} ${to_address} ${to_domain}

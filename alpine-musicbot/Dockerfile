@@ -8,7 +8,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 ENV APP_ENV=docker
 
 RUN apk add --no-cache ca-certificates ffmpeg opus python3 libsodium-dev py3-wheel py3-pip && \
-  apk add --no-cache --virtual .build-deps gcc git libffi-dev make musl-dev python3-dev && \
+  apk add --no-cache --virtual .build-deps gcc g++ git libffi-dev make musl-dev python3-dev && \
   addgroup -g 1000 -S musicbot && adduser -S -u 1000 -h /musicbot musicbot -D musicbot -G musicbot && \
   mkdir -p /app/MusicBot && git clone https://github.com/Just-Some-Bots/MusicBot.git /app/MusicBot -b review && \
   cd /app/MusicBot && sed -i 's~^pynacl==[^$]*~pynacl==1.3.0~g' requirements.txt && \

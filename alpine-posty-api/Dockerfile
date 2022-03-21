@@ -4,7 +4,7 @@ ARG BUILD_DATE=now
 ARG VCS_REF=master
 ARG VCS_URL=https://github.com/combro2k/dockerfiles
 ARG DOCKERFILE=alpine-base/Dockerfile
-ARG S6_OVERLAY_VERSION=3.0.0.0-1
+ARG S6_OVERLAY_VERSION=3.1.0.1
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \
@@ -18,8 +18,8 @@ ENV \
 
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates curl tar xz ruby mariadb-libs ruby-bigdecimal ruby-rake ruby-bundler \
 		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && \
-  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch-${S6_OVERLAY_VERSION}.tar.xz | tar -C / -Jxp && \
-  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64-${S6_OVERLAY_VERSION}.tar.xz | tar -C / -Jxp && \
+  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -C / -Jxp && \
+  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz | tar -C / -Jxp && \
 	apk add --quiet --no-cache --virtual=.build-deps ruby-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
 	mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | tar zx -C /data/api --strip-components=1 && \
 	adduser -h /var/vmail -D -H -u 1000 vmail && cd /data/api && bundle update json && \

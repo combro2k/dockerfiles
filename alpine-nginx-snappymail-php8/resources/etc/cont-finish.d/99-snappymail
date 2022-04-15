@@ -1,0 +1,8 @@
+#!/command/with-contenv sh
+
+if [ -d /data/web/data ] && [ ! -L /data/web/data ]; then
+	echo "Moving data to mounted volume"
+	mv /data/web/data /snappymail/data
+fi
+
+exit 0

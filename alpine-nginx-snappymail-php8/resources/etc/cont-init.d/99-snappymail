@@ -1,0 +1,18 @@
+#!/command/with-contenv sh
+
+chown -R www-data:www-data /data/web /snappymail
+
+if [ -d /snappymail/data ]; then
+	echo "Symlinking data to /data/web/data"
+	
+	rm -fr /data/web/data
+	ln -s /snappymail/data /data/web/data
+fi
+
+find /data/web -type d -exec chmod 755 {} \;
+find /data/web -type f -exec chmod 644 {} \;
+
+find /snappymail -type d -exec chmod 755 {} \;
+find /snappymail -type f -exec chmod 644 {} \;
+
+exit 0

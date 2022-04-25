@@ -5,7 +5,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV SNAPPYMAIL_VERSION="2.14.3"
+ENV SNAPPYMAIL_VERSION="2.15.0"
 
 RUN set -xe && apk --quiet --no-cache add --virtual=.build-deps php8-dev gpgme-dev make g++ gcc && \
   apk --quiet --no-cache add --virtual=run-deps \

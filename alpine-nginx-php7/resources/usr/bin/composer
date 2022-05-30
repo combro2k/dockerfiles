@@ -13,7 +13,7 @@ fi
 
 echo "Installing composer for the first time run..."
 
-apk --no-cache add php7-phar php7-iconv php7-mbstring php7-zlib
+apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing php7-phar php7-iconv php7-mbstring php7-zlib
 
 php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer
 RESULT=$?

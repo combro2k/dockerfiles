@@ -5,9 +5,8 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-url=$VCS_URL \
         org.label-scheme.dockerfile=$DOCKERFILE
 
-ENV SNAPPYMAIL_VERSION="2.15.1"
-
-RUN set -xe && apk --quiet --no-cache add --virtual=.build-deps php8-dev gpgme-dev make g++ gcc && \
+RUN set -xe && apk --quiet --no-cache add --virtual=.build-deps php8-dev gpgme-dev make g++ gcc jq && \
+  SNAPPYMAIL_VERSION=`curl --silent https://raw.githubusercontent.com/the-djmaze/snappymail/master/package.json | jq -r .version` && \
   apk --quiet --no-cache add --virtual=run-deps \
     curl php8-iconv php8-zlib php8-imap php8-openssl php8-pdo_sqlite php8-pdo_mysql php8-pecl-uuid php8-tidy php8-sodium php8-zip php8-pecl-apcu php8-pecl-imagick \
     php8-phar php8-sqlite3 sqlite-libs php8-mbstring php8-pecl-apcu php8-intl gpgme && rm /data/web -fr && mkdir /data/web /snappymail && cd /data/web && \

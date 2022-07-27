@@ -4,7 +4,7 @@ ONBUILD ARG BUILD_DATE=now
 ONBUILD ARG VCS_REF=master
 ONBUILD ARG VCS_URL=https://github.com/combro2k/dockerfiles/tree/master/alpine-nginx-php5
 ONBUILD ARG DOCKERFILE=alpine-nginx-php5/Dockerfile
-ARG S6_OVERLAY_VERSION=3.1.1.1
+ARG S6_OVERLAY_VERSION=3.1.1.2
 
 ENV WWW_UID=82 WWW_GID=82
 

@@ -2,7 +2,7 @@ FROM combro2k/alpine-nginx:php5
 
 ENV \
   PHPBB_MAINLINE=3.3 \
-  PHPBB_VERSION=3.3.7
+  PHPBB_VERSION=3.3.8
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

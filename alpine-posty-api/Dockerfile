@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM combro2k/alpine-base:3.5
   
 ARG BUILD_DATE=now
 ARG VCS_REF=master
@@ -18,8 +18,6 @@ ENV \
 
 RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps ca-certificates curl tar xz ruby mariadb-libs ruby-bigdecimal ruby-rake ruby-bundler \
 		libaio json-c jsoncpp mariadb-client-libs mariadb-common mariadb-client bash && \
-  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -C / -Jxp && \
-  curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz | tar -C / -Jxp && \
 	apk add --quiet --no-cache --virtual=.build-deps ruby-dev mysql-dev json-c-dev jsoncpp-dev make gcc musl-dev mariadb-client && \
 	mkdir -p /data/api && curl --location https://github.com/posty/posty_api/archive/master.tar.gz | tar zx -C /data/api --strip-components=1 && \
 	adduser -h /var/vmail -D -H -u 1000 vmail && cd /data/api && bundle update json && \

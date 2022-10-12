@@ -19,7 +19,7 @@ ENV \
 	S6_KILL_GRACETIME=10000
 
 RUN set -xe && \
-	addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
+  addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
   apk add --quiet --no-cache --virtual=.run-deps p7zip clamav-libunrar mariadb-connector-c mariadb-client bash \
     postfix postfix-mysql postfix-pgsql postfix-pcre dovecot dovecot-mysql \
     dovecot-sqlite dovecot-pop3d dovecot-lmtpd dovecot-pigeonhole-plugin \

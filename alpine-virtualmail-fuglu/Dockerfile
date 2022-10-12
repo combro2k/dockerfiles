@@ -21,7 +21,7 @@ ENV \
 RUN set -xe && \
   addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
   apk add --quiet --no-cache --virtual=.run-deps p7zip clamav-libunrar mariadb-connector-c mariadb-client bash \
-    postfix postfix-mysql postfix-pgsql postfix-pcre dovecot dovecot-mysql \
+    postfix postfix-mysql postfix-pgsql postfix-pcre dovecot dovecot-mysql gpg \
     dovecot-sqlite dovecot-pop3d dovecot-lmtpd dovecot-pigeonhole-plugin \
     clamav db db-dev spamassassin spamassassin-compiler mysql-client \
     curl ca-certificates findutils su-exec openssl && \

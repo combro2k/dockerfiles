@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# $IMAGE_NAME var is injected into the build so the tag is correct.
+
+BASEDIR="$(basename $(dirname $(dirname $(readlink -f $0))))"
+
+BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+DOCKERFILE="${BASEDIR}/Dockerfile"
+
+VCS_REF="$(git rev-parse --short HEAD)"
+VCS_URL="https://github.com/combro2k/dockerfiles/tree/${VCS_REF}/${BASEDIR}"
+
+echo "Build hook running"
+
+set -x
+
+docker build --pull --build-arg BUILD_DATE="${BUILD_DATE}" \
+             --build-arg VCS_REF="${VCS_REF}" \
+             --build-arg VCS_URL="${VCS_URL}" \
+             --build-arg DOCKERFILE="${DOCKERFILE}" \
+             --compress \
+             -t ${IMAGE_NAME} .

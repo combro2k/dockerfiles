@@ -18,37 +18,13 @@ ENV \
   FUGLU_DB_PORT=3306 \
 	S6_KILL_GRACETIME=10000
 
-RUN set -x && \
-	addgroup -g 1000 -S vmail && \
-	adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
-	apk add --quiet --no-cache --virtual=.run-deps \
-    p7zip \
-    unrar \
-    mariadb-connector-c \
-    mariadb-client \
-    bash \
-    postfix \
-    postfix-mysql \
-    postfix-pgsql \
-    postfix-pcre \
-    dovecot \
-    dovecot-mysql \
-    dovecot-sqlite \
-    dovecot-pop3d \
-    dovecot-lmtpd \
-    dovecot-pigeonhole-plugin \
-    clamav \
-    clamav-libunrar \
-    db \
-    db-dev \
-    spamassassin \
-    spamassassin-compiler \
-    mysql-client \
-    curl \
-    ca-certificates \
-    findutils \
-    su-exec \
-    openssl && \
+RUN set -xe && \
+	addgroup -g 1000 -S vmail && adduser -S -u 1000 -h /var/vmail -s /usr/sbin/nologin -D vmail -G vmail && \
+  apk add --quiet --no-cache --virtual=.run-deps p7zip clamav-libunrar mariadb-connector-c mariadb-client bash \
+    postfix postfix-mysql postfix-pgsql postfix-pcre dovecot dovecot-mysql \
+    dovecot-sqlite dovecot-pop3d dovecot-lmtpd dovecot-pigeonhole-plugin \
+    clamav db db-dev spamassassin spamassassin-compiler mysql-client \
+    curl ca-certificates findutils su-exec openssl && \
   apk add --quiet --no-cache --virtual=.testing-run-deps --repository http://nl.alpinelinux.org/alpine/edge/testing \
     python3 py3-pip py3-magic py3-rarfile py3-beautifulsoup4 py3-sqlalchemy py3-redis py3-greenlet && \
   apk add --quiet --no-cache --virtual=.build-deps python3-dev alpine-sdk mariadb-connector-c-dev perl-dev perl-app-cpanminus && \

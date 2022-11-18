@@ -13,7 +13,7 @@ ENV \
   DB_HOST="nextcloud-db" \
   DB_PREFIX="oc_"
 
-RUN set -xe && apk add --quiet --no-cache --virtual=.build-dependencies autoconf automake file g++ gcc make php8-dev re2c zlib-dev && \
+RUN set -xe && apk add --quiet --no-cache --virtual=.build-dependencies --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ autoconf automake file g++ gcc make php8-dev re2c zlib-dev && \
 	apk add --quiet --no-cache curl ffmpeg libxml2 php8-pecl-apcu php8-bz2 php8-ctype php8-curl php8-dom php8-exif php8-ftp php8-gd \
 		php8-gmp php8-iconv php8-imap php8-intl php8-ldap php8-mbstring php8-pecl-mcrypt php8-pecl-memcached php8-opcache php8-pcntl php8-pecl-imagick \
 		php8-pdo_mysql php8-pdo_pgsql php8-pdo_sqlite php8-pgsql php8-posix php8-sqlite3 php8-xml php8-xmlreader php8-zip php8-fileinfo php8-bcmath \

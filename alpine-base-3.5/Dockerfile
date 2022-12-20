@@ -5,6 +5,7 @@ ARG VCS_REF=master
 ARG VCS_URL=https://github.com/combro2k/dockerfiles
 ARG DOCKERFILE=alpine-base/Dockerfile
 ARG S6_OVERLAY_VERSION=3.1.2.1
+ARG GUCCI_VERSION=1.6.5
 
 ENV S6_KILL_GRACETIME=10000 S6_FIX_ATTRS_HIDDEN=1 S6_KILL_FINISH_MAXTIME=300000 S6_CMD_WAIT_FOR_SERVICES_MAXTIME=3000000
 
@@ -23,7 +24,7 @@ RUN set -xe && \
   apk add --quiet --no-cache libc6-compat && \
   apk add --quiet --no-cache --virtual=.build-deps curl tar xz alpine-sdk && \
   apk add --quiet --no-cache --virtual=.term-deps shadow && \
-  curl --location --silent https://github.com/noqcks/gucci/releases/download/1.5.2/gucci-v1.5.2-linux-amd64 --output /usr/bin/gucci && chmod +x /usr/bin/gucci && \
+  curl --location --silent https://github.com/noqcks/gucci/releases/download/${GUCCI_VERSION}/gucci-v${GUCCI_VERSION}-linux-amd64 --output /usr/bin/gucci && chmod +x /usr/bin/gucci && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar -C / -Jxp && \
 	curl --location --silent https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz | tar -C / -Jxp && \
 	apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*  

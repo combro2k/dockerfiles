@@ -1,4 +1,4 @@
-#!/command/with-contenv sh
+#!/usr/bin/env sh
 
 while ! test -f /tmp/haproxy.pid; do
   echo "Waiting 1 second haproxy to start up ..."

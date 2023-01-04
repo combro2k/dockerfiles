@@ -11,7 +11,7 @@ ENV \
 	GPG_PASSWORD="aptly" \
 	GPG_TTY="/dev/console" \
 	GNUPGHOME="/aptly/.gnupg" \
-  APTLY_VERSION=1.4.0
+  APTLY_VERSION=1.5.0
 
 RUN set -xe && apk --no-cache add curl xz bzip2 gnupg debian-archive-keyring nginx su-exec && \
 	mkdir -p /app/aptly && curl -L https://github.com/aptly-dev/aptly/releases/download/v${APTLY_VERSION}/aptly_${APTLY_VERSION}_linux_amd64.tar.gz | tar zx -C /app/aptly --strip-components=1 && \

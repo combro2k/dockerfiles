@@ -4,7 +4,7 @@ ARG BUILD_DATE=now
 ARG VCS_REF=master
 ARG VCS_URL=https://github.com/combro2k/dockerfiles
 ARG DOCKERFILE=alpine-base/Dockerfile
-ARG S6_OVERLAY_VERSION=3.1.3.0
+ARG S6_OVERLAY_VERSION=3.1.4.1
 
 LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-schema.vcs-ref=$VCS_REF \

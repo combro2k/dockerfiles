@@ -1,4 +1,4 @@
-FROM combro2k/alpine-base:latest
+FROM combro2k/alpine-base:3.15
 
 ONBUILD ARG BUILD_DATE=now
 ONBUILD ARG VCS_REF=master

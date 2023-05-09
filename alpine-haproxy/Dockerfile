@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 ENV S6_KILL_GRACETIME=3000 DOCKER_ENDPOINT=unix:///tmp/docker.sock
-ENV DOCKER_GEN_VERSION=0.10.2
+ENV DOCKER_GEN_VERSION=0.10.4
 
 RUN set -xe && \
 	apk add --quiet --no-cache --virtual=run-deps curl ca-certificates openssl haproxy && mkdir /app && \

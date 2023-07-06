@@ -46,7 +46,7 @@ backend {{ $value.Name }}
 
   mode http
 
-  acl from_cf src -i -f /data/cf-list-v4.txt -f cf-list-v6.txt
+  acl from_cf src -i -f /data/cf-list-v4.txt -f /data/cf-list-v6.txt
   acl cf_ip_hdr req.hdr(CF-Connecting-IP) -m found
   http-request set-header X-Forwarded-For %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
 

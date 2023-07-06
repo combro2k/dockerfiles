@@ -16,7 +16,7 @@ RUN set -xe && \
 
 COPY resources/ /
 
-RUN chmod +x /app/reload-haproxy.sh /usr/bin/certbot
+RUN chmod +x /app/reload-haproxy.sh /usr/bin/certbot /app/update-cf-list.sh
 
 #VOLUME /tmp/docker.sock
 

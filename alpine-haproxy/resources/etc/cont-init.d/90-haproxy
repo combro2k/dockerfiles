@@ -10,4 +10,8 @@ if [ ! -d /data/acme-challenge ]; then
   chmod +rwx /data/acme-challenge
 fi
 
+curl --silent --output /data/cf-list-v4.txt https://www.cloudflare.com/ips-v4
+curl --silent --output /data/cf-list-v6.txt https://www.cloudflare.com/ips-v6
+chown haproxy:haproxy /data/cf-list-v4.txt /data/cf-list-v6.txt
+
 exit 0

@@ -46,7 +46,10 @@ backend {{ $value.Name }}
 
   mode http
 
-  http-request set-header X-Real-IP %[src]
+  acl from_cf src -i -f /data/cf-list-v4.txt -f cf-list-v6.txt
+  acl cf_ip_hdr req.hdr(CF-Connecting-IP) -m found
+  http-request set-header X-Forwarded-For %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
+
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
 
@@ -80,7 +83,6 @@ backend SSL_{{ $value.Name }}
   mode http
   option httplog
 
-  http-request set-header X-Real-IP %[src]
   http-request set-header X-Forwarded-Port %[dst_port]
   http-request add-header X-Forwarded-Proto https if { ssl_fc }
 

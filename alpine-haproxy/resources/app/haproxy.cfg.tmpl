@@ -46,12 +46,25 @@ backend {{ $value.Name }}
 
   mode http
 
+{{ if $value.Env.VHOST_CF }}
+  # VHOST_CF setting
   acl from_cf src -i -f /data/cf-list-v4.txt -f /data/cf-list-v6.txt
   acl cf_ip_hdr req.hdr(CF-Connecting-IP) -m found
+
+  http-request set-header X-Real-IP %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
   http-request set-header X-Forwarded-For %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
+  http-request set-header X-Forwarded-Port %[dst_port]
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+
+  http-request allow if from_cf
+  http-request deny
+{{ else }}
+  option forwardfor
 
   http-request set-header X-Forwarded-Port %[dst_port]
-  http-request add-header X-Forwarded-Proto https if { ssl_fc }
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+{{ end }}
+
 
 {{ if gt $addrLen 0 }}
 {{ with $address := index $value.Networks 0 }}
@@ -83,8 +96,24 @@ backend SSL_{{ $value.Name }}
   mode http
   option httplog
 
+{{ if $value.Env.VHOST_CF }}
+  # VHOST_CF setting
+  acl from_cf src -i -f /data/cf-list-v4.txt -f /data/cf-list-v6.txt
+  acl cf_ip_hdr req.hdr(CF-Connecting-IP) -m found
+
+  http-request set-header X-Real-IP %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
+  http-request set-header X-Forwarded-For %[req.hdr(CF-Connecting-IP)] if from_cf cf_ip_hdr
   http-request set-header X-Forwarded-Port %[dst_port]
-  http-request add-header X-Forwarded-Proto https if { ssl_fc }
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+
+  http-request allow if from_cf
+  http-request deny
+{{ else }}
+  option forwardfor
+
+  http-request set-header X-Forwarded-Port %[dst_port]
+  http-request set-header X-Forwarded-Proto https if { ssl_fc }
+{{ end }}
 
 {{ if gt $addrLen 0 }}
 {{ with $address := index $value.Networks 0 }}
@@ -129,7 +158,6 @@ frontend http-in
   mode http
 
   option httplog
-  option forwardfor
   option http-server-close
 
   compression offload
@@ -162,7 +190,6 @@ frontend https-in
   mode http
 
   option httplog
-  option forwardfor
   option http-server-close
 
   compression offload

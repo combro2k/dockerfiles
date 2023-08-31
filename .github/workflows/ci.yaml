@@ -83,6 +83,15 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php8
           context: alpine-nginx-php8
       -
+        name: alpine-nginx-php82
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php82
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx:php8.2
+          context: alpine-nginx-php82
+      -
         name: alpine-nginx-static
         uses: docker/build-push-action@v2.7.0
         with:
@@ -208,6 +217,14 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-wordpress:php8
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-wordpress:latest
           context: alpine-nginx-wordpress-php8
+      -
+        name: alpine-nginx-organizr
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-organizr:latest
+          context: alpine-nginx-nginx-organizr
       -
         name: alpine-prosody
         uses: docker/build-push-action@v2.7.0

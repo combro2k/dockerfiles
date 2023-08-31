@@ -12,7 +12,7 @@ RUN apk add --no-cache ca-certificates ffmpeg opus python3 libsodium-dev py3-whe
   addgroup -g 1000 -S musicbot && adduser -S -u 1000 -h /musicbot musicbot -D musicbot -G musicbot && \
   mkdir -p /app/MusicBot && git clone https://github.com/danerprog/MusicBot.git /app/MusicBot -b review && \
   cd /app/MusicBot && sed -i 's~^pynacl==[^$]*~pynacl==1.3.0~g' requirements.txt && \
-  pip3 install --no-cache-dir -r requirements.txt && pip3 install --upgrade --force-reinstall --version websockets==10.2 && \
+  pip3 install --break-system-packages --no-cache-dir -r requirements.txt && pip3 install --break-system-packages --upgrade --force-reinstall --version websockets==10.2 && \
   chown -R musicbot:musicbot /app/MusicBot && \
   apk del .build-deps
 

@@ -14,4 +14,6 @@ RUN set -xe && apk add --virtual=run-deps \
     ln -s /config /data/web/data && chown -R www-data:www-data /data/web /config && apk del --quiet --no-cache --purge && \
 	rm -rf /var/cache/apk/*
 
+COPY resources/ /
+
 VOLUME /config

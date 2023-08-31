@@ -12,7 +12,7 @@ RUN set -xe && apk add --quiet --no-cache --virtual=.run-deps py3-pip py3-wheel 
         tinyxml-dev python3-dev musl-dev openssl-dev libffi-dev libxslt-dev rust cargo && \
       addgroup -g 1000 -S spiderfoot && adduser -S -u 1000 -h /app -s /usr/sbin/nologin -D spiderfoot -G spiderfoot && \
 	    curl -L https://github.com/smicallef/spiderfoot/archive/v${SPIDERFOOT_VERSION}.tar.gz | tar zx -C /app --strip-components=1 && \
-	    cd /app && pip3 --break-system-packages --no-cache-dir install wheel cryptography && pip3 --no-cache-dir install --break-system-packages -r /app/requirements.txt && chown -R spiderfoot:spiderfoot /app && \
+	    cd /app && pip3 --no-cache-dir install --break-system-packages wheel cryptography && pip3 --no-cache-dir install --break-system-packages -r /app/requirements.txt && chown -R spiderfoot:spiderfoot /app && \
 	    apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/* && \
       apk --no-cache --quiet fix openssl
 

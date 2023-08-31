@@ -224,7 +224,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-organizr:latest
-          context: alpine-nginx-nginx-organizr
+          context: alpine-nginx-organizr
       -
         name: alpine-prosody
         uses: docker/build-push-action@v2.7.0

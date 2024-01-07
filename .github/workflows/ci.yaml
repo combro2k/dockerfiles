@@ -191,15 +191,15 @@ jobs:
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:php8
             ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-rainloop:latest
           context: alpine-nginx-rainloop-php8
-      -
-        name: alpine-nginx-snappymail-php8
-        uses: docker/build-push-action@v2.7.0
-        with:
-          push: true
-          tags: |
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-snappymail:php8
-            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-snappymail:latest
-          context: alpine-nginx-snappymail-php8
+#      -
+#        name: alpine-nginx-snappymail-php8
+#        uses: docker/build-push-action@v2.7.0
+#        with:
+#          push: true
+#          tags: |
+#            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-snappymail:php8
+#            ${{ secrets.DOCKER_HUB_USERNAME }}/alpine-nginx-snappymail:latest
+#          context: alpine-nginx-snappymail-php8
       -
         name: alpine-nginx-wordpress-php7
         uses: docker/build-push-action@v2.7.0

@@ -12,7 +12,7 @@ RUN set -xe && apk --quiet --no-cache --repository=http://dl-cdn.alpinelinux.org
     php83-phar php83-sqlite3 sqlite-libs php83-mbstring php83-pecl-apcu php83-intl gpgme && rm /data/web -fr && mkdir /data/web /snappymail && cd /data/web && \
   curl -L https://github.com/the-djmaze/snappymail/releases/download/v${SNAPPYMAIL_VERSION}/snappymail-${SNAPPYMAIL_VERSION}.tar.gz | tar zx -C /data/web && \
 	chown www-data:www-data /data/web -R && rm -fr /data/web/data &&   git clone --recursive https://github.com/php-gnupg/php-gnupg.git /tmp/php-gnupg && \
-  cd /tmp/php-gnupg && phpize8 && ./configure --with-php-config=/usr/bin/php-config8 && make && make install && rm -fr /tmp/php-gnupg && \
+  cd /tmp/php-gnupg && phpize83 && ./configure --with-php-config=/usr/bin/php-config8 && make && make install && rm -fr /tmp/php-gnupg && \
 	apk del --quiet --no-cache --purge .build-deps && apk del --quiet --no-cache --purge && \
   rm -rf /var/cache/apk/*
 

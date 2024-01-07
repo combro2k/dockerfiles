@@ -13,7 +13,7 @@ fi
 
 echo "Installing composer for the first time run..."
 
-apk --no-cache add php8-phar php8-iconv php8-mbstring php8-zlib
+apk --no-cache add php83-phar php83-iconv php83-mbstring php83-zlib
 
 php composer-setup.php --quiet --install-dir=/usr/bin --filename=composer
 RESULT=$?
